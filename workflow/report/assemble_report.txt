@@ -1,0 +1,11 @@
+                                     
+       ASSEMBLE REPORT FOR RUN       
+_____________________________________
+                                     
+ASSEBLY METHOD: metaspades
+                                     
+FORWARD READS:
+   /nfs/chisholmlab002/sbiller/vesicle_nanopore/illumina/HSD00-20a-319-25m-LV-0_2um_S9_R1_001_trimmed_paired.fastq.gz
+                                     
+BACKWARD READS:                      
+   /nfs/chisholmlab002/sbiller/vesicle_nanopore/illumina/HSD00-20a-319-25m-LV-0_2um_S9_R2_001_trimmed_paired.fastq.gz

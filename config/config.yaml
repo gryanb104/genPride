@@ -1,15 +1,14 @@
-thresholds:
-	assemble_thresh: "value here"
-	ORF_thresh: "value here"
-	cluster_thresh: "value here"
-	compare_thresh: "value here"
+run_name: "test_one"
 
-file_dests:
-	final_report: "~/billerlab/gray/genPride/results/final_report.txt"
-	trimmed_fasta_fwd_list: ["/nfs/chisholmlab002/sbiller/vesicle_nanopore/illumina/HSD00-20a-319-25m-LV-0_2um_S9_R1_001_trimmed_paired.fastq.gz"]
-	trimmed_fasta_bwd_list: ["/nfs/chisholmlab002/sbiller/vesicle_nanopore/illumina/HSD00-20a-319-25m-LV-0_2um_S9_R2_001_trimmed_paired.fastq.gz"]
+assemble_thresh: "value here"
+ORF_thresh: "value here"
+cluster_thresh: "value here"
+compare_thresh: "value here"
 
-methods:
-	assembly: "metaspades"
+final_report_loc: "~/billerlab/gray/genPride/results/final_report.txt"
+trimmed_fasta_fwd_loc_list: ["/nfs/chisholmlab002/sbiller/vesicle_nanopore/illumina/HSD00-20a-319-25m-LV-0_2um_S9_R1_001_trimmed_paired.fastq.gz"]
+trimmed_fasta_bwd_loc_list: ["/nfs/chisholmlab002/sbiller/vesicle_nanopore/illumina/HSD00-20a-319-25m-LV-0_2um_S9_R2_001_trimmed_paired.fastq.gz"]
+
+assembly_meth: "metaspades"
 
 

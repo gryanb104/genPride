@@ -1,14 +1,23 @@
 configfile: "config/config.yaml"
 
-configfile: "config/config.yaml"
-
 report: "report/workflow.rst"
-
-include: "rules/assembly.smk"
 
 rule all:
 	input:
-		"reports/genPride_report.txt"
+		#reploc = config["final_report_loc"]
+		finrep = "workflow/report/assemble_report.txt"
 
-	
+rule assemble:
+	input:
+		fwd_list = config["trimmed_fasta_fwd_loc_list"],
+		bwd_list = config["trimmed_fasta_bwd_loc_list"]
+	output:
+		ass_rep = "workflow/report/assemble_report.txt"
+		#add assembled files here
+	params:
+		meth = config["assembly_meth"],
+		name = config["run_name"]
+	shell:
+		"bash workflow/scripts/assemble_report.sh {input.fwd_list} {input.bwd_list} {params.meth} > {output.ass_rep}"
+			
 
