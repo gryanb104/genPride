@@ -1,0 +1,14 @@
+configfile: "config/config.yaml"
+
+configfile: "config/config.yaml"
+
+report: "report/workflow.rst"
+
+include: "rules/assembly.smk"
+
+rule all:
+	input:
+		"reports/genPride_report.txt"
+
+	
+
