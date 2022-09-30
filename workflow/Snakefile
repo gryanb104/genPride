@@ -12,12 +12,14 @@ rule assemble:
 		fwd_list = config["trimmed_fasta_fwd_loc_list"],
 		bwd_list = config["trimmed_fasta_bwd_loc_list"]
 	output:
-		ass_rep = "workflow/report/assemble_report.txt"
-		#add assembled files here
+		ass_rep = "workflow/report/assemble_report.txt",
+		ass_out = "results/ASSEMBLY.txt"
+			#not set for multiple inputs yet
 	params:
 		meth = config["assembly_meth"],
-		name = config["run_name"]
+		name = config["run_name"],
+		int_dir = config["intermediate_directory"]
 	shell:
-		"bash workflow/scripts/assemble_report.sh {input.fwd_list} {input.bwd_list} {params.meth} > {output.ass_rep}"
-			
+		"bash workflow/scripts/assemble_report.sh {input.fwd_list} {input.bwd_list} {params.meth} {params.name} > {output.ass_rep}"
+					
 

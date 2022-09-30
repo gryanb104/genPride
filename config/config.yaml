@@ -8,7 +8,11 @@ compare_thresh: "value here"
 final_report_loc: "~/billerlab/gray/genPride/results/final_report.txt"
 trimmed_fasta_fwd_loc_list: ["/nfs/chisholmlab002/sbiller/vesicle_nanopore/illumina/HSD00-20a-319-25m-LV-0_2um_S9_R1_001_trimmed_paired.fastq.gz"]
 trimmed_fasta_bwd_loc_list: ["/nfs/chisholmlab002/sbiller/vesicle_nanopore/illumina/HSD00-20a-319-25m-LV-0_2um_S9_R2_001_trimmed_paired.fastq.gz"]
+intermediate_directory: "~/billerlab/gray/genPride/results"
 
 assembly_meth: "metaspades"
+   #options: "metaspades"
+
+
 
 
