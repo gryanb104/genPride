@@ -7,6 +7,9 @@ bwd_list=$2
 method=$3
 name=$4
 
+
+
+
 #report inputs
 
 #header
@@ -42,7 +45,10 @@ echo " "
 
 #report meat
 
-echo "TOTAL ASSEMBLY TIME:                TIME PER READ:"
-echo "   time here                           time here"
+echo "TOTAL ASSEMBLY TIME:"
+echo "       $SECONDS"
+echo " "
+echo "ASSEMBLY TIME PER READ:"
+echo "        time per here"
 echo " "
 #

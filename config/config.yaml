@@ -1,18 +1,31 @@
 run_name: "test_one"
 
-assemble_thresh: "value here"
+### THRESHOLDS ###
+
+assemble_thresh: 0.95
 ORF_thresh: "value here"
 cluster_thresh: "value here"
 compare_thresh: "value here"
 
-final_report_loc: "~/billerlab/gray/genPride/results/final_report.txt"
-trimmed_fasta_fwd_loc_list: ["/nfs/chisholmlab002/sbiller/vesicle_nanopore/illumina/HSD00-20a-319-25m-LV-0_2um_S9_R1_001_trimmed_paired.fastq.gz"]
-trimmed_fasta_bwd_loc_list: ["/nfs/chisholmlab002/sbiller/vesicle_nanopore/illumina/HSD00-20a-319-25m-LV-0_2um_S9_R2_001_trimmed_paired.fastq.gz"]
-intermediate_directory: "~/billerlab/gray/genPride/results"
+### DIRECTORIES, FILE LOCATIONS ###
+
+final_report_loc: "/home/billerlab/gray/genPride/results/final_report.txt"
+trimmed_fastq_fwd_loc_list: ["/home/billerlab/gray/data_GP/test_fwd.fastq.gz"]
+trimmed_fastq_bwd_loc_list: ["/home/billerlab/gray/data_GP/test_bwd.fastq.gz"]
+
+### METHODS ###
 
 assembly_meth: "metaspades"
    #options: "metaspades"
 
+### COMPUTING RESOURCES ###
+
+nodes: 1
+cpus: 20
+memory: 250000
+runtime: 2-00:00:00
+partition: "put here"
+ex_need: "exclusive"
 
 
 

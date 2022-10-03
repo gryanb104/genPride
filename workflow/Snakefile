@@ -5,21 +5,37 @@ report: "report/workflow.rst"
 rule all:
 	input:
 		#reploc = config["final_report_loc"]
-		finrep = "workflow/report/assemble_report.txt"
+		ass_data = "results/assembled_seqs/assembled.txt"
 
-rule assemble:
+rule assemble_data:
+	input: 
+		fwd_list = config["trimmed_fastq_fwd_loc_list"],
+		bwd_list = config["trimmed_fastq_bwd_loc_list"]
+	output:
+		ass_data = "results/assembled_seqs/assembled.txt"
+	params:
+		meth = config["assembly_meth"],
+		ass_thresh = config["assemble_thresh"],
+		#nodes = config["nodes"],
+		#cpus = config["cpus"],
+		#memory = config["memory"],
+		#runtime = config["runtime"],
+		#partition = config["partition"],
+		#ex_need = config["ex_need"]
+	shell:
+		"bash workflow/scripts/assemble_meat.sh {input.fwd_list} {input.bwd_list} {params.meth} {params.ass_thresh} > {output.ass_data}" 
+
+rule assemble_report:
 	input:
-		fwd_list = config["trimmed_fasta_fwd_loc_list"],
-		bwd_list = config["trimmed_fasta_bwd_loc_list"]
+		#insert here
 	output:
 		ass_rep = "workflow/report/assemble_report.txt",
-		ass_out = "results/ASSEMBLY.txt"
-			#not set for multiple inputs yet
 	params:
 		meth = config["assembly_meth"],
 		name = config["run_name"],
-		int_dir = config["intermediate_directory"]
+		fwd_list = config["trimmed_fastq_fwd_loc_list"],
+                bwd_list = config["trimmed_fastq_bwd_loc_list"]
 	shell:
-		"bash workflow/scripts/assemble_report.sh {input.fwd_list} {input.bwd_list} {params.meth} {params.name} > {output.ass_rep}"
+		"bash workflow/scripts/assemble_report.sh {params.fwd_list} {params.bwd_list} {params.meth} {params.name} > {output.ass_rep}"
 					
 
