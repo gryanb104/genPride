@@ -1,0 +1,2 @@
+#SBATCH -J metaSpades_powered_by_grays_tears	#Job name #SBATCH	-n 20			#number of cpus #SBATCH -N 1			#number of nodes #SBATCH --mem=250000 #SBATCH -t 2-00:00:00		#runtime #SBATCH -p sched_mit_chisholm		#partition #SBATCH --exclusive			#exclusive need?
+

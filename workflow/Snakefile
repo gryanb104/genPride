@@ -4,26 +4,47 @@ report: "report/workflow.rst"
 
 rule all:
 	input:
-		#reploc = config["final_report_loc"]
-		ass_data = "results/assembled_seqs/assembled.txt"
+		ass_data = "results/assembled_seqs/assembled_out"
 
 rule assemble_data:
 	input: 
 		fwd_list = config["trimmed_fastq_fwd_loc_list"],
 		bwd_list = config["trimmed_fastq_bwd_loc_list"]
 	output:
-		ass_data = "results/assembled_seqs/assembled.txt"
+		ass_data = "results/assembled_seqs/assembled_out"
+			#THUS FAR ONLY WORKS FOR FIRST ITEM IN ASS_DATA
 	params:
 		meth = config["assembly_meth"],
 		ass_thresh = config["assemble_thresh"],
-		#nodes = config["nodes"],
-		#cpus = config["cpus"],
-		#memory = config["memory"],
-		#runtime = config["runtime"],
-		#partition = config["partition"],
-		#ex_need = config["ex_need"]
+		threads = config["threads"],
+		spm = config["spades_py_memory"],
+		spades_path = config["spades_path"],	
+		nodes = config["nodes"],
+		cpus = config["cpus"],
+		memory = config["memory"],
+		runtime = config["runtime"],
+		partition = config["partition"],
+		ex_need = config["ex_need"],
+		run_name = config["run_name"]
 	shell:
-		"bash workflow/scripts/assemble_meat.sh {input.fwd_list} {input.bwd_list} {params.meth} {params.ass_thresh} > {output.ass_data}" 
+		'''
+		sbatch workflow/scripts/assemble_meat.sh \
+		{input.fwd_list} \
+		{input.bwd_list} \
+		{params.meth} \
+		{params.ass_thresh} \
+		{params.threads} \
+		{params.spm} \
+		{params.spades_path} \
+		{params.nodes} \
+		{params.cpus} \
+		{params.memory} \
+		{params.runtime} \
+		{params.partition} \
+		{params.ex_need} \
+		{params.run_name} \
+		> {output.ass_data}
+		'''
 
 rule assemble_report:
 	input:
