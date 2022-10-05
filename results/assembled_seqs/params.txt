@@ -1,0 +1,36 @@
+Command line: /home/billerlab/software/SPAdes-3.15.5-Linux/bin//spades.py	-o	/home/billerlab/gray/genPride/results/assembled_seqs	--meta	-1	/home/billerlab/gray/data_GP/test_fwd.fastq.gz	-2	/home/billerlab/gray/data_GP/test_bwd.fastq.gz	-t	20	-m	250	
+
+System information:
+  SPAdes version: 3.15.5
+  Python version: 3.10.4
+  OS: Linux-3.10.0-1062.el7.x86_64-x86_64-with-glibc2.17
+
+Output dir: /home/billerlab/gray/genPride/results/assembled_seqs
+Mode: read error correction and assembling
+Debug mode is turned OFF
+
+Dataset parameters:
+  Metagenomic mode
+  Reads:
+    Library number: 1, library type: paired-end
+      orientation: fr
+      left reads: ['/home/billerlab/gray/data_GP/test_fwd.fastq.gz']
+      right reads: ['/home/billerlab/gray/data_GP/test_bwd.fastq.gz']
+      interlaced reads: not specified
+      single reads: not specified
+      merged reads: not specified
+Read error correction parameters:
+  Iterations: 1
+  PHRED offset will be auto-detected
+  Corrected reads will be compressed
+Assembly parameters:
+  k: [21, 33, 55]
+  Repeat resolution is enabled
+  Mismatch careful mode is turned OFF
+  MismatchCorrector will be SKIPPED
+  Coverage cutoff is turned OFF
+Other parameters:
+  Dir for temp files: /home/billerlab/gray/genPride/results/assembled_seqs/tmp
+  Threads: 20
+  Memory limit (in Gb): 250
+

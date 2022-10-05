@@ -4,14 +4,14 @@ report: "report/workflow.rst"
 
 rule all:
 	input:
-		ass_data = "results/assembled_seqs/assembled_out"
+		slurm_ass = "results/slurm_ass.out"
 
 rule assemble_data:
 	input: 
 		fwd_list = config["trimmed_fastq_fwd_loc_list"],
 		bwd_list = config["trimmed_fastq_bwd_loc_list"]
 	output:
-		ass_data = "results/assembled_seqs/assembled_out"
+		slurm_ass = "results/slurm_ass.out"
 			#THUS FAR ONLY WORKS FOR FIRST ITEM IN ASS_DATA
 	params:
 		meth = config["assembly_meth"],
@@ -28,7 +28,15 @@ rule assemble_data:
 		run_name = config["run_name"]
 	shell:
 		'''
-		sbatch workflow/scripts/assemble_meat.sh \
+		sbatch \
+		--job-name={params.run_name} \
+		--nodes={params.nodes} \
+		--ntasks={params.cpus} \
+		--mem={params.memory} \
+		--time={params.runtime} \
+		--partition={params.partition} \
+		--{params.ex_need} \
+		workflow/scripts/assemble_meat.sh \
 		{input.fwd_list} \
 		{input.bwd_list} \
 		{params.meth} \
@@ -36,14 +44,7 @@ rule assemble_data:
 		{params.threads} \
 		{params.spm} \
 		{params.spades_path} \
-		{params.nodes} \
-		{params.cpus} \
-		{params.memory} \
-		{params.runtime} \
-		{params.partition} \
-		{params.ex_need} \
-		{params.run_name} \
-		> {output.ass_data}
+		> {output.slurm_ass}
 		'''
 
 rule assemble_report:

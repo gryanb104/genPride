@@ -1,11 +1,5 @@
 #!/bin/bash
-#SBATCH -J metaSpades_${14}	#Job name
-#SBATCH	-n ${9}			#number of cpus
-#SBATCH -N ${8}			#number of nodes
-#SBATCH --mem=${10}
-#SBATCH -t ${11}		#runtime
-#SBATCH -p ${12}		#partition
-#SBATCH --${13}			#exclusive need?
+#SBATCH -J default		#Job name
 
 #reassign variable names
 
@@ -16,13 +10,6 @@ ass_thresh=$4
 threads=$5
 spm=$6
 spades_path=$7
-nodes=$8
-cpus=$9
-memory=$10
-runtime=$11
-partition=$12
-ex_need=$13
-name=$14
 
 #reset timer
 SECONDS=0
@@ -34,11 +21,18 @@ then
 		--meta \
 		-1 ${1} \
 		-2 ${2} \
-		-t ${threads} -m ${spm}
+		-t ${5} -m ${6}
 else
 	echo "Assembly method $meth not valid"
 fi
 
+sleep 10
+dir=$(ls -A results/assembled_seqs/)
 
+until [[ dir -ne "" ]]
+do
+	sleep 10
+	echo "working..."
+done 
 
 
