@@ -1,0 +1,111 @@
+Command line: /home/billerlab/software/SPAdes-3.15.5-Linux/bin/spades.py	-o	/home/billerlab/gray/genPride/results/assembled_seqs	--meta	-1	/home/billerlab/gray/data_GP/test_fwd_tmp.fastq.gz	-2	/home/billerlab/gray/data_GP/test_bwd_tmp.fastq.gz	-t	20	-m	250	
+
+System information:
+  SPAdes version: 3.15.5
+  Python version: 3.10.6
+  OS: Linux-3.10.0-1062.el7.x86_64-x86_64-with-glibc2.17
+
+Output dir: /home/billerlab/gray/genPride/results/assembled_seqs
+Mode: read error correction and assembling
+Debug mode is turned OFF
+
+Dataset parameters:
+  Metagenomic mode
+  Reads:
+    Library number: 1, library type: paired-end
+      orientation: fr
+      left reads: ['/home/billerlab/gray/data_GP/test_fwd_tmp.fastq.gz']
+      right reads: ['/home/billerlab/gray/data_GP/test_bwd_tmp.fastq.gz']
+      interlaced reads: not specified
+      single reads: not specified
+      merged reads: not specified
+Read error correction parameters:
+  Iterations: 1
+  PHRED offset will be auto-detected
+  Corrected reads will be compressed
+Assembly parameters:
+  k: [21, 33, 55]
+  Repeat resolution is enabled
+  Mismatch careful mode is turned OFF
+  MismatchCorrector will be SKIPPED
+  Coverage cutoff is turned OFF
+Other parameters:
+  Dir for temp files: /home/billerlab/gray/genPride/results/assembled_seqs/tmp
+  Threads: 20
+  Memory limit (in Gb): 250
+
+
+======= SPAdes pipeline started. Log can be found here: /home/billerlab/gray/genPride/results/assembled_seqs/spades.log
+
+/home/billerlab/gray/data_GP/test_fwd_tmp.fastq.gz: max reads length: 151
+/home/billerlab/gray/data_GP/test_bwd_tmp.fastq.gz: max reads length: 151
+
+Reads length: 151
+
+
+===== Before start started. 
+
+
+===== Read error correction started. 
+
+
+===== Read error correction started. 
+
+
+== Running: /home/billerlab/software/SPAdes-3.15.5-Linux/bin/spades-hammer /home/billerlab/gray/genPride/results/assembled_seqs/corrected/configs/config.info
+
+  0:00:00.000     1M / 28M   INFO    General                 (main.cpp                  :  75)   Starting BayesHammer, built from refs/heads/spades_3.15.5, git revision e757b8216f9a038fb616e9551a2d4891b2d19ad7
+  0:00:00.004     1M / 28M   INFO    General                 (main.cpp                  :  76)   Loading config from /home/billerlab/gray/genPride/results/assembled_seqs/corrected/configs/config.info
+  0:00:00.013     1M / 28M   INFO    General                 (main.cpp                  :  78)   Maximum # of threads to use (adjusted due to OMP capabilities): 20
+  0:00:00.014     1M / 28M   INFO    General                 (memory_limit.cpp          :  54)   Memory limit set to 250 Gb
+  0:00:00.014     1M / 28M   INFO    General                 (main.cpp                  :  86)   Trying to determine PHRED offset
+  0:00:00.017     1M / 28M   INFO    General                 (main.cpp                  :  92)   Determined value is 33
+  0:00:00.018     1M / 28M   INFO    General                 (hammer_tools.cpp          :  38)   Hamming graph threshold tau=1, k=21, subkmer positions = [ 0 10 ]
+  0:00:00.018     1M / 28M   INFO    General                 (main.cpp                  : 113)   Size of aux. kmer data 24 bytes
+     === ITERATION 0 begins ===
+  0:00:00.018     1M / 28M   INFO   K-mer Counting           (kmer_data.cpp             : 283)   Estimating k-mer count
+  0:00:00.117   321M / 364M  INFO   K-mer Counting           (kmer_data.cpp             : 288)   Processing /home/billerlab/gray/data_GP/test_fwd_tmp.fastq.gz
+  0:02:48.448   321M / 379M  INFO   K-mer Counting           (kmer_data.cpp             : 297)   Processed 35882484 reads
+  0:02:48.449   321M / 379M  INFO   K-mer Counting           (kmer_data.cpp             : 288)   Processing /home/billerlab/gray/data_GP/test_bwd_tmp.fastq.gz
+  0:05:57.263   321M / 379M  INFO   K-mer Counting           (kmer_data.cpp             : 297)   Processed 71764968 reads
+  0:05:57.263   321M / 379M  INFO   K-mer Counting           (kmer_data.cpp             : 302)   Total 71764968 reads processed
+  0:05:58.176   321M / 379M  INFO   K-mer Counting           (kmer_data.cpp             : 305)   Estimated 7693783981 distinct kmers
+  0:05:58.176     1M / 379M  INFO   K-mer Counting           (kmer_data.cpp             : 309)   Filtering singleton k-mers
+  0:05:58.179    21G / 21G   INFO   K-mer Counting           (kmer_data.cpp             : 315)   Processing /home/billerlab/gray/data_GP/test_fwd_tmp.fastq.gz
+  0:57:16.236    21G / 21G   INFO   K-mer Counting           (kmer_data.cpp             : 324)   Processed 35882484 reads
+  0:57:16.236    21G / 21G   INFO   K-mer Counting           (kmer_data.cpp             : 315)   Processing /home/billerlab/gray/data_GP/test_bwd_tmp.fastq.gz
+  1:38:38.925    21G / 21G   INFO   K-mer Counting           (kmer_data.cpp             : 324)   Processed 71764968 reads
+  1:38:38.925    21G / 21G   INFO   K-mer Counting           (kmer_data.cpp             : 329)   Total 71764968 reads processed
+  1:38:39.151    21G / 21G   INFO    General                 (kmer_index_builder.hpp    : 243)   Splitting kmer instances into 16 files using 20 threads. This might take a while.
+  1:38:39.319    21G / 21G   INFO    General                 (file_limit.hpp            :  42)   Open file limit set to 51200
+  1:38:39.319    21G / 21G   INFO    General                 (kmer_splitter.hpp         :  93)   Memory available for splitting buffers: 3.82882 Gb
+  1:38:39.319    21G / 21G   INFO    General                 (kmer_splitter.hpp         : 101)   Using cell size of 4194304
+  1:38:39.469    32G / 32G   INFO   K-mer Splitting          (kmer_data.cpp             :  97)   Processing /home/billerlab/gray/data_GP/test_fwd_tmp.fastq.gz
+  1:41:20.462    32G / 40G   INFO   K-mer Splitting          (kmer_data.cpp             : 107)   Processed 6499012 reads
+  1:43:54.356    32G / 40G   INFO   K-mer Splitting          (kmer_data.cpp             : 107)   Processed 12788139 reads
+  1:46:26.688    32G / 40G   INFO   K-mer Splitting          (kmer_data.cpp             : 107)   Processed 19333485 reads
+  1:49:03.563    32G / 40G   INFO   K-mer Splitting          (kmer_data.cpp             : 107)   Processed 25821066 reads
+  1:51:46.417    32G / 40G   INFO   K-mer Splitting          (kmer_data.cpp             : 107)   Processed 32347416 reads
+  1:53:21.222    32G / 40G   INFO   K-mer Splitting          (kmer_data.cpp             : 107)   Processed 35882484 reads
+  1:53:21.222    32G / 40G   INFO   K-mer Splitting          (kmer_data.cpp             :  97)   Processing /home/billerlab/gray/data_GP/test_bwd_tmp.fastq.gz
+  1:56:18.555    32G / 40G   INFO   K-mer Splitting          (kmer_data.cpp             : 107)   Processed 42373880 reads
+  1:59:22.630    32G / 40G   INFO   K-mer Splitting          (kmer_data.cpp             : 107)   Processed 48838760 reads
+  2:02:06.101    32G / 40G   INFO   K-mer Splitting          (kmer_data.cpp             : 107)   Processed 55308668 reads
+  2:04:47.003    32G / 40G   INFO   K-mer Splitting          (kmer_data.cpp             : 107)   Processed 61770067 reads
+  2:07:35.795    32G / 40G   INFO   K-mer Splitting          (kmer_data.cpp             : 107)   Processed 68251587 reads
+  2:08:59.377    32G / 40G   INFO   K-mer Splitting          (kmer_data.cpp             : 107)   Processed 71764968 reads
+  2:08:59.378    32G / 40G   INFO   K-mer Splitting          (kmer_data.cpp             : 112)   Total 71764968 reads processed
+  2:08:59.379    21G / 40G   INFO    General                 (kmer_index_builder.hpp    : 249)   Starting k-mer counting.
+spades-hammer: /spades/assembler/src/common/utils/kmer_mph/kmer_index_builder.hpp:297: size_t kmers::KMerDiskCounter<Seq, traits>::MergeKMers(const string&, const string&) [with Seq = Seq<21>; traits = kmers::kmer_index_traits<Seq<21> >; size_t = long unsigned int; std::string = std::basic_string<char>]: Assertion `std::is_sorted(beg, end, adt::array_less<typename Seq::DataType>())' failed.
+
+
+== Error ==  system call for: "['/home/billerlab/software/SPAdes-3.15.5-Linux/bin/spades-hammer', '/home/billerlab/gray/genPride/results/assembled_seqs/corrected/configs/config.info']" finished abnormally, OS return value: -6
+None
+
+In case you have troubles running SPAdes, you can write to spades.support@cab.spbu.ru
+or report an issue on our GitHub repository github.com/ablab/spades
+Please provide us with params.txt and spades.log files from the output directory.
+
+SPAdes log can be found here: /home/billerlab/gray/genPride/results/assembled_seqs/spades.log
+
+Thank you for using SPAdes!

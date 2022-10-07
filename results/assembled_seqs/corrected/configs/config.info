@@ -1,7 +1,7 @@
 ; = HAMMER =
 ; input options: working dir, input files, offset, and possibly kmers
 dataset /home/billerlab/gray/genPride/results/assembled_seqs/input_dataset.yaml
-input_working_dir /home/billerlab/gray/genPride/results/assembled_seqs/tmp/hammer_9ulo3uit
+input_working_dir /home/billerlab/gray/genPride/results/assembled_seqs/tmp/hammer_fq9ffzcq
 input_trim_quality			4
 input_qvoffset				
 output_dir /home/billerlab/gray/genPride/results/assembled_seqs/corrected

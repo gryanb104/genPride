@@ -7,7 +7,7 @@
 #include "tsa.info"
 #include "pe_params.info"
 
-K 21
+K 33
 ;FIXME introduce isolate mode
 mode base
 
@@ -19,9 +19,9 @@ tmp_dir /home/billerlab/gray/genPride/results/assembled_seqs/tmp/spades_0uftc_3m
 
 main_iteration false
 ; iterative mode switcher, activates additional contigs usage
-use_additional_contigs false
-additional_contigs	tmp_contigs.fasta
-load_from /home/billerlab/gray/genPride/results/assembled_seqs/K21/saves
+use_additional_contigs true
+additional_contigs /home/billerlab/gray/genPride/results/assembled_seqs/K21/simplified_contigs
+load_from /home/billerlab/gray/genPride/results/assembled_seqs/K33/saves
 
 ; Multithreading options
 temp_bin_reads_dir	.bin_reads/

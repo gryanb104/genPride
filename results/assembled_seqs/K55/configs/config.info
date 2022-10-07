@@ -7,7 +7,7 @@
 #include "tsa.info"
 #include "pe_params.info"
 
-K 21
+K 55
 ;FIXME introduce isolate mode
 mode base
 
@@ -17,11 +17,11 @@ log_filename    log.properties
 output_base /home/billerlab/gray/genPride/results/assembled_seqs
 tmp_dir /home/billerlab/gray/genPride/results/assembled_seqs/tmp/spades_0uftc_3m
 
-main_iteration false
+main_iteration true
 ; iterative mode switcher, activates additional contigs usage
-use_additional_contigs false
-additional_contigs	tmp_contigs.fasta
-load_from /home/billerlab/gray/genPride/results/assembled_seqs/K21/saves
+use_additional_contigs true
+additional_contigs /home/billerlab/gray/genPride/results/assembled_seqs/K33/simplified_contigs
+load_from /home/billerlab/gray/genPride/results/assembled_seqs/K55/saves
 
 ; Multithreading options
 temp_bin_reads_dir	.bin_reads/
@@ -42,7 +42,7 @@ developer_mode false
 scaffold_correction_mode false
 
 ; enabled (1) or disabled (0) repeat resolution (former "paired_mode")
-rr_enable false
+rr_enable true
 ; 0 for graph N50
 min_edge_length_for_is_count 0
 
@@ -71,7 +71,7 @@ compute_paths_number false
 ; End of developer_mode parameters
 
 ;if true simple mismatches are corrected
-correct_mismatches false
+correct_mismatches          true
 
 ; set it true to get statistics, such as false positive/negative, perfect match, etc.
 paired_info_statistics false
@@ -115,7 +115,7 @@ pos
 
 }
 
-gap_closer_enable false
+gap_closer_enable true
 
 gap_closer
 {

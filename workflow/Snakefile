@@ -36,6 +36,7 @@ rule assemble_data:
 		--time={params.runtime} \
 		--partition={params.partition} \
 		--{params.ex_need} \
+		--output={output.slurm_ass} \
 		workflow/scripts/assemble_meat.sh \
 		{input.fwd_list} \
 		{input.bwd_list} \
@@ -43,8 +44,7 @@ rule assemble_data:
 		{params.ass_thresh} \
 		{params.threads} \
 		{params.spm} \
-		{params.spades_path} \
-		> {output.slurm_ass}
+		{params.spades_path}
 		'''
 
 rule assemble_report:

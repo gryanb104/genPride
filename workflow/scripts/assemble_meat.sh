@@ -1,5 +1,4 @@
 #!/bin/bash
-#SBATCH -J default		#Job name
 
 #reassign variable names
 
@@ -25,14 +24,5 @@ then
 else
 	echo "Assembly method $meth not valid"
 fi
-
-sleep 10
-dir=$(ls -A results/assembled_seqs/)
-
-until [[ dir -ne "" ]]
-do
-	sleep 10
-	echo "working..."
-done 
 
 
