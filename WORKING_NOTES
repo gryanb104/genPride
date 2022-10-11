@@ -1,0 +1,24 @@
+10/11/2022
+
+*Started taking working notes
+*Did an sbatch run
+	-Failed after about 2.5 hours
+	-Error code indicates that the reads are not the same 
+	 length
+*Did another sbatch run
+	-This time with the files that had not been cut down to 
+	 one million lines
+	-Also failed, still not the same number of reads
+	-Dr. Biller suggested using seqtk or seqkit packages 
+	 (both installed in subdirectories under /nobackup1/
+	 chisholmlab/software)
+*There was a github issue
+	-Struggled for a long time
+	-Finally overwrote the origin (github) branch with the
+	 main (local) branch
+*Copied gray directory into nobackup1
+
+*STILL NEED TO DO:
+	-Make the fastq files have the same number of reads
+	-Do this as another snakemake rule?
+	-clone genPride git repo into nobackup1
