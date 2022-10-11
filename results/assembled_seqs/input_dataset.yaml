@@ -1,7 +1,0 @@
-- "left reads":
-  - "/home/billerlab/gray/data_GP/test_fwd_tmp.fastq.gz"
-  "number": !!int "1"
-  "orientation": "fr"
-  "right reads":
-  - "/home/billerlab/gray/data_GP/test_bwd_tmp.fastq.gz"
-  "type": "paired-end"
