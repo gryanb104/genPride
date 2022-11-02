@@ -22,3 +22,14 @@
 	-Make the fastq files have the same number of reads
 	-Do this as another snakemake rule?
 	-clone genPride git repo into nobackup1
+
+11/2/2022
+
+*Get fastq subsamples with equal numbers of reads
+	-Reading up on seqtk
+	-Can't figure out how to use it from the chisholm direct-
+		ory
+	-Installing seqtk into nobackup1/billerlab
+	-Run seqtk sample -s100 test_fwd_tmp.fastq.gz 1000000 >
+		subset_fwd.fastq.gz and same for bwd
+
