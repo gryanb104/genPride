@@ -1,5 +1,5 @@
-fwd="/home/billerlab/gray/data_GP/test_fwd.fastq.gz"
-bwd="/home/billerlab/gray/data_GP/test_bwd.fastq.gz"
+fwd="/nobackup1/billerlab/gray/data_GP/subset_fwd.fastq.gz"
+bwd="/nobackup1/billerlab/gray/data_GP/subset_bwd.fastq.gz"
 meth="metaspades"
 threads=20
 spm=250

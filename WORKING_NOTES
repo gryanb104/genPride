@@ -32,4 +32,10 @@
 	-Installing seqtk into nobackup1/billerlab
 	-Run seqtk sample -s100 test_fwd_tmp.fastq.gz 1000000 >
 		subset_fwd.fastq.gz and same for bwd
-
+*Got github pushing and pulling working from nobackup1
+	-Simultaneously lost the ability to do so from the home
+		directory (cying emoji)
+*Attempt to run genPride snakemake using these new subset files
+	-Done so by running bash test_script.sh
+	-Error: not a gzipped file?
+*I'm going home early fuck this
