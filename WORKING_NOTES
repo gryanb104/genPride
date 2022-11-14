@@ -39,3 +39,19 @@
 	-Done so by running bash test_script.sh
 	-Error: not a gzipped file?
 *I'm going home early fuck this
+
+11/14/2022
+
+*Run test script (as of now, made to set up some parameters and
+	run assemble_meat.sh)
+	-Error: not gzip files
+	-Correct by zipping files using gzip -f
+*Run test script again
+	-Runs, but on root node
+	-Copy and paste sbatch stuff from GP_RUN
+	-That ran it on the head node again
+*Run again, this time using sbatch instead of bash
+	-Submitted job!
+	-Did not take very long
+	-Looks like it worked!!!
+
