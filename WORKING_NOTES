@@ -51,7 +51,20 @@
 	-Copy and paste sbatch stuff from GP_RUN
 	-That ran it on the head node again
 *Run again, this time using sbatch instead of bash
-	-Submitted job!
-	-Did not take very long
-	-Looks like it worked!!!
-
+	-Submitted job!Did not take very long Looks like it wo-
+		rked!!!
+	-Deleted results files and pushed
+*Try running GP_RUN 
+	-Have to do so after activating the snakemake environm-
+		ent
+	-Have to do sbatch instead of bash also
+	-Not working
+	-I don't know what I did, but it is maybe working now?
+		#I think I had to simplify the run script to o-
+			nly snakemake --cores 1, get rid of all
+			the other stuff
+	-Seems to have worked!	
+*While that is running, fix github connection from home direct-
+	ory
+	-Delete home repo and clone back again
+	-Presumed successful

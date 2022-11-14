@@ -9,7 +9,7 @@ compare_thresh: "value here"
 
 ### DIRECTORIES, FILE LOCATIONS ###
 
-final_report_loc: "/home/billerlab/gray/genPride/results/final_report.txt"
+final_report_loc: "/nobackup1/billerlab/gray/genPride/results/final_report.txt"
 trimmed_fastq_fwd_loc_list: "/nobackup1/billerlab/gray/data_GP/subset_fwd.fastq.gz"
 trimmed_fastq_bwd_loc_list: "/nobackup1/billerlab/gray/data_GP/subset_bwd.fastq.gz"
 spades_path: "/home/billerlab/software/SPAdes-3.15.5-Linux/bin/"

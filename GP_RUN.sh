@@ -7,12 +7,12 @@
 #SBATCH --partition=sched_mit_chisholm	#partition name
 #SBATCH --exclusive			#exclusive use of node
 
-cd ~/gray/genPride
+cd /nobackup1/billerlab/gray/genPride
 
-SNAKEFILE=workflow/Snakefile
+#SNAKEFILE=workflow/Snakefile
 
 #snakemake --snakefile $SNAKEFILE --lint
 #snakemake --snakefile $SNAKEFILE --unlock
 #snakefmt $SNAKEFILE
 
-snakemake --cores 1 --snakefile $SNAKEFILE
+snakemake --cores 1
