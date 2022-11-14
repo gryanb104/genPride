@@ -69,3 +69,6 @@
 	ory
 	-Delete home repo and clone back again
 	-Presumed successful
+*Next goal: try to get the slurm_ass.out to include the time in
+	seconds at the end
+	-Still working on this in current run

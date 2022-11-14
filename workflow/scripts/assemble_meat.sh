@@ -11,7 +11,7 @@ spm=$6
 spades_path=$7
 
 #reset timer
-SECONDS=0
+start=$SECONDS
 
 if [[ "$meth" == "metaspades" ]]
 then
@@ -24,5 +24,10 @@ then
 else
 	echo "Assembly method $meth not valid"
 fi
+
+duration=$(( SECONDS - start ))
+
+echo "time(sec):"
+echo $duration
 
 
