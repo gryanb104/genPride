@@ -64,6 +64,7 @@
 			nly snakemake --cores 1, get rid of all
 			the other stuff
 	-Seems to have worked!	
+	-Reset and did again since the slurm output was deleted
 *While that is running, fix github connection from home direct-
 	ory
 	-Delete home repo and clone back again
