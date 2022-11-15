@@ -34,7 +34,7 @@ rule assemble_data:
 
 rule assemble_report:
 	input:
-		#insert here
+		slurm_ass = "results/slurm_ass.out"
 	output:
 		ass_rep = "workflow/report/assemble_report.txt",
 	params:
@@ -48,7 +48,8 @@ rule assemble_report:
 		{params.fwd_list} \
 		{params.bwd_list} \
 		{params.meth} \
-		{params.name} > {output.ass_rep}
+		{params.name} \
+		{input.slurm_ass} > {output.ass_rep}
 		
 		'''
 					

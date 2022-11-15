@@ -72,3 +72,18 @@
 *Next goal: try to get the slurm_ass.out to include the time in
 	seconds at the end
 	-Still working on this in current run
+
+11/15/2022
+
+*Run from yesterday: worked! The slurm_ass.out file now has ti-
+	me in seconds printed at the bottom
+	-Next step: get this into the report using another sna-
+		kemake rule
+*Getting the report to include:
+	-Time in hours, minutes, seconds: DONE
+	-Number of starting reads: DONE
+	-Time per read: DONE
+	-Number of ending contigs: DONE
+	-Time per ending contig: DONE
+*Push everything
+
