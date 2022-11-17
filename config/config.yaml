@@ -9,14 +9,15 @@ compare_thresh: "value here"
 
 ### DIRECTORIES, FILE LOCATIONS ###
 
-final_report_loc: "/nobackup1/billerlab/gray/genPride/results/final_report.txt"
 trimmed_fastq_fwd_loc_list: "/nobackup1/billerlab/gray/data_GP/subset_fwd.fastq.gz"
 trimmed_fastq_bwd_loc_list: "/nobackup1/billerlab/gray/data_GP/subset_bwd.fastq.gz"
 spades_path: "/home/billerlab/software/SPAdes-3.15.5-Linux/bin/"
+prod_path: "/nobackup1/chisholmlab/software/Prodigal"
 
 ### METHODS ###
 
 assembly_meth: "metaspades"
+prodigal_meth: "meta"
 
 ### COMPUTING RESOURCES ###
 

@@ -19,11 +19,9 @@ echo "                          $name"
 echo "_________________________________________________________________"
 echo " "
 
-
-#method
-echo "ASSEMBLY METHOD GP : $method"
-
 #inputs
+
+echo "ASSEMBLY METHOD GP : $method"
 echo "FORWARD READS FILE : ${fwd_list##*/}"
 echo "REVERSE READS FILE : ${bwd_list##*/}"
 echo " "
@@ -47,15 +45,10 @@ hour=$(($sec / 3600))
 only_min=$(($min - ($hour * 60)))
 
 echo "ASSEMBLY TIME"
-echo -n "  TOTAL TIME ELAPS : $hour"
-echo -n "h $only_min"
-echo -n "m $only_sec"
-echo "s"
+echo -n "  TOTAL TIME ELAPS : $hour"; echo -n "h $only_min"; echo -n "m $only_sec"; echo "s"
 
 sec_f=$(printf "%f\n" $((10**6 * $sec/$seqs_start_fwd))e-6)
 sec_c=$(printf "%f\n" $((10**6 * $sec/$contigs_end))e-6)
 
-echo -n "  T PER INPUT READ : $sec_f"
-echo "s"
-echo -n "  T PER OUT CONTIG : $sec_c"
-echo "s"
+echo -n "  T PER INPUT READ : $sec_f"; echo "s"
+echo -n "  T PER OUT CONTIG : $sec_c"; echo "s"

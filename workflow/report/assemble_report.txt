@@ -3,22 +3,17 @@
                           test_one
 _________________________________________________________________
  
-ASSEMBLY METHOD:
-   metaspades
- 
-FORWARD READS:
-   /nfs/chisholmlab002/sbiller/vesicle_nanopore/illumina/HSD00-20
-a-319-25m-LV-0_2um_S9_R1_001_trimmed_paired.fastq.gz
- 
-BACKWARD READS:
-   /nfs/chisholmlab002/sbiller/vesicle_nanopore/illumina/HSD00-20
-a-319-25m-LV-0_2um_S9_R2_001_trimmed_paired.fastq.gz
+ASSEMBLY METHOD GP : metaspades
+FORWARD READS FILE : subset_fwd.fastq.gz
+REVERSE READS FILE : subset_bwd.fastq.gz
  
 _________________________________________________________________
  
-TOTAL ASSEMBLY TIME:
-       0
+NUMBER OF SEQUENCES
+  NUMB INPUT READS : 1000000
+  N OUTPUT CONTIGS : 151686
  
-ASSEMBLY TIME PER READ:
-        time per here
- 
+ASSEMBLY TIME
+  TOTAL TIME ELAPS : 0h 55m 44s
+  T PER INPUT READ : 0.003344s
+  T PER OUT CONTIG : 0.022045s

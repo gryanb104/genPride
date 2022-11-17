@@ -4,7 +4,7 @@ report: "report/workflow.rst"
 
 rule all:
 	input:
-		slurm_ass = "results/slurm_ass.out"
+		ass_rep = "workflow/report/assemble_report.txt"
 
 rule assemble_data:
 	input: 
@@ -32,11 +32,12 @@ rule assemble_data:
 		
 		'''
 
-rule assemble_report:
+rule report:
 	input:
-		slurm_ass = "results/slurm_ass.out"
+		slurm_ass = "results/slurm_ass.out",
+		ass_contigs = "results/assembled_seqs/contigs.fasta"
 	output:
-		ass_rep = "workflow/report/assemble_report.txt",
+		ass_rep = "workflow/report/assemble_report.txt"
 	params:
 		meth = config["assembly_meth"],
 		name = config["run_name"],
@@ -49,7 +50,8 @@ rule assemble_report:
 		{params.bwd_list} \
 		{params.meth} \
 		{params.name} \
-		{input.slurm_ass} > {output.ass_rep}
+		{input.slurm_ass} \
+		{input.ass_contigs} > {output.ass_rep}
 		
 		'''
 					

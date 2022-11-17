@@ -87,3 +87,14 @@
 	-Time per ending contig: DONE
 *Push everything
 
+11/17/2022
+
+*Connecting snakemake 
+	-Rules assemble_data and assemble_report now working t-
+		ogether
+	-Next: can report script be condensed?: DONE
+*Prodigal script
+
+
+
+
