@@ -4,14 +4,15 @@ report: "report/workflow.rst"
 
 rule all:
 	input:
-		ass_rep = "workflow/report/assemble_report.txt"
+		prot_seqs = "results/protein_seqs/protein_translations.faa/"
 
 rule assemble_data:
 	input: 
 		fwd_list = config["trimmed_fastq_fwd_loc_list"],
 		bwd_list = config["trimmed_fastq_bwd_loc_list"]
 	output:
-		slurm_ass = "results/slurm_ass.out"
+		slurm_ass = "results/slurm_ass.out",
+		ass_contigs = "results/assembled_seqs/contigs.fasta"
 			#THUS FAR ONLY WORKS FOR FIRST ITEM IN ASS_DATA
 	params:
 		meth = config["assembly_meth"],
@@ -32,6 +33,24 @@ rule assemble_data:
 		
 		'''
 
+rule find_orfs:
+	input:
+		ass_contigs = "results/assembled_seqs/contigs.fasta"
+	output:
+		slurm_orf = "results/slurm_orf",
+		prot_seqs = "results/protein_seqs/protein_translations.faa"
+	params:
+		prod_path = config["prod_path"],
+		prod_meth = config["prodigal_meth"]
+	shell:
+		'''
+		bash workflow/scripts/find_orfs.sh \
+		{input.ass_contigs} \
+		{params.prod_path} \
+		{params.prod_meth} > {output.slurm_orf}
+		
+		'''
+	
 rule report:
 	input:
 		slurm_ass = "results/slurm_ass.out",

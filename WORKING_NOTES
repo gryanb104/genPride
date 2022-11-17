@@ -94,7 +94,9 @@
 		ogether
 	-Next: can report script be condensed?: DONE
 *Prodigal script
-
+	-Got it working using test_script, pushed to github
+	-Next: trying to get it to work via snakemake: DONE
+	-Add report portion into report script
 
 
 

@@ -14,8 +14,7 @@ ${prod_path}/prodigal \
 	-o results/protein_seqs/prodigal_output.gff \
 	-f gff \
 	-a results/protein_seqs/protein_translations.faa \
-	-p \
-	${prod_meth} \
+	-p ${prod_meth} \
 	-c
 
 duration=$(( SECONDS - start ))
