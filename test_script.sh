@@ -13,17 +13,15 @@ ass_contigs="/nobackup1/billerlab/gray/genPride/results/assembled_seqs/contigs.f
 meth="metaspades"
 name="test_name"
 slurm_ass="results/slurm_ass.out"
-
 prod_path="/nobackup1/chisholmlab/software/Prodigal/"
 prod_meth="meta"
 
-#threads=20
-#spm=250
-#spades_path="/home/billerlab/software/SPAdes-3.15.5-Linux/bin/"
+prot_seqs="/nobackup1/billerlab/gray/genPride/results/protein_seqs/protein_translations.faa"
+mmseq_meth="easy_cluster"
+nuc_id=0.95
+overlap=0.9
 
 #bash workflow/scripts/assemble_meat.sh $fwd $bwd $meth 0.95 $threads $spm $spades_path
-
 #bash workflow/scripts/assemble_report.sh $fwd $bwd $meth $name $slurm_ass $ass_contigs > TEST_ASS_REPORT.txt
-
-bash workflow/scripts/find_orfs.sh $ass_contigs $prod_path $prod_meth > TEST_ORF_REPORT.txt
-
+#bash workflow/scripts/find_orfs.sh $ass_contigs $prod_path $prod_meth > TEST_ORF_REPORT.txt
+bash workflow/scripts/cluster_gen.sh $prot_seqs $mmseq_meth $nuc_id $overlap > TEST_CLUST_slurm.out

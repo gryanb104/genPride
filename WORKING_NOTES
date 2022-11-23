@@ -6,8 +6,8 @@
 	-Error code indicates that the reads are not the same 
 	 length
 *Did another sbatch run
-	-This time with the files that had not been cut down to 
-	 one million lines
+	-This time with the files that had not been cut down t-
+	o one million lines
 	-Also failed, still not the same number of reads
 	-Dr. Biller suggested using seqtk or seqkit packages 
 	 (both installed in subdirectories under /nobackup1/
@@ -27,8 +27,8 @@
 
 *Get fastq subsamples with equal numbers of reads
 	-Reading up on seqtk
-	-Can't figure out how to use it from the chisholm direct-
-		ory
+	-Can't figure out how to use it from the chisholm dire-
+		ctory
 	-Installing seqtk into nobackup1/billerlab
 	-Run seqtk sample -s100 test_fwd_tmp.fastq.gz 1000000 >
 		subset_fwd.fastq.gz and same for bwd
@@ -98,5 +98,21 @@
 	-Next: trying to get it to work via snakemake: DONE
 	-Add report portion into report script
 
+11/21/2022
+
+*run from Friday using mmseqs didn't work (mmseqs command not 
+	found)
+	-But running mmseqs -h from the directory did work, so
+		wtf???
+*slurm stuff shut down for maintenence
+
+11/22/2022
+
+*maintenence still happening
+
+11/23/2022
+
+*run still says mmseqs does not exist
+	-reinstalling with conda
 
 

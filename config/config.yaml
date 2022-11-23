@@ -4,7 +4,8 @@ run_name: "test_one"
 
 assemble_thresh: 0.95
 ORF_thresh: "value here"
-cluster_thresh: "value here"
+cluster_nuc_id: 0.95
+cluster_overlap: 0.9
 compare_thresh: "value here"
 
 ### DIRECTORIES, FILE LOCATIONS ###
@@ -18,6 +19,7 @@ prod_path: "/nobackup1/chisholmlab/software/Prodigal"
 
 assembly_meth: "metaspades"
 prodigal_meth: "meta"
+mmseq_cluster_method: "easy_cluster"
 
 ### COMPUTING RESOURCES ###
 

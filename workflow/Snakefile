@@ -4,7 +4,7 @@ report: "report/workflow.rst"
 
 rule all:
 	input:
-		ass_rep = "workflow/report/report_final.txt"		
+		slurm_clust = "results/slurm_clust.out"		
 
 rule assemble_data:
 	input: 
@@ -51,6 +51,26 @@ rule find_orfs:
 		
 		'''
 	
+rule cluster:
+	input:
+		prot_seqs = "results/protein_seqs/protein_translations.faa"
+	output:
+		slurm_clust = "results/slurm_clust.out",
+		clustered_seqs = "results/clustered_seqs/clust_all_seqs.fasta"
+	params:
+		mmseq_meth = config["mmseq_cluster_method"],
+		nuc_id = config["cluster_nuc_id"],
+		overlap = config["cluster_overlap"]
+	shell:
+		'''
+		bash workflow/scripts/cluster_gen.sh \
+		{input.prot_seqs} \
+		{params.mmseq_meth} \
+		{params.nuc_id} \
+		{params.overlap} > {output.slurm_clust}
+		
+		'''	
+
 rule report:
 	input:
 		slurm_ass = "results/slurm_ass.out",
