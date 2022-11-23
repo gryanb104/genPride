@@ -30,3 +30,12 @@ PROTEIN SEQUENCE TIME
   TOTAL TIME ELAPS : 0h 0m 43s
   TIME PER PROTEIN : 0.000283s
  
+_________________________________________________________________
+ 
+                       PROTEIN CLUSTERING
+ 
+PROTEIN CLUST METH : easy_cluster
+ 
+CLUSTER TIME
+  TOTAL TIME ELAPS : 0h 0m 21s
+  TIME PER PROTEIN : 0.000138s

@@ -10,6 +10,8 @@ slurm_ass=$5
 ass_contigs=$6
 prod_meth=$7
 slurm_orf=$8
+slurm_clust=$9
+clust_meth=${10}
 
 #report inputs
 
@@ -62,6 +64,7 @@ echo "PROTEINS SEQUENCED : $contigs_end"
 echo " "
 
 sec=$(tail -n 1 $slurm_orf)
+sec_ORF=$sec
 min=$(($sec / 60))
 only_sec=$(($sec - ($min * 60)))
 hour=$(($sec / 3600))
@@ -71,4 +74,25 @@ echo "PROTEIN SEQUENCE TIME"
 echo -n "  TOTAL TIME ELAPS : $hour"; echo -n "h $only_min"; echo -n "m $only_sec"; echo "s"
 sec_c=$(printf "%f\n" $((10**6 * $sec/$contigs_end))e-6)
 echo -n "  TIME PER PROTEIN : $sec_c"; echo "s"
+
 echo " "
+echo "_________________________________________________________________"
+echo " "
+echo "                       PROTEIN CLUSTERING"
+echo " "
+
+echo "PROTEIN CLUST METH : $clust_meth"
+echo " "
+
+sec=$(tail -n 1 $slurm_clust)
+sec_CLUST=$sec
+min=$(($sec / 60))
+only_sec=$(($sec - ($min * 60)))
+hour=$(($sec / 3600))
+only_min=$(($min - ($hour * 60)))
+
+echo "CLUSTER TIME"
+echo -n "  TOTAL TIME ELAPS : $hour"; echo -n "h $only_min"; echo -n "m $only_sec"; echo "s"
+sec_c=$(printf "%f\n" $((10**6 * $sec/$contigs_end))e-6)
+echo -n "  TIME PER PROTEIN : $sec_c"; echo "s"
+

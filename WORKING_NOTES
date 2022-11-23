@@ -116,6 +116,9 @@
 	-reinstalling with conda
 	-test script is working though? wtf?
 	-Got it to work! Don't know how! Pushed
-
+*working on getting the report to include cluster_gen stuff
+	-error with cluster method... printed a directory inst-
+		ead (fwd list)
+	-did ${10} instead of $10
 
 
