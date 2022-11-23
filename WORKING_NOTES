@@ -114,5 +114,8 @@
 
 *run still says mmseqs does not exist
 	-reinstalling with conda
+	-test script is working though? wtf?
+	-Got it to work! Don't know how! Pushed
+
 
 
