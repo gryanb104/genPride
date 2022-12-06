@@ -71,12 +71,30 @@ rule cluster:
 		
 		'''	
 
+rule quast:
+	input:
+		ass_contigs = "results/assembled_seqs/contigs.fasta",
+	output:
+		slurm_quast = "results/slurm_quast.out"
+	params:
+		quast_path = config["quast_path"],
+		quast_method = config["quast_method"]
+	shell:
+                '''
+                bash workflow/scripts/quasting.sh \
+		{params.quast_path} \
+		{input.ass_contigs} \
+		{params.quast_method} > {output.slurm_quast}
+		
+		'''
+
 rule report:
 	input:
 		slurm_ass = "results/slurm_ass.out",
 		ass_contigs = "results/assembled_seqs/contigs.fasta",
 		slurm_orf = "results/slurm_orf.out",           
-		slurm_clust = "results/slurm_clust.out"
+		slurm_clust = "results/slurm_clust.out",
+		slurm_quast = "results/slurm_quast.out"
 	output:
 		ass_rep = "workflow/report/report_final.txt"
 	params:
@@ -99,6 +117,7 @@ rule report:
 		{params.prod_meth} \
 		{input.slurm_orf} \
 		{input.slurm_clust} \
+		{input.slurm_quast} \
 		{params.clust_meth} > {output.ass_rep}
 		
 		'''

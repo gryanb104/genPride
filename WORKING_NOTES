@@ -121,4 +121,26 @@
 		ead (fwd list)
 	-did ${10} instead of $10
 
+11/30/2022
 
+*Install quast from conda
+
+12/2/2022
+
+*Learning up on quast
+	-metaQUAST for metagenome assemblies
+	-don't know where it is, so I will be reinstalling thr-
+		ough conda
+	-had to install by cloning the git repo
+*Making a quasting script to run quast and print out the relev-
+	ant information
+	-Made the script, got it working through test_script
+	-Working on getting quast to run as part of the snakem-
+		ake workflow
+	-Turned quast into its own rule: DONE, SEEMS TO BE WOR-
+		KING
+	-Next... trying to get its outputs to properly be prin-
+		ted in the report_final.txt file
+		#Oops, the last line of the slurm_quast.out fi-
+			le is a blank line
+		#Fixed then ran again	
