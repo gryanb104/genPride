@@ -1,0 +1,62 @@
+ 
+                         REPORT FOR RUN
+                           test_one
+_________________________________________________________________
+ 
+                            INPUTS
+ 
+FORWARD READS FILE : subset_fwd.fastq.gz
+  SIZE OF FWD FILE : 82 MB
+ 
+REVERSE READS FILE : subset_bwd.fastq.gz
+  SIZE OF BWD FILE : 83 MB
+ 
+NUMBER INPUT READS : 1000000
+ 
+_______________________________________________________________
+ 
+                           ASSEMBLY
+ 
+ASSEMBLY METHOD GP : metaspades
+SIZE OF CONTG FILE : 52 MB
+ 
+ASSEMBLY TIME
+  TOTAL TIME ELAPS : 0h 55m 44s
+  T PER INPUT READ : 0.003344s
+  T PER OUT CONTIG : 0.289023s
+ 
+ASSEMBLY QUALITY REPORT (QUAST)
+  TOTAL QUAST TIME : 9m 55s
+  NUMBR OF CONTIGS : 11570
+  TOT ASSEMBLY LEN : 10399493
+  AVG CONTIG LNGTH : 898
+  N50 (CNT METRIC) : 833
+ 
+_________________________________________________________________
+ 
+                       PROTEIN SEQUENCING
+ 
+PROTEIN SEQ METHOD : meta
+PROTEINS SEQUENCED : 151686
+ 
+PROTEIN SEQUENCE TIME
+  TOTAL TIME ELAPS : 0h 0m 43s
+  TIME PER PROTEIN : 0.000283s
+ 
+_________________________________________________________________
+ 
+                       PROTEIN CLUSTERING
+ 
+PROTEIN CLUST METH : easy_cluster
+TOTAL NUM CLUSTERS : 23177
+ 
+CLUSTER TIME
+  TOTAL TIME ELAPS : 0h 0m 21s
+  TIME PER PROTEIN : 0.000138s
+ 
+_________________________________________________________________
+ 
+                            TOTAL
+ 
+TOTAL TIME
+  TOTAL TIME ELAPS : 0h 56m 48s
