@@ -160,5 +160,14 @@
 *Run from yesterday (fixing it so the quast time printed in the
 	final report was correct: WORKED
 *Pushing
+*Getting the rest of the quast data to show up in the final re-
+	port - start with test script
+	-Total quast time: DONE
+	-Number of contigs: DONE
+	-Total assembly length: DONE
+	-Average contig size: DONE
+	-n50: DONE
+	-size of file: DONE
+	
 
-
+	
