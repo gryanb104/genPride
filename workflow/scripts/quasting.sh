@@ -17,4 +17,4 @@ fi
 
 duration=$(( SECONDS - start ))
 echo "time(sec):"
-echo -n "$duration" 
+echo -n "$duration"

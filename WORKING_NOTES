@@ -144,3 +144,21 @@
 		#Oops, the last line of the slurm_quast.out fi-
 			le is a blank line
 		#Fixed then ran again	
+
+12/06/2022
+
+*Check run from last week: still didn't work; attempted	anothe-
+	r fix to get the final line of the slurm file to not b-
+	e a line break
+	-Running again: taking a longass time
+	-I found the issue, it was misordered inputs in	snakem-
+		ake: made a fix, running again
+*Pushed
+
+12/07/2022
+
+*Run from yesterday (fixing it so the quast time printed in the
+	final report was correct: WORKED
+*Pushing
+
+

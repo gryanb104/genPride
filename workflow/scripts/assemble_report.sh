@@ -11,8 +11,8 @@ ass_contigs=$6
 prod_meth=$7
 slurm_orf=$8
 slurm_clust=$9
-clust_meth=${10}
-slurm_quast=${11}
+clust_meth=${11}
+slurm_quast=${10}
 
 #report inputs
 
@@ -62,7 +62,7 @@ sec_QUAST=$sec
 min=$(($sec / 60))
 only_sec=$(($sec - ($min * 60)))
 
-echo -n "  TOTAL QUAST TIME : " ; echo -n "$only_min"; echo -n "m $only_sec"; echo "s"
+echo -n "  TOTAL QUAST TIME : " ; echo -n "$min"; echo -n "m $only_sec"; echo "s"
 echo -n "  NUMBR OF CONTIGS :"
 grep "# contigs    " results/quast_out/combined_reference/report.txt | awk '{print $3}' | echo
 
