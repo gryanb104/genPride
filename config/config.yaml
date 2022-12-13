@@ -21,6 +21,7 @@ quast_path: "/nobackup1/billerlab/gray/quast"
 assembly_meth: "metaspades"
 prodigal_meth: "meta"
 mmseq_cluster_method: "easy_cluster"
+mmseqs2_database: "INSERT HERE"
 quast_method: "metaQUAST"
 
 ### COMPUTING RESOURCES ###
@@ -28,6 +29,9 @@ quast_method: "metaQUAST"
 threads: 20
 spades_py_memory: 250
 
+### FOR MEMORY - SAVING PURPOSES ###
 
+#ASSEMBLY PRODUCTS
+rm1_files: "resources/rm1_files.txt"   
 
 

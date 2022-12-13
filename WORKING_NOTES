@@ -174,4 +174,21 @@
 	it though
 	-Pushing it
 
-	
+12/9/2022
+
+*Goal: add nucleotide capabilities to the clustering step
+*First off: make rules to remove extra nonsense produced by pr-
+	evious steps	
+
+12/13/2022
+
+*Finishing up the rm1_files.txt file full of all the files tha-
+	t are not needed downstream of the assembly step: DONE
+*Working on a script (RM1) that will remove all files marked w-
+	ith "TRUE" in rm1_files.txt in config directory
+	-Start by making it ignore empty lines: DONE
+	-Make it test if the line contains TRUE after the colon
+		and if it does, remove file listed at the first
+		part of the line:
+
+

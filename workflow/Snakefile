@@ -33,9 +33,24 @@ rule assemble_data:
 		
 		'''
 
-rule find_orfs:
+rule RM1:
 	input:
 		ass_contigs = "results/assembled_seqs/contigs.fasta"
+	output:
+		RM1_rep = "results/RM1_rep.txt"
+	params:
+		rm1_files = config["rm1_files.txt"]
+	shell:
+		'''
+		bash workflow/scripts/RM1.sh \
+		{params.rm1_files} > {output.RM1_rep}
+
+		'''
+
+rule find_orfs:
+	input:
+		ass_contigs = "results/assembled_seqs/contigs.fasta",
+		RM1_rep = "results/RM1_rep.txt"
 	output:
 		slurm_orf = "results/slurm_orf.out",
 		prot_seqs = "results/protein_seqs/protein_translations.faa"
@@ -60,14 +75,16 @@ rule cluster:
 	params:
 		mmseq_meth = config["mmseq_cluster_method"],
 		nuc_id = config["cluster_nuc_id"],
-		overlap = config["cluster_overlap"]
+		overlap = config["cluster_overlap"],
+		db = config["mmseqs2_database"]
 	shell:
 		'''
 		bash workflow/scripts/cluster_gen.sh \
 		{input.prot_seqs} \
 		{params.mmseq_meth} \
 		{params.nuc_id} \
-		{params.overlap} > {output.slurm_clust}
+		{params.overlap} \
+		{params.db} > {output.slurm_clust}
 		
 		'''	
 

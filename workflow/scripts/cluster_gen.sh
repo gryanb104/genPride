@@ -4,6 +4,7 @@ prot_seqs=$1
 meth=$2
 nuc_id=$3
 overlap=$4
+db=$5
 
 start=$SECONDS
 
