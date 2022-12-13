@@ -37,7 +37,7 @@ rule RM1:
 	input:
 		ass_contigs = "results/assembled_seqs/contigs.fasta"
 	output:
-		RM1_rep = "results/RM1_rep.txt"
+		RM1_rep = "results/assembled_seqs/RM1_rep.txt"
 	params:
 		rm1_files = config["rm1_files.txt"]
 	shell:

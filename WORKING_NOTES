@@ -189,6 +189,13 @@
 	-Start by making it ignore empty lines: DONE
 	-Make it test if the line contains TRUE after the colon
 		and if it does, remove file listed at the first
-		part of the line:
-
+		part of the line: DONE
+	-Make it return a report in the assembled_seqs directo-
+		ry listing which files were removed: DONE
+	-Work this into the snakemake workflow: tomorrow
+*Git connection was having some issues
+	-Fixed with help from Simon (had to reset ssh connecti-
+		on or something, I still don't fully understan-
+		d)
+*Push					
 
