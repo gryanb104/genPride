@@ -199,3 +199,11 @@
 		d)
 *Push					
 
+12-14-2022
+
+*Goal: test that rm1 is integrated properly into snakemake wor-
+	kflow
+	-I think it is accurate... I removed the RM1 report and
+		ran GP_run: WORKED
+*Goal: make rm2 do its thing: got it working within the snakem-
+	ake workflow

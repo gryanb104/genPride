@@ -32,6 +32,8 @@ spades_py_memory: 250
 ### FOR MEMORY - SAVING PURPOSES ###
 
 #ASSEMBLY PRODUCTS
-rm1_files: "resources/rm1_files.txt"   
+rm1_files: "config/rm1_files.txt"   
 
+#CLUSTER PRODUCTS
+rm2_files: "config/rm2_files.txt"
 

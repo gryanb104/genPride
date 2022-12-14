@@ -4,7 +4,8 @@ report: "report/workflow.rst"
 
 rule all:
 	input:
-		ass_rep = "workflow/report/report_final.txt"		
+		#ass_rep = "workflow/report/report_final.txt"		
+		RM2_rep = "results/cluster_tmp/RM2_rep.txt"	
 
 rule assemble_data:
 	input: 
@@ -39,13 +40,27 @@ rule RM1:
 	output:
 		RM1_rep = "results/assembled_seqs/RM1_rep.txt"
 	params:
-		rm1_files = config["rm1_files.txt"]
+		rm1_files = config["rm1_files"]
 	shell:
 		'''
 		bash workflow/scripts/RM1.sh \
 		{params.rm1_files} > {output.RM1_rep}
 
 		'''
+
+rule RM2:
+        input:
+                clustered_seqs = "results/clustered_seqs/clust_all_seqs.fasta"
+        output:
+                RM2_rep = "results/cluster_tmp/RM2_rep.txt"
+        params:
+                rm2_files = config["rm2_files"]
+        shell:
+                '''
+                bash workflow/scripts/RM2.sh \
+                {params.rm2_files} > {output.RM2_rep}
+
+                '''
 
 rule find_orfs:
 	input:
