@@ -1,11 +1,31 @@
-# genPride
+**THIS WORKFLOW IS CURRENTLY INCOMPLETE AND BEING ACTIVELY EDITED. IN ITS CURRENT STATE, IT IS UNLIKELY TO WORK ON YOUR LOCAL DEVICE.**
+
+## Description
 
 genPride is a snakemake-based workflow for analysis of metagenomic sequence read data. It can be used for any of these purposes:
 
 1. Determining the taxonomic makeup of a community represented by a metagenomic fasta/fastq file
 2. Comparing and contrasting the taxonomic makeup of two communities
 3. Reporting quality scores and time requirements of each analysis step (assembly of short reads, protein-coding prediction, and clustering/taxonomic classification of nucleotide or protein sequences).
-  
+
+## Usage
+
+### 1. Install workflow
+
+### 2. Install required scripts 
+
+### 3. Configure workflow
+
+Set desired parameters using config/config.yaml. This includes the path to your fastq data files and paths to installed scripts. 
+
+Edit config/rm1_files.txt and config/rm2_files.txt to specify any post-assembly and post-clustering files unrequired for downstream analysis that you would like to keep. By default, all unneeded intermediate files are deleted to save memory.
+
+Edit the header of GP_run.sh to define computing resources and memory to use for running this program.
+
+### 4. Excute workflow
+
+
+
 ## The workflow
 
 ## Controling preferences with config.yaml
@@ -36,3 +56,15 @@ Use config.yaml to specify parameters of each analysis step, define directories 
   *A string. Defines the method option of prodigal. These are the methods accepted by genPride: "meta"*
 * mmseq_cluster_method:
   *A string. Defines the method option of mmseqs2 for clustering. These are the methods accepted by genPride: "easy_cluster"*
+* mmseqs2_database:
+  *A string. **PLACEHOLDER**.*
+* quast_method:
+  *A string. Defines the method option of quast for assembly quality analysis. These are the methods accepted by genPride: "metaQUAST"*
+* threads:
+  *An integer. Number of cores to use for running spades.*
+* spades_py_memory:
+  *An integer. Memory in GB to use for running spades.*
+* rm1_files:
+  *A string. Defines the directory and file name of the file defining which intermediate post-assembly files to keep and which to delete after assembly has been completed.*
+* rm2_files:
+  *A string. Defines the directory and file name of the file defining which intermediate post-clustering files to keep and which to delete after clustering has been completed.*
