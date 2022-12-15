@@ -3,10 +3,8 @@ run_name: "test_one"
 ### THRESHOLDS ###
 
 assemble_thresh: 0.95
-ORF_thresh: "value here"
 cluster_nuc_id: 0.95
 cluster_overlap: 0.9
-compare_thresh: "value here"
 
 ### DIRECTORIES, FILE LOCATIONS ###
 
