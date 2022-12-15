@@ -24,7 +24,15 @@ Edit the header of GP_run.sh to define computing resources and memory to use for
 
 ### 4. Excute workflow
 
+Make sure snakemake is installed and you have entered genPride's snakemake environment.
 
+Run the following.
+
+> sbatch GP_run.sh
+
+### 5. Investigate results
+
+Assembled sequences, amino acid sequences from identified ORFs, and clustered sequences will be automatically saved in the results directory. The final report will be automatically save in the workflow/report directory.
 
 ## The workflow
 
