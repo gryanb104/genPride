@@ -4,8 +4,7 @@ report: "report/workflow.rst"
 
 rule all:
 	input:
-		#ass_rep = "workflow/report/report_final.txt"		
-		RM2_rep = "results/cluster_tmp/RM2_rep.txt"	
+		output_final = config["output_final"]	
 
 rule assemble_data:
 	input: 
@@ -65,7 +64,7 @@ rule RM2:
 rule find_orfs:
 	input:
 		ass_contigs = "results/assembled_seqs/contigs.fasta",
-		RM1_rep = "results/RM1_rep.txt"
+		RM1_rep = "results/assembled_seqs/RM1_rep.txt"
 	output:
 		slurm_orf = "results/slurm_orf.out",
 		prot_seqs = "results/protein_seqs/protein_translations.faa"

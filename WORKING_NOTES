@@ -1,3 +1,19 @@
 1/10/2023
 	*Goal: add nucleotide capabilities to genPride cluster-
 		ing step
+	*First off: get an assembly of cellular data running
+		-For tomorrow: check the run
+
+1/11/2023
+	*Run is still going, 18 hours in
+
+2/3/2023
+	*Cellular assembly finished
+	*Vesicle assembly finished
+		-Redo with trimmed data
+	*Viral assembly finished
+		-Redo with trimmed data
+	*Putting the rgm stuff on hold for a while
+		-Come back when the other runs are done using nodes
+	
+		

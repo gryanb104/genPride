@@ -1,4 +1,5 @@
 run_name: "test_one"
+output_final: "workflow/report/report_final.txt"
 
 ### THRESHOLDS ###
 
@@ -17,7 +18,7 @@ quast_path: "/nobackup1/billerlab/gray/quast"
 ### METHODS ###
 
 assembly_meth: "metaspades"
-prodigal_meth: "meta"
+prodigal_meth: "meta_comp"
 mmseq_cluster_method: "easy_cluster"
 mmseqs2_database: "INSERT HERE"
 quast_method: "metaQUAST"

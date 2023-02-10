@@ -1,0 +1,27 @@
+run_name: any string
+
+assemble_thresh: any value between 0 and 1
+cluster_nuc_id: any value between 0 and 1
+cluster_overlap: and value between 0 and 1
+
+trimmed_fastq_fwd_loc_list: string containing path and file name of fastq file
+trimmed_fastq_bwd_loc_list: string containing path and file name of fastq file
+spades_path: string containing the path to spades.py
+prod_path: string containing the path to prodigal
+quast_path: string containing the path to quast
+
+assembly_meth: a string
+	options: "metaspades" 
+prodigal_meth: a string
+	options: "meta", "meta_comp"
+mmseq_cluster_method: a string 
+	options: "easy_cluster"
+mmseqs2_database: "INSERT HERE"
+quast_method: a string
+	options: "metaQUAST"
+
+threads: 20
+spades_py_memory: 250
+rm1_files: "config/rm1_files.txt"  
+rm2_files: "config/rm2_files.txt"
+
