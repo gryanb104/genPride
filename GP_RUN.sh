@@ -7,9 +7,22 @@
 #SBATCH --partition=sched_mit_chisholm	#partition name
 #SBATCH --exclusive			#exclusive use of node
 
+method=$1
+
 cd /nobackup1/billerlab/gray/genPride
 
-#SNAKEFILE=workflow/Snakefile
+declare -A sf_dict
+sf_dict['heli']='workflow/Snakefile_heli'
+sf_dict['prune']='workflow/Snakefile_prune'
+sf_dict['nut']='workflow/Snakefile_nut' 
+sf_dict['cinnamon']='workflow/Snakefile_cinnamon'
+sf_dict['copter']='workflow/Snakefile_copter'
+sf_dict['apricot']='workflow/Snakefile_apricot'
+sf_dict['coconut']='workflow/Snakefile_coconut'
+sf_dict['spice']='workflow/Snakefile_spice'
+
+place=${sf_dict[$method]}
+cp $place workflow/Snakefile
 
 #snakemake --snakefile $SNAKEFILE --lint
 #snakemake --snakefile $SNAKEFILE --unlock

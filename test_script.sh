@@ -34,10 +34,15 @@ slurm_quast="results/slurm_quast.out"
 rm1_files="config/rm1_files.txt"
 RM1_rep="results/assembled_seqs/RM1_rep.txt"
 
+gorg_path="/nobackup1/billerlab/gray/gorg"
+ass_contigs="results/assembled_seqs/contigs.fasta"
+outdir="results/gorg_annotated"
+
 #bash workflow/scripts/assemble_meat.sh $fwd $bwd $meth 0.95 $threads $spm $spades_path
 #bash workflow/scripts/assemble_report.sh $fwd $bwd $meth $name $slurm_ass $ass_contigs $prod_meth \
 #$slurm_orf $slurm_clust $slurm_quast $clust_meth> TEST_ASS_REPORT.txt
 #bash workflow/scripts/find_orfs.sh $ass_contigs $prod_path $prod_meth > TEST_ORF_REPORT.txt
 #bash workflow/scripts/cluster_gen.sh $prot_seqs $mmseq_meth $nuc_id $overlap > TEST_CLUST_slurm.out
 #bash workflow/scripts/quasting.sh $quast_path $contigs $quast_meth
-bash workflow/scripts/RM1.sh $rm1_files > $RM1_rep
+#bash workflow/scripts/RM1.sh $rm1_files > $RM1_rep
+bash workflow/scripts/gorg_classifier.sh $gorg_path $ass_contigs $outdir

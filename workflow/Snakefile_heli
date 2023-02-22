@@ -1,0 +1,156 @@
+configfile: "config/config.yaml"
+
+report: "report/workflow.rst"
+
+rule all:
+	input:
+		output_final = config["output_final"]	
+
+rule assemble_data:
+	input: 
+		fwd_list = config["trimmed_fastq_fwd_loc_list"],
+		bwd_list = config["trimmed_fastq_bwd_loc_list"]
+	output:
+		slurm_ass = "results/slurm_ass.out",
+		ass_contigs = "results/assembled_seqs/contigs.fasta"
+			#THUS FAR ONLY WORKS FOR FIRST ITEM IN ASS_DATA
+	params:
+		meth = config["assembly_meth"],
+		ass_thresh = config["assemble_thresh"],
+		threads = config["threads"],
+		spm = config["spades_py_memory"],
+		spades_path = config["spades_path"]	
+	shell:
+		'''
+		workflow/scripts/assemble_meat.sh \
+		{input.fwd_list} \
+		{input.bwd_list} \
+		{params.meth} \
+		{params.ass_thresh} \
+		{params.threads} \
+		{params.spm} \
+		{params.spades_path} > {output.slurm_ass}
+		
+		'''
+
+rule RM1:
+	input:
+		ass_contigs = "results/assembled_seqs/contigs.fasta"
+	output:
+		RM1_rep = "results/assembled_seqs/RM1_rep.txt"
+	params:
+		rm1_files = config["rm1_files"]
+	shell:
+		'''
+		bash workflow/scripts/RM1.sh \
+		{params.rm1_files} > {output.RM1_rep}
+
+		'''
+
+rule RM2:
+        input:
+                clustered_seqs = "results/clustered_seqs/clust_all_seqs.fasta"
+        output:
+                RM2_rep = "results/cluster_tmp/RM2_rep.txt"
+        params:
+                rm2_files = config["rm2_files"]
+        shell:
+                '''
+                bash workflow/scripts/RM2.sh \
+                {params.rm2_files} > {output.RM2_rep}
+
+                '''
+
+rule find_orfs:
+	input:
+		ass_contigs = "results/assembled_seqs/contigs.fasta",
+		RM1_rep = "results/assembled_seqs/RM1_rep.txt"
+	output:
+		slurm_orf = "results/slurm_orf.out",
+		prot_seqs = "results/protein_seqs/protein_translations.faa"
+	params:
+		prod_path = config["prod_path"],
+		prod_meth = config["prodigal_meth"]
+	shell:
+		'''
+		bash workflow/scripts/find_orfs.sh \
+		{input.ass_contigs} \
+		{params.prod_path} \
+		{params.prod_meth} > {output.slurm_orf}
+		
+		'''
+	
+rule cluster:
+	input:
+		prot_seqs = "results/protein_seqs/protein_translations.faa"
+	output:
+		slurm_clust = "results/slurm_clust.out",
+		clustered_seqs = "results/clustered_seqs/clust_all_seqs.fasta"
+	params:
+		mmseq_meth = config["mmseq_cluster_method"],
+		nuc_id = config["cluster_nuc_id"],
+		overlap = config["cluster_overlap"],
+		db = config["mmseqs2_database"]
+	shell:
+		'''
+		bash workflow/scripts/cluster_gen.sh \
+		{input.prot_seqs} \
+		{params.mmseq_meth} \
+		{params.nuc_id} \
+		{params.overlap} \
+		{params.db} > {output.slurm_clust}
+		
+		'''	
+
+rule quast:
+	input:
+		ass_contigs = "results/assembled_seqs/contigs.fasta",
+	output:
+		slurm_quast = "results/slurm_quast.out"
+	params:
+		quast_path = config["quast_path"],
+		quast_method = config["quast_method"]
+	shell:
+                '''
+                bash workflow/scripts/quasting.sh \
+		{params.quast_path} \
+		{input.ass_contigs} \
+		{params.quast_method} > {output.slurm_quast}
+		
+		'''
+
+rule report:
+	input:
+		slurm_ass = "results/slurm_ass.out",
+		ass_contigs = "results/assembled_seqs/contigs.fasta",
+		slurm_orf = "results/slurm_orf.out",           
+		slurm_clust = "results/slurm_clust.out",
+		slurm_quast = "results/slurm_quast.out"
+	output:
+		ass_rep = "workflow/report/report_final.txt"
+	params:
+		meth = config["assembly_meth"],
+		name = config["run_name"],
+		fwd_list = config["trimmed_fastq_fwd_loc_list"],
+                bwd_list = config["trimmed_fastq_bwd_loc_list"],
+		prod_meth = config["prodigal_meth"],
+		clust_meth = config["mmseq_cluster_method"]
+
+	shell:
+		'''
+		bash workflow/scripts/assemble_report.sh \
+		{params.fwd_list} \
+		{params.bwd_list} \
+		{params.meth} \
+		{params.name} \
+		{input.slurm_ass} \
+		{input.ass_contigs} \
+		{params.prod_meth} \
+		{input.slurm_orf} \
+		{input.slurm_clust} \
+		{input.slurm_quast} \
+		{params.clust_meth} > {output.ass_rep}
+		
+		'''
+					
+

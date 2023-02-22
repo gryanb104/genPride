@@ -32,10 +32,10 @@ ASSEMBLY QUALITY REPORT (QUAST)
 -----------------------------------------------------------------
  
                        PROTEIN SEQUENCING
-PROTEIN SEQ METHOD : meta
+PROTEIN SEQ METHOD : meta_comp
 PROTEIN SEQUENCE TIME
-  TOTAL TIME ELAPS : 0h 0m 43s
-  TIME PER PROTEIN : 0.003716s
+  TOTAL TIME ELAPS : 0h 0m 44s
+  TIME PER PROTEIN : 0.003802s
  
 -----------------------------------------------------------------
  
@@ -43,11 +43,11 @@ PROTEIN SEQUENCE TIME
 PROTEIN CLUST METH : easy_cluster
 TOTAL NUM CLUSTERS : 23177
 CLUSTER TIME
-  TOTAL TIME ELAPS : 0h 0m 8s
-  TIME PER PROTEIN : 0.000691s
+  TOTAL TIME ELAPS : 0h 0m 6s
+  TIME PER PROTEIN : 0.000518s
  
 -----------------------------------------------------------------
  
                             TOTAL
 TOTAL TIME
-  TOTAL TIME ELAPS : 1h 6m 30s
+  TOTAL TIME ELAPS : 1h 6m 29s

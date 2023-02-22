@@ -14,6 +14,19 @@
 	*Viral assembly finished
 		-Redo with trimmed data
 	*Putting the rgm stuff on hold for a while
-		-Come back when the other runs are done using nodes
+		-Come back when the other runs are done w/ nod-
+		es
+
+2/10/2023
+	*Work on adding a GORG classifier step
+
+2/13/2023
+	*Set up assignment for Anika
+		-Adding the trimming step
+	*Work on adding GORG classifier step
+		-starting with operation from a test script
+	*Next I need to get nextflow updated and be able to in-
+		tegrate that
+
 	
 		
