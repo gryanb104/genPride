@@ -4,7 +4,7 @@
 
 fwd_list=$1
 bwd_list=$2
-method=$3
+meth=$3
 name=$4
 slurm_ass=$5
 ass_contigs=$6
@@ -13,8 +13,13 @@ slurm_orf=$8
 slurm_clust=$9
 clust_meth=${11}
 slurm_quast=${10}
+snake_comp=${12}
 
 ############### HEADER ##########################
+
+source workflow/rules/print_report.smk
+
+print_head $name $snake_comp
 
 echo " " 
 echo "                         REPORT FOR RUN"
@@ -56,7 +61,7 @@ sec_c=$(printf "%f\n" $((10**6 * $sec/$num_contigs))e-6)
 
 echo " "
 echo "                           ASSEMBLY"
-echo "ASSEMBLY METHOD GP : $method"
+echo "ASSEMBLY METHOD GP : $meth"
 filesize_ass=$(wc -c $ass_contigs | awk '{print $1}')
 filesize_ass=$(($filesize_ass/1048576))
 echo -n "SIZE OF CONTG FILE : "; echo -n $filesize_ass; echo " MB"

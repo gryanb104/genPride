@@ -7,9 +7,15 @@
 #SBATCH --partition=sched_mit_chisholm	#partition name
 #SBATCH --exclusive			#exclusive use of node
 
-method=$1
+if [[ $# -eq 0 ]] 
+then
+	method='heli'
+else
+	method=$1
+fi
 
-cd /nobackup1/billerlab/gray/genPride
+echo $method > results/snake_comp.out
+cd /nobackup1/biller/gray/genPride
 
 declare -A sf_dict
 sf_dict['heli']='workflow/Snakefile_heli'
@@ -21,11 +27,7 @@ sf_dict['apricot']='workflow/Snakefile_apricot'
 sf_dict['coconut']='workflow/Snakefile_coconut'
 sf_dict['spice']='workflow/Snakefile_spice'
 
-place=${sf_dict[$method]}
-cp $place workflow/Snakefile
-
-#snakemake --snakefile $SNAKEFILE --lint
-#snakemake --snakefile $SNAKEFILE --unlock
-#snakefmt $SNAKEFILE
+rm workflow/Snakefile
+cp ${sf_dict[$method]} workflow/Snakefile
 
 snakemake --cores 1

@@ -28,5 +28,29 @@
 	*Next I need to get nextflow updated and be able to in-
 		tegrate that
 
-	
+2/23/2023
+	*Goals for today
+		-Work through genPride getting the conda envir-
+			onment updated in the new login situat-
+			ion
+		-Get Mary's assignment set up
+			#kofamscan for kegg counts
+		-Consolidate some things into functions in mod-
+			ules
+		-Get going on the GORG classifier step
+		-Interpret rgm model results
+	*Done
+		-Mary's kofamscan assignment is set up
+			#at next week's meeting I will give her
+				the rundown
+		
+3/1/2023
+	*Met with Anika to fix some issues with the trimming s-
+		cript
+		-Now she is working on the report part of it
+	*Looked at rgm model stuff, sent results to Dr. Biller
+
+3/2/2023
+	*Today: let's try to get the conda environment updated
+	*GP running	
 		
