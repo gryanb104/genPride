@@ -123,11 +123,16 @@ rule gorg_class:
 	input:
 		ass_contigs = "results/assembled_seqs/contigs.fasta"
 	output:
-		slurm_gorg = "results/slurm_gorg.out"
+		slurm_gorg = "results/slurm_gorg.out",
+		gorg_results = "results/gorg_classification/gorg.out"
 	params:
+		gorg_path = config["gorg_path"]
 	shell:
 		'''
-		bash workflow/scripts/gorg_classifier.sh
+		bash workflow/scripts/gorg_classifier.sh \
+		{params.gorg_path} \
+		{input.ass_contigs} > {output.slurm_gorg}
+		
 		
 		'''
 
