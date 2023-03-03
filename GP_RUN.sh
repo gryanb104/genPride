@@ -7,27 +7,27 @@
 #SBATCH --partition=sched_mit_chisholm	#partition name
 #SBATCH --exclusive			#exclusive use of node
 
-if [[ $# -eq 0 ]] 
-then
-	method='heli'
-else
-	method=$1
-fi
+#if [[ $# -eq 0 ]] 
+#then
+#	method='heli'
+#else
+#	method=$1
+#fi
 
-echo -n $method > results/snake_comp.out
+#echo -n $method > results/snake_comp.out
 cd /nobackup1/biller/gray/genPride
 
-declare -A sf_dict
-sf_dict['heli']='workflow/Snakefile_heli'
-sf_dict['prune']='workflow/Snakefile_prune'
-sf_dict['nut']='workflow/Snakefile_nut' 
-sf_dict['cinnamon']='workflow/Snakefile_cinnamon'
-sf_dict['copter']='workflow/Snakefile_copter'
-sf_dict['apricot']='workflow/Snakefile_apricot'
-sf_dict['coconut']='workflow/Snakefile_coconut'
-sf_dict['spice']='workflow/Snakefile_spice'
+#declare -A sf_dict
+#sf_dict['heli']='workflow/Snakefile_heli'
+#sf_dict['prune']='workflow/Snakefile_prune'
+#sf_dict['nut']='workflow/Snakefile_nut' 
+#sf_dict['cinnamon']='workflow/Snakefile_cinnamon'
+#sf_dict['copter']='workflow/Snakefile_copter'
+#sf_dict['apricot']='workflow/Snakefile_apricot'
+#sf_dict['coconut']='workflow/Snakefile_coconut'
+#sf_dict['spice']='workflow/Snakefile_spice'
 
-rm workflow/Snakefile
-cp ${sf_dict[$method]} workflow/Snakefile
+#rm workflow/Snakefile
+#cp ${sf_dict[$method]} workflow/Snakefile
 
 snakemake --cores 1

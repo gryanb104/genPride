@@ -1,5 +1,5 @@
 run_name: "test_one"
-output_final: "workflow/report/report_final.txt"
+final_output: "workflow/report/report_final.txt"
 
 ### THRESHOLDS ###
 

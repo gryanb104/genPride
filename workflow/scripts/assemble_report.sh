@@ -5,7 +5,7 @@ fwd_list=$1; bwd_list=$2; meth=$3; name=$4
 slurm_ass=$5; ass_contigs=$6; prod_meth=$7
 slurm_orf=$8; slurm_clust=$9; clust_meth=${11}
 slurm_quast=${10}; snake_comp=${12}
-source workflow/rules/print_report.smk
+source workflow/rules/report.smk
 
 #PRINT HEADER
 print_head $name
@@ -13,29 +13,9 @@ print_head $name
 #PRINT INPUT FILES
 print_inp $fwd_list $bwd_list
 
-################ ASSEMBLY #######################
+#PRINT ASSEMBLY SUMMARY
+print_assembly $ass_contigs $slurm_ass $fwd_list $meth
 
-filesize_ass=$(wc -c $ass_contigs | awk '{print $1}')
-filesize_ass=$(($filesize_ass/1048576))
-sec=$(tail -n 1 $slurm_ass); sec_ASS=$sec; min=$(($sec / 60))
-only_sec=$(($sec - ($min * 60))); hour=$(($sec / 3600))
-only_min=$(($min - ($hour * 60)))
-num_contigs=$(grep "# contigs     " results/quast_out/combined_\
-reference/report.txt | awk '{print $3}')
-sec_f=$(printf "%f\n" $((10**6 * $sec/$seqs_start_fwd))e-6)
-sec_c=$(printf "%f\n" $((10**6 * $sec/$num_contigs))e-6)
-
-echo " "
-echo "                           ASSEMBLY"
-echo "ASSEMBLY METHOD GP : $meth"
-filesize_ass=$(wc -c $ass_contigs | awk '{print $1}')
-filesize_ass=$(($filesize_ass/1048576))
-echo -n "SIZE OF CONTG FILE : "; echo -n $filesize_ass; echo " MB"
-echo "ASSEMBLY TIME"
-echo -n "  TOTAL TIME ELAPS : $hour"; echo -n "h $only_min"
-echo -n "m $only_sec"; echo "s"
-echo -n "  T PER INPUT READ : $sec_f"; echo "s"
-echo -n "  T PER OUT CONTIG : $sec_c"; echo "s"
 
 ###################### QUAST ###########################
 

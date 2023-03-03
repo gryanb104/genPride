@@ -4,8 +4,8 @@ report: "report/workflow.rst"
 
 rule all:
 	input:
-		output_final = config["output_final"]	
-
+		final_output = config["final_output"]	
+		
 rule assemble_data:
 	input: 
 		fwd_list = config["trimmed_fastq_fwd_loc_list"],
@@ -119,7 +119,19 @@ rule quast:
 		
 		'''
 
-rule report:
+rule gorg_class:
+	input:
+		ass_contigs = "results/assembled_seqs/contigs.fasta"
+	output:
+		slurm_gorg = "results/slurm_gorg.out"
+	params:
+	shell:
+		'''
+		bash workflow/scripts/gorg_classifier.sh
+		
+		'''
+
+rule report_cluster:
 	input:
 		slurm_ass = "results/slurm_ass.out",
 		ass_contigs = "results/assembled_seqs/contigs.fasta",
@@ -127,7 +139,7 @@ rule report:
 		slurm_clust = "results/slurm_clust.out",
 		slurm_quast = "results/slurm_quast.out"
 	output:
-		ass_rep = "workflow/report/report_final.txt"
+		cluster_plus_rep = "workflow/report/report_final.txt"
 	params:
 		meth = config["assembly_meth"],
 		name = config["run_name"],
@@ -148,7 +160,7 @@ rule report:
 		{input.slurm_orf} \
 		{input.slurm_clust} \
 		{input.slurm_quast} \
-		{params.clust_meth} > {output.ass_rep}
+		{params.clust_meth} > {output.cluster_plus_rep}
 		
 		'''
 					
