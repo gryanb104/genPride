@@ -135,7 +135,6 @@ rule report:
                 bwd_list = config["trimmed_fastq_bwd_loc_list"],
 		prod_meth = config["prodigal_meth"],
 		clust_meth = config["mmseq_cluster_method"]
-
 	shell:
 		'''
 		bash workflow/scripts/assemble_report.sh \

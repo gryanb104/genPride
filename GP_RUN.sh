@@ -14,7 +14,7 @@ else
 	method=$1
 fi
 
-echo $method > results/snake_comp.out
+echo -n $method > results/snake_comp.out
 cd /nobackup1/biller/gray/genPride
 
 declare -A sf_dict

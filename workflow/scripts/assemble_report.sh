@@ -1,51 +1,17 @@
 #!/bin/bash
 
-############# SET VARIABLE NAMES ################
-
-fwd_list=$1
-bwd_list=$2
-meth=$3
-name=$4
-slurm_ass=$5
-ass_contigs=$6
-prod_meth=$7
-slurm_orf=$8
-slurm_clust=$9
-clust_meth=${11}
-slurm_quast=${10}
-snake_comp=${12}
-
-############### HEADER ##########################
-
+#SET VAR NAMES AND SOURCE
+fwd_list=$1; bwd_list=$2; meth=$3; name=$4
+slurm_ass=$5; ass_contigs=$6; prod_meth=$7
+slurm_orf=$8; slurm_clust=$9; clust_meth=${11}
+slurm_quast=${10}; snake_comp=${12}
 source workflow/rules/print_report.smk
 
-print_head $name $snake_comp
+#PRINT HEADER
+print_head $name
 
-echo " " 
-echo "                         REPORT FOR RUN"
-echo "                           $name"
-echo " "
-echo "-----------------------------------------------------------------"
-
-####################### INPUT FILES #########################
-
-filesize_fwd=$(wc -c $fwd_list | awk '{print $1}')
-filesize_fwd=$(($filesize_fwd/1048576))
-filesize_bwd=$(wc -c $bwd_list | awk '{print $1}')
-filesize_bwd=$(($filesize_bwd/1048576))
-seqs_start_fwd=$(zcat $fwd_list | echo $((`wc -l`/4)))
-
-echo " "
-echo "                            INPUTS"
-echo "FORWARD READS INPUT" 
-echo "  FRWRD READS FILE : ${fwd_list##*/}"
-echo -n "  SIZE OF FWD FILE : $filesize_fwd"; echo " MB" 
-echo "REVERSE READS INPUT"
-echo "  RVRSE READS FILE : ${bwd_list##*/}"
-echo -n "  SIZE OF BWD FILE : $filesize_bwd"; echo " MB"
-echo "NUMBER INPUT READS : $seqs_start_fwd"
-echo " " 
-echo "-----------------------------------------------------------------"
+#PRINT INPUT FILES
+print_inp $fwd_list $bwd_list
 
 ################ ASSEMBLY #######################
 
