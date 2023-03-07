@@ -14,7 +14,8 @@ trimmed_fastq_bwd_loc_list: "/nobackup1/biller/gray/data_GP/subset_bwd.fastq.gz"
 spades_path: "/home/biller/software/SPAdes-3.15.5-Linux/bin/"
 prod_path: "/nobackup1/chisholmlab/software/Prodigal"
 quast_path: "/nobackup1/biller/gray/quast"
-gorg_path: "HOLDPLACE"
+nextflow_path: "/nobackup1/biller/gray"
+gorg_path: "/nobackup1/biller/gray/gorg-classifier"
 
 ### METHODS ###
 

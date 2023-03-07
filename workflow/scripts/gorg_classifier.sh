@@ -1,16 +1,20 @@
-#1/bin/bash
+#!/bin/bash
 
 #reassign variable names
 
-gorg_path=$1
+nextflow_path=$1
 contigs=$2
+gorg_path=$3
 outdir=results/gorg_classification
 
 start=$SECONDS
 
-#${gorg_path}/nextflow run BigelowLab/gorg-classifier -profile docker --seqs $contigs --outdir $outdir
+${nextflow_path}/nextflow run BigelowLab/gorg-classifier --seqs $contigs --outdir $outdir
 
-echo "test" > results/gorg_classification/gorg.out
+#make text file of reports
+sed -e 's/<[^>]*>//g' results/gorg_classification/logs/GORG-Classifier_report.html > results/gorg_classification/logs/GORG-Classifier_report.txt
+sed -e 's/<[^>]*>//g' results/gorg_classification/logs/GORG-Classifier_timeline.html > results/gorg_classification/logs/GORG-Classifier_timeline.txt
+
 echo "time(sec):"
 echo $(( SECONDS - start))
 

@@ -124,16 +124,17 @@ rule gorg_class:
 		ass_contigs = "results/assembled_seqs/contigs.fasta"
 	output:
 		slurm_gorg = "results/slurm_gorg.out",
-		gorg_results = "results/gorg_classification/gorg.out"
+		gorg_results = "results/gorg_classification/annotations/contigs_annotated.txt.gz"
 	params:
+		nextflow_path = config["nextflow_path"],
 		gorg_path = config["gorg_path"]
 	shell:
 		'''
 		bash workflow/scripts/gorg_classifier.sh \
-		{params.gorg_path} \
-		{input.ass_contigs} > {output.slurm_gorg}
-		
-		
+		{params.nextflow_path} \
+		{input.ass_contigs} \
+		{params.gorg_path} > {output.slurm_gorg}
+				
 		'''
 
 rule report_cluster:

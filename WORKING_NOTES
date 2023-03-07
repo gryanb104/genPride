@@ -56,3 +56,27 @@
 	*Next, simplifying some things into functions
 		-Still working on this	
 				
+3/3/2023
+	*Simplifying the printing step: consolidating into fun-
+		ctions in a report module
+	*moving away from that and working on GORG classifier
+	*have to install nextflow
+		-Done
+	*GORG step might be working now, tbd. Try running work-
+		flow tomorrow
+
+3/7/2023
+	*Give the full workflow a shot! Let's see how it runs
+		-Didn't work, there was a syntax error in Snak-
+			efile... fixed
+		-gorg-classifier bash script not found
+		-Okay, issue is a typo lol
+			#jk it's actually not
+			#added html to txt process in the scri-
+				pt so I can easily view logs
+		-Some issue with exiting with an error code: c-
+			ombatting by installing docker via con-
+			da
+			#still didn't work
+		-Removed profile option: now it says that kaiju
+			command cannot run
