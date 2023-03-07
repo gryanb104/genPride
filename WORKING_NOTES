@@ -80,3 +80,5 @@
 			#still didn't work
 		-Removed profile option: now it says that kaiju
 			command cannot run
+			#fixed
+	*Add status report into GORG script

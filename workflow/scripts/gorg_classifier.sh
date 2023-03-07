@@ -18,3 +18,7 @@ sed -e 's/<[^>]*>//g' results/gorg_classification/logs/GORG-Classifier_timeline.
 echo "time(sec):"
 echo $(( SECONDS - start))
 
+gorg_status=$(grep "Workflow execution completed" /nobackup1/biller/gray/genPride/results/gorg_classification/logs/GORG-Classifier_report.txt)
+echo " "
+echo "status:"
+echo $gorg_status | sed 's/Workflow execution completed //g' | sed 's/ly!//g'
