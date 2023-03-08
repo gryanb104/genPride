@@ -1,5 +1,5 @@
 run_name: "test_one"
-final_output: "results/slurm_gorg.out"
+final_output: "results/slurm_krona.out"
 
 ### THRESHOLDS ###
 
@@ -16,6 +16,8 @@ prod_path: "/nobackup1/chisholmlab/software/Prodigal"
 quast_path: "/nobackup1/biller/gray/quast"
 nextflow_path: "/nobackup1/biller/gray"
 gorg_path: "/nobackup1/biller/gray/gorg-classifier"
+kronos_nodes_dmp: "resources/NCBI/nodes2.dmp"
+kronos_names_dmp: "resources/NCBI/names2.dmp"
 
 ### METHODS ###
 

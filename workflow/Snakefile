@@ -137,6 +137,25 @@ rule gorg_class:
 				
 		'''
 
+rule gorg_krona:
+	input:
+		gorg_results = "results/gorg_classification/annotations/contigs_annotated.txt.gz"
+	output:
+		krona_file = "results/gorg_krona/gorg_contann.krona"
+		slurm_krona = "results/slurm_krona.out"
+	params:
+		nodes_dmp = config["kronos_nodes_dmp"],
+		names_dmp = config["kronos_names_dmp"]
+	shell:
+		'''
+		bash get_krona_from_gorg.sh \
+		{params.nodes_dmp} \
+		{params.names_dmp} \
+		{input.gorg_results} \
+		{output.krona_file} > {output.slurm_krona}
+
+		'''
+
 rule report_cluster:
 	input:
 		slurm_ass = "results/slurm_ass.out",
