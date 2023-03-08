@@ -124,7 +124,7 @@ rule gorg_class:
 		ass_contigs = "results/assembled_seqs/contigs.fasta"
 	output:
 		slurm_gorg = "results/slurm_gorg.out",
-		gorg_results = "results/gorg_classification/annotations/contigs_annotated.txt.gz"
+		gorg_results = "results/gorg_classification/annotations/contigs_annotated.txt"
 	params:
 		nextflow_path = config["nextflow_path"],
 		gorg_path = config["gorg_path"]
@@ -139,16 +139,16 @@ rule gorg_class:
 
 rule gorg_krona:
 	input:
-		gorg_results = "results/gorg_classification/annotations/contigs_annotated.txt.gz"
+		gorg_results = "results/gorg_classification/annotations/contigs_annotated.txt"
 	output:
-		krona_file = "results/gorg_krona/gorg_contann.krona"
+		krona_file = "results/gorg_krona/gorg_contann.krona",
 		slurm_krona = "results/slurm_krona.out"
 	params:
 		nodes_dmp = config["kronos_nodes_dmp"],
 		names_dmp = config["kronos_names_dmp"]
 	shell:
 		'''
-		bash get_krona_from_gorg.sh \
+		bash workflow/scripts/get_krona_from_gorg.sh \
 		{params.nodes_dmp} \
 		{params.names_dmp} \
 		{input.gorg_results} \

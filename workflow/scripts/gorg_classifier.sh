@@ -23,3 +23,4 @@ echo " "
 echo "status:"
 echo $gorg_status | sed 's/Workflow execution completed //g' | sed 's/ly!//g'
 
+gunzip -f $outdir/annotations/*
