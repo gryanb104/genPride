@@ -81,4 +81,14 @@
 		-Removed profile option: now it says that kaiju
 			command cannot run
 			#fixed
-	*Add status report into GORG script
+	*Add status report into GORG script: working
+	*Run with the whole dataset (cellular)
+
+3/8/2023
+	*Check on the run: still going (it's at 16:24:13)
+	*Let's see about putting a kaiju to krona step in there
+		-On its own: DONE!
+		-Into snakemake workflow: working on it now
+
+
+

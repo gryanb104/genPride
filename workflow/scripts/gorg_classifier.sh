@@ -22,3 +22,4 @@ gorg_status=$(grep "Workflow execution completed" /nobackup1/biller/gray/genPrid
 echo " "
 echo "status:"
 echo $gorg_status | sed 's/Workflow execution completed //g' | sed 's/ly!//g'
+
