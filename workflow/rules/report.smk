@@ -68,9 +68,11 @@ function print_assembly(){
 	echo "ASSEMBLY METHOD GP : $meth"
 	echo -n "SIZE OF CONTG FILE : "; echo -n $filesize_ass; echo " MB"
 	echo "ASSEMBLY TIME"
-	echo "TOTAL TIME ELAPSED : $time"
+	echo "  TOT TIME ELAPSED : $time"
 	echo -n "  T PER INPUT READ : $sec_f"; echo "s"
 	echo -n "  T PER OUT CONTIG : $sec_c"; echo "s"
+	echo " "
+        echo "-----------------------------------------------------------------"
 }
 
 

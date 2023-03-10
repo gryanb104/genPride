@@ -144,8 +144,8 @@ rule gorg_krona:
 		krona_file = "results/gorg_krona/gorg_contann.krona",
 		slurm_krona = "results/slurm_krona.out"
 	params:
-		nodes_dmp = config["kronos_nodes_dmp"],
-		names_dmp = config["kronos_names_dmp"]
+		nodes_dmp = config["krona_nodes_dmp"],
+		names_dmp = config["krona_names_dmp"]
 	shell:
 		'''
 		bash workflow/scripts/get_krona_from_gorg.sh \
@@ -156,15 +156,17 @@ rule gorg_krona:
 
 		'''
 
-rule report_cluster:
+rule report_final:
 	input:
 		slurm_ass = "results/slurm_ass.out",
 		ass_contigs = "results/assembled_seqs/contigs.fasta",
 		slurm_orf = "results/slurm_orf.out",           
 		slurm_clust = "results/slurm_clust.out",
-		slurm_quast = "results/slurm_quast.out"
+		slurm_quast = "results/slurm_quast.out",
+		slurm_gorg = "results/slurm_gorg.out",
+		slurm_krona = "results/slurm_krona.out"
 	output:
-		cluster_plus_rep = "workflow/report/report_final.txt"
+		report_final = "workflow/report/report_final.txt"
 	params:
 		meth = config["assembly_meth"],
 		name = config["run_name"],
@@ -185,7 +187,9 @@ rule report_cluster:
 		{input.slurm_orf} \
 		{input.slurm_clust} \
 		{input.slurm_quast} \
-		{params.clust_meth} > {output.cluster_plus_rep}
+		{params.clust_meth} \
+		{input.slurm_gorg} \
+		{input.slurm_krona} > {output.report_final}
 		
 		'''
 					

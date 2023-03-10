@@ -1,7 +1,7 @@
  
                          REPORT FOR RUN
                            test_one
-                     genPride method:heli 
+ 
 -----------------------------------------------------------------
  
                             INPUTS
@@ -19,10 +19,47 @@ NUMBER INPUT READS : 1000000
 ASSEMBLY METHOD GP : metaspades
 SIZE OF CONTG FILE : 52 MB
 ASSEMBLY TIME
-  TOTAL TIME ELAPS : 1h 2m 1s
+  TOT TIME ELAPSED : 1h 2m 1s
   T PER INPUT READ : 0.003721s
   T PER OUT CONTIG : 0.321607s
-ASSEMBLY QUALITY REPORT (QUAST)
+ 
+-----------------------------------------------------------------
+ 
+                  GORG CLASSIFICATION REPORT
+COMPLETION  STATUS : successful
+TOTAL ELAPSED TIME : 0h 2m 1s
+KAIJU PARAMETERS
+  KAIJU MISMATCHES : 3
+  MIN ALIGNMNT LEN : 11
+  KAIJU  COMPUTERS : 8
+NUMBR OF SEQUENCES :  151685
+ 
+TAXONOMY ASSIGNMENTS 
+   _____________________________________________
+  |_TAXONOMIC LEVEL_|_____COUNT_____|__PERCENT__|
+  | SUPERKINGDOM    | 112280        | 74.02%    | 
+  | PHYLUM          | 112011        | 73.84%    | 
+  | CLASS           | 100455        | 66.23%    | 
+  | ORDER           | 78717         | 51.90%    | 
+  | FAMILY          | 73492         | 48.45%    | 
+  | GENUS           | 13579         | 8.95%     | 
+  | SPECIES         | 197           | 0.13%     | 
+ 
+FUNCTIONAL ASSIGNMENTS 
+   ______________________________________________
+  |____ASSIGNMENT____|_____COUNT_____|__PERCENT__|
+  | FUNCTION         | 112287        | 74.03%    | 
+  | NON-HYPOTHETICAL | 85899         | 56.63%    | 
+  | EC               | 63223         | 41.68%    | 
+ 
+-----------------------------------------------------------------
+ 
+                     KRONA REPORT
+TOTAL TIME ELAPSED : 0h 0m 0s
+ 
+-----------------------------------------------------------------
+ 
+              ASSEMBLY QUALITY REPORT (QUAST)
   TOTAL QUAST TIME : 8m 21s
   NUMBR OF CONTIGS : 11570
   TOT ASSEMBLY LEN : 10399493
@@ -50,4 +87,4 @@ CLUSTER TIME
  
                             TOTAL
 TOTAL TIME
-  TOTAL TIME ELAPS : 1h 11m 12s
+  TOTAL TIME ELAPS : 0h 9m 11s
