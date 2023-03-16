@@ -1,11 +1,10 @@
 #!/bin/bash
-#SBATCH --job-name=GP_test             #job name
+#SBATCH --job-name=kegg_gp_test         #job name
 #SBATCH --nodes=1                       #number of nodes to use
-#SBATCH --ntasks=20                     #number of cpus to use
-#SBATCH --mem=250000                    #maximum memory
-#SBATCH --time=2-00:00:00               #maximum time to run
-#SBATCH --partition=sched_mit_chisholm  #partition name
-#SBATCH --exclusive                     #exclusive use of node
+#SBATCH --ntasks=1                      #number of cpus to use
+#SBATCH --mem=10000                     #maximum memory
+#SBATCH --time=15:00                    #maximum time to run
+#SBATCH --partition=sched_any		#partition name
 
 fwd="/nobackup1/billerlab/gray/data_GP/subset_fwd.fastq.gz"
 bwd="/nobackup1/billerlab/gray/data_GP/subset_bwd.fastq.gz"
@@ -45,4 +44,24 @@ outdir="results/gorg_annotated"
 #bash workflow/scripts/cluster_gen.sh $prot_seqs $mmseq_meth $nuc_id $overlap > TEST_CLUST_slurm.out
 #bash workflow/scripts/quasting.sh $quast_path $contigs $quast_meth
 #bash workflow/scripts/RM1.sh $rm1_files > $RM1_rep
-bash workflow/scripts/gorg_classifier.sh $gorg_path $ass_contigs $outdir
+#bash workflow/scripts/gorg_classifier.sh $gorg_path $ass_contigs $outdir
+
+
+
+output="./results/kegg_annotations/annotated_seqs"
+ko_db_profile="/pool001/biller/databases/kofamscan/profiles/prokaryote"
+kegg_cpu=8
+temp_dir="./results/kegg_annotations/tmp"
+e_val=0.01
+format="detail"
+thresh_scale=1
+hmmsearch="/pool001/biller/databases/kofamscan/kofam_scan/lib/kofam_scan/hmmsearch.rb"
+parallel="/pool001/biller/databases/kofamscan/kofam_scan/lib/kofam_scan/parallel.rb"
+report="./results/slurm_kegg.out"
+aa_file="/nobackup1/biller/gray/genPride/results/protein_seqs/protein_translations.faa"
+exec_dir="/pool001/biller/databases/kofamscan/kofam_scan"
+ko_list="/pool001/biller/databases/kofamscan/ko_list"
+
+bash workflow/scripts/kofamscan_kegg.sh $output $ko_db_profile $kegg_cpu $temp_dir \
+$e_val $format $thresh_scale $hmmsearch $parallel $aa_file $exec_dir $ko_list > $report
+

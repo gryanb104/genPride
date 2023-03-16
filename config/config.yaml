@@ -6,6 +6,8 @@ final_output: "workflow/report/report_final.txt"
 assemble_thresh: 0.95
 cluster_nuc_id: 0.95
 cluster_overlap: 0.9
+megahit_preset: "meta-large"
+min_contig_length: 200
 
 ### DIRECTORIES, FILE LOCATIONS ###
 
@@ -41,3 +43,5 @@ rm1_files: "config/rm1_files.txt"
 #CLUSTER PRODUCTS
 rm2_files: "config/rm2_files.txt"
 
+#COMPARE
+do_compare: TRUE
