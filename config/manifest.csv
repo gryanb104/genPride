@@ -1,0 +1,3 @@
+sample_id,absolute_path_fwd,absolute_path_rev,trimmed,paired,assembly,gene_prediction,clustering,taxonomic_classifier,coverage
+cellular_subset,/nobackup1/biller/gray/data_GP/cellular_subset_fwd_trimmed_paired.fastq.gz,/nobackup1/biller/gray/data_GP/cellular_subset_rev_trimmed_paired.fastq.gz,YES,YES,spades:metaspades,prodigal:meta_comp,mmseqs2:easy_cluster,GORG-Tropics,minimap2
+vesicle_subset,/nobackup1/biller/gray/data_GP/vesicle_subset_fwd_trimmed_paired.fastq.gz,/nobackup1/biller/gray/data_GP/vesicle_subset_rev_trimmed_paired.fastq.gz,YES,YES,spades:metaspades,prodigal:meta_comp,mmseqs2:easy_cluster,GORG-Tropics,minimap2

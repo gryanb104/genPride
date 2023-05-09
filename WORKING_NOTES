@@ -102,4 +102,150 @@
 	*getting the krona step into the final report: DONE
 	*next: comparison thing... still figuring out how to a-
 		pproach this
-	*Set up megahit assignment for Anika
+	*set up megahit assignment for Anika
+
+3/15/2023
+	*get cellular runn going through krona rule
+	*test run of the tourmaline snakemake workflow for cor-
+		al data
+	*get kofamscan kegg counts rule into snakemake
+
+3/16/2023
+	*cellular krona: final report assembly didn't work, th-
+		ere was no quast report
+		-deleted slurm_quast.out and rerun
+		-the krona was accessible though, sent to Dr B-
+			iller
+	*started a cellular run to try to fix the issue with t-
+		he inability to assemble the final report
+			#WORKED!
+	*get the vessicle and viral runs started as well
+		-vessicle is running, waiting on viral run bec-
+			ause disk quota exceeded in cache/snak-
+			emake
+	*test run of tourmaline from yesterday: FAILED (I guess
+		I was not in the snakemake environment)
+		-Trying again correctly
+
+3/17/2023
+	*check vessicle run: still going
+	*check tourmaline workflow run: there were errors
+		-added a conda init bash line to fix one of the
+			errors
+		-the manifest_pe data file is empty, so I fixed
+			that as well
+		-started a new run
+		-worked! waiting on formatted files before run-
+			ning the actual data 
+	*check vesicle run (through gorg, through krona) - res-
+		tarted with all cores and longer time limit
+
+3/29/2023
+	*check vessicle run: it's done, take a look at it
+		-seems to have run correctly, krona sent to Dr.
+		Biller
+	*check tourmaline: need to run it with the data Sam and
+		Dr. Biller sent
+		-reference database set to be silva-138-99-seqs
+			-515-806.qza and associated taxonomy
+		-set the new metadata file with correrct name
+		-set the manifest to be the correct one
+		-running!: failed, needed to update some of the
+			config.yml settings
+		-runnings again!: failed. Need to fix the meta-
+			data file because too many headers
+		-fixed, running again
+
+3/30/2023
+	*check tourlamine run
+		-pfffffft the metadata is wrong lmaoooooooooooo
+
+4/4/2023
+	*My TO DO today
+		-Viral run through krona of genPride: DONE
+			#waiting for the cluster to run
+		-Fix metadata for coral data: DONE
+			#created a placeholder with just sample
+				ID and random collection dates
+		-Run coral pipeline: DONE
+			#running with placeholder metadata
+			#waiting for cluster to run
+		-Start on adding coverage step to genPride
+		-Come up with an assignment for Mary
+
+4/5/2023
+	*To do today:
+		-Check viral run: still going
+		-Check coral run: failed
+			#fixed the metadata (each sample id ne-
+				eds to be unique in the metada-
+				ta
+		-Continue on coverage step
+		-Put together a new assignment for Mary: DONE
+
+4/6/2023
+	*To do today:
+		-Check on viral run: DONE
+		-Check coral run: FAILED
+			#missed the controls on the metadata t-
+				he first time... fixed and run-
+				ning again
+		-Continue on coverage step:
+			#install minimap2 with conda: DONE
+			#install bowtie2 with conda: DONE
+
+4/7/2023
+	*Continue on coverage step
+		-Make vesicle subset: DONE
+			#Have to install seqtk with conda first
+		-Create manifest with list of all samples fwd &
+			 rev: DONE
+		-Add a rule that will take a manifest and orga-
+			nize a results folder to run everything
+			you want in one go
+			#(1) Make documentation for each sample
+				in one directory
+				*left off working on this... t-
+					he cluster is taking f-
+					orever
+
+4/12/2023
+	*Check tourlamine
+		-Another package error with R stuff... install-
+			ed R
+		-Also installing r essentials... this is havin-
+			g a tough time >:(
+		-This is a mess, tried updating qqime, can't w-
+			ith python version, new version of pyt-
+			hon installed, conflicts again!
+
+4/19/2023
+	*Tourlamine finished
+		-Used the wrong silva DB
+		-changed to the full length classifier files on
+			silva webpage, running again
+
+4/20/2023
+	*Tasks for today:
+		-Talk to Dr. Biller out tourlamine pipeline, f-
+			igure out the next steps
+		-Work on genPride
+			#Universalize for multiple samples
+			#Set up undergrad task of testing vari-
+				ous assembly conditions
+
+5/8/2023
+	*Next: generalize genPride to accept more than one sam-
+		ple
+		-Take in manifest columm: DONE
+		-Cycle through and make directory for each: DO-
+			NE
+		-Make documentation for each of those director-
+			ies: DONE
+		-Add other manifest info into those docs
+
+5/9/2023
+	*Working on generalizing genPride to accept multiple s-
+		amples
+		-Add manifest information into the documentati-
+			on

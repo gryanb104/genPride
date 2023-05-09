@@ -5,24 +5,36 @@ report: "report/workflow.rst"
 rule all:
 	input:
 		final_output = config["final_output"]	
+
+rule make_documentation:
+	input:
+		manifest = "config/manifest.csv"
+	output:
+		slurm_mkdoc = "results/slurm_mkdoc.out"
+	shell:
+		'''
+		python3 workflow/scripts/make_documentation.py \
+		{input.manifest} > {output.slurm_mkdoc}
 		
+		'''
+
 rule assemble_data:
 	input: 
-		fwd_list = config["trimmed_fastq_fwd_loc_list"],
-		bwd_list = config["trimmed_fastq_bwd_loc_list"]
+		#fwd_list = config["trimmed_fastq_fwd_loc_list"],
+		#bwd_list = config["trimmed_fastq_bwd_loc_list"]
 	output:
 		slurm_ass = "results/slurm_ass.out",
 		ass_contigs = "results/assembled_seqs/contigs.fasta"
 			#THUS FAR ONLY WORKS FOR FIRST ITEM IN ASS_DATA
 	params:
-		meth = config["assembly_meth"],
+		#meth = config["assembly_meth"],
 		ass_thresh = config["assemble_thresh"],
 		threads = config["threads"],
 		spm = config["spades_py_memory"],
 		spades_path = config["spades_path"]	
 	shell:
 		'''
-		workflow/scripts/assemble_meat.sh \
+		bash workflow/scripts/assemble_meat.sh \
 		{input.fwd_list} \
 		{input.bwd_list} \
 		{params.meth} \
@@ -70,7 +82,7 @@ rule find_orfs:
 		prot_seqs = "results/protein_seqs/protein_translations.faa"
 	params:
 		prod_path = config["prod_path"],
-		prod_meth = config["prodigal_meth"]
+		#prod_meth = config["prodigal_meth"]
 	shell:
 		'''
 		bash workflow/scripts/find_orfs.sh \
@@ -87,10 +99,9 @@ rule cluster:
 		slurm_clust = "results/slurm_clust.out",
 		clustered_seqs = "results/clustered_seqs/clust_all_seqs.fasta"
 	params:
-		mmseq_meth = config["mmseq_cluster_method"],
+		#mmseq_meth = config["mmseq_cluster_method"],
 		nuc_id = config["cluster_nuc_id"],
-		overlap = config["cluster_overlap"],
-		db = config["mmseqs2_database"]
+		overlap = config["cluster_overlap"]
 	shell:
 		'''
 		bash workflow/scripts/cluster_gen.sh \
@@ -109,7 +120,7 @@ rule quast:
 		slurm_quast = "results/slurm_quast.out"
 	params:
 		quast_path = config["quast_path"],
-		quast_method = config["quast_method"]
+		#quast_method = config["quast_method"]
 	shell:
                 '''
                 bash workflow/scripts/quasting.sh \
@@ -168,12 +179,12 @@ rule report_final:
 	output:
 		report_final = "workflow/report/report_final.txt"
 	params:
-		meth = config["assembly_meth"],
+		#meth = config["assembly_meth"],
 		name = config["run_name"],
-		fwd_list = config["trimmed_fastq_fwd_loc_list"],
-                bwd_list = config["trimmed_fastq_bwd_loc_list"],
-		prod_meth = config["prodigal_meth"],
-		clust_meth = config["mmseq_cluster_method"]
+		#fwd_list = config["trimmed_fastq_fwd_loc_list"],
+                #bwd_list = config["trimmed_fastq_bwd_loc_list"],
+		#prod_meth = config["prodigal_meth"],
+		#clust_meth = config["mmseq_cluster_method"]
 	shell:
 		'''
 		bash workflow/scripts/assemble_report.sh \
@@ -192,5 +203,15 @@ rule report_final:
 		{input.slurm_krona} > {output.report_final}
 		
 		'''
-					
 
+rule coverage:
+	input:
+		cover_seqs = config["coverage_of_what"]
+	output:
+		coverage_slurm = "results/slurm_coverage.out"
+	shell:					
+		'''
+		bash workflow/scripts/coverage.sh \
+		{input.cover_seqs} > {output.coverage_slurm}
+
+		'''

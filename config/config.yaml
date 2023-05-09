@@ -1,21 +1,18 @@
 run_name: "test_one"
-final_output: "workflow/report/report_final.txt"
+final_output: "results/slurm_mkdoc.out"
 
 ### THRESHOLDS ###
 
 assemble_thresh: 0.95
 cluster_nuc_id: 0.95
 cluster_overlap: 0.9
-megahit_preset: "meta-large"
 min_contig_length: 200
 
 ### DIRECTORIES, FILE LOCATIONS ###
 
-trimmed_fastq_fwd_loc_list: "/nobackup1/biller/gray/data_GP/subset_fwd.fastq.gz"
-trimmed_fastq_bwd_loc_list: "/nobackup1/biller/gray/data_GP/subset_bwd.fastq.gz"
 spades_path: "/home/biller/software/SPAdes-3.15.5-Linux/bin/"
 prod_path: "/nobackup1/chisholmlab/software/Prodigal"
-quast_path: "/nobackup1/biller/gray/quast"
+quast_path: "/pool001/biller/databases/quast"
 nextflow_path: "/nobackup1/biller/gray"
 gorg_path: "/nobackup1/biller/gray/gorg-classifier"
 krona_nodes_dmp: "resources/NCBI/nodes2.dmp"
@@ -23,12 +20,7 @@ krona_names_dmp: "resources/NCBI/names2.dmp"
 
 ### METHODS ###
 
-assembly_meth: "metaspades"
-prodigal_meth: "meta_comp"
-mmseq_cluster_method: "easy_cluster"
-mmseqs2_database: "INSERT HERE"
 quast_method: "metaQUAST"
-classifier: "GORG"
 
 ### COMPUTING RESOURCES ###
 
@@ -42,6 +34,9 @@ rm1_files: "config/rm1_files.txt"
 
 #CLUSTER PRODUCTS
 rm2_files: "config/rm2_files.txt"
+
+#COVERAGE
+coverage_of_what: "results/assembled_seqs/contigs.fasta"
 
 #COMPARE
 do_compare: TRUE
