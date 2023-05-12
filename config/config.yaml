@@ -1,5 +1,5 @@
 run_name: "test_one"
-final_output: "results/slurm_mkdoc.out"
+final_output: "results/assembled_seqs/{cellular,vesicle}_subset_contigs.fasta"
 
 ### THRESHOLDS ###
 
@@ -21,6 +21,7 @@ krona_names_dmp: "resources/NCBI/names2.dmp"
 ### METHODS ###
 
 quast_method: "metaQUAST"
+assembly_method: "metaspades"
 
 ### COMPUTING RESOURCES ###
 

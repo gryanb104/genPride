@@ -242,6 +242,7 @@
 			NE
 		-Make documentation for each of those director-
 			ies: DONE
+		-Add config info to each: DONE
 		-Add other manifest info into those docs
 
 5/9/2023
@@ -249,3 +250,20 @@
 		amples
 		-Add manifest information into the documentati-
 			on
+
+5/10/2023
+	*Still working on generalizaing genPrice to accept mul-
+		tiple samples
+		-Manifest info added to documentation: DONE
+		-Add config info to documentation: DONE
+		-Get step in snakemake: DONE
+		-Accomplish iteration in snakemake: 
+			#running through assembly: worked for 1
+				sample
+			#trying to get it to work for the other
+	*Meanwhile tourmaline
+		-Goal: add a step to trim the adapter sequences
+		-First: add quality report
+			#currently reports num of filtered una-
+				ssigned
+			
