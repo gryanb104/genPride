@@ -17,11 +17,14 @@ nextflow_path: "/nobackup1/biller/gray"
 gorg_path: "/nobackup1/biller/gray/gorg-classifier"
 krona_nodes_dmp: "resources/NCBI/nodes2.dmp"
 krona_names_dmp: "resources/NCBI/names2.dmp"
+cluster_db: "NA"
 
 ### METHODS ###
 
 quast_method: "metaQUAST"
 assembly_method: "metaspades"
+prodigal_meth: "meta_comp"
+mmseq_cluster_method: "easy_cluster"
 
 ### COMPUTING RESOURCES ###
 

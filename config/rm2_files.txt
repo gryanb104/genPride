@@ -3,7 +3,7 @@
 #  keep this file. Please avoid adding comments, line breaks, &
 #  format alterations to this file to ensure functionality.
 
-clustered_seqs/clust_cluster.tsv : TRUE
-clustered_seqs/clust_rep_seq.fasta : TRUE
+05-clustered_seqs/SAMPLE_cluster/SAMPLE_cluster.tsv : FALSE
+05-clustered_seqs/SAMPLE_cluster/SAMPLE_rep_seq.fasta : TRUE
 
-cluster_tmp/*/* : TRUE
+05-clustered_seqs/SAMPLE_cluster/cluster_tmp/*/* : TRUE
