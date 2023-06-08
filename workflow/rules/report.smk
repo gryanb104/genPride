@@ -1,10 +1,11 @@
 #!/bin/bash
 
 function print_head(){ #print report header
-	name=$1
+	name=$1; sample=$2
 	echo " "
-	echo "                         REPORT FOR RUN"
-	echo "                           $name" 
+	echo "                               REPORT"
+	echo "                         RUN NAME: $name" 
+	echo "                      SAMPLE NAME: $sample"
 	echo " "
 	echo "-----------------------------------------------------------------"
 }
@@ -48,18 +49,18 @@ function secs_to_time(){ #convert seconds to hours, mins, secs
 }
 
 function contig_num_from_quast(){
-	quast_path=$1
-	num_contigs=$(grep "# contigs     " $quast_path | awk '{print $3}')
+	report_path=$1
+	num_contigs=$(grep "# contigs    " $report_path | awk '{print $3}')
 	echo $num_contigs
 }
 
 function print_assembly(){
-	ass_contigs=$1; slurm_ass=$2; fwd_list=$3; meth=$4
+	ass_contigs=$1; slurm_ass=$2; fwd_list=$3; meth=$4; sample=$5; report_path=$6
 	filesize_ass=$(calc_filesize $ass_contigs)
 	seqs_start_fwd=$(num_seqs $fwd_list)
 	sec=$(tail -n 1 $slurm_ass)
 	time=$(secs_to_time $sec)
-	num_contigs=$(contig_num_from_quast results/quast_out/combined_reference/report.txt)
+	num_contigs=$(contig_num_from_quast $report_path)
 	sec_f=$(printf "%f\n" $((10**6 * $sec/$seqs_start_fwd))e-6)
 	sec_c=$(printf "%f\n" $((10**6 * $sec/$num_contigs))e-6)
 
@@ -69,11 +70,21 @@ function print_assembly(){
 	echo -n "SIZE OF CONTG FILE : "; echo -n $filesize_ass; echo " MB"
 	echo "ASSEMBLY TIME"
 	echo "  TOT TIME ELAPSED : $time"
+	echo "  TOT TIME IN SECS : $sec"
 	echo -n "  T PER INPUT READ : $sec_f"; echo "s"
 	echo -n "  T PER OUT CONTIG : $sec_c"; echo "s"
 	echo " "
-        echo "-----------------------------------------------------------------"
+	echo "-----------------------------------------------------------------"
 }
 
-
+function get_report_path() {
+	sample=$1
+	if [ ! -d "results/03b-quast_out/${sample}_quast/combined_reference" ]
+	then
+		rep_path="results/03b-quast_out/${sample}_quast/report.txt"
+	else
+		rep_path="results/03b-quast_out/${sample}_quast/combined_reference/report.txt"
+	fi
+	echo $rep_path
+}
 

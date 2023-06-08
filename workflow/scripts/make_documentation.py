@@ -3,31 +3,28 @@
 import sys
 import pandas as pd
 import os
-import workflow/rules/documentation.py as doc
-
-testString = doc.test()
-print(testString)
+import shutil
+sys.path.append("..")
+from ..rules import documentation as doc
 
 manifest_path = sys.argv[1]
 manifest = pd.read_csv(manifest_path)
+if os.path.isdir("results/01-documentation") == True:
+	shutil.rmtree("results/01-documentation")
+os.mkdir("results/01-documentation")
 
-sample_list = manifest["sample_id"]
+sample_list = list(manifest["sample_id"])
 
 for sample in sample_list:
-	dir_to_make = os.path.join("results/", sample)
-	os.mkdir(dir_to_make)
-	file_to_make = sample + "_documentation.txt"
-	file_to_make = os.path.join(dir_to_make, file_to_make)
-
+	file_to_make = "results/01-documentation/" + sample + "_documentation.txt"
 	f = open(file_to_make, "x")
-	f.write(sample)
-	f.write("\n \n")
-	f.write("CONFIG SETTINGS \n \n")
-	with open('config/config.yaml', 'r') as g:
-    		f.write(g.read())
+
+	doc.write_header(f, sample)
+	doc.write_manifest_info(f, sample, sample_list, manifest)
+	doc.append_config_yaml(f, sample)
 	f.close()
 	
-
+print("MAKE DOCUMENTATION: DONE")
 
 
 

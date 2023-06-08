@@ -2,29 +2,37 @@
 
 ass_contigs=$1
 prod_path=$2
-prod_meth=$3
+manifest=$3
+sample=$4
+samp_doc=$5
 
 #reset timer
 start=$SECONDS
 
-mkdir results/protein_seqs
+if [ ! -d "results/04-protein_seqs" ]
+then
+	mkdir results/04-protein_seqs
+fi
 
-if [[ "$prod_meth" == "meta_comp" ]]
+prod_meth="$(grep "    GENE PRED :" $samp_doc | sed 's/^.*: //')"s
+prod_meth="prodigal:meta_comp"
+
+if [[ "$prod_meth" == "prodigal:meta_comp" ]]
 then
 	${prod_path}/prodigal \
 		-i ${ass_contigs} \
-		-o results/protein_seqs/prodigal_output.gff \
+		-o results/04-protein_seqs/${sample}_prot_seqs/prodigal_output.gff \
 		-f gff \
-		-a results/protein_seqs/protein_translations.faa \
+		-a results/04-protein_seqs/${sample}_prot_seqs/protein_translations.faa \
 		-p "meta" \
 		-c
-elif [[ "$prod_meth" == "meta" ]]
+elif [[ "$prod_meth" == "prodigal:meta" ]]
 then
         ${prod_path}/prodigal \
                 -i ${ass_contigs} \
-                -o results/protein_seqs/prodigal_output.gff \
+                -o results/04-protein_seqs/${sample}_prot_seqs/prodigal_output.gff \
                 -f gff \
-                -a results/protein_seqs/protein_translations.faa \
+                -a results/04-protein_seqs/${sample}_prot_seqs/protein_translations.faa \
                 -p "meta" \
 else
 	echo "Prodigal method $prod_meth not valid"

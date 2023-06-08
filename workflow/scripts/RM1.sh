@@ -1,8 +1,9 @@
 #!/bin/bash
 
 rm1_files=$1
+sample=$2
 
-echo "The following output files have been removed from the directory results/assembled_seqs to preserve memory"
+echo "The following output files have been removed from the directory results/02-assembled_seqs/${sample}_assembly to preserve memory"
 echo " "
 
 while read line; do
@@ -11,7 +12,7 @@ while read line; do
 		TF=${line#*:}
 		if [ $TF == "TRUE" ]; then
 			file=${line%%:*}
-			rm results/assembled_seqs/$file
+			rm results/02-assembled_seqs/${sample}_assembly/$file
 			echo $file
 		fi
 	fi

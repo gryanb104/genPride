@@ -1,21 +1,27 @@
 #!/bin/bash
 
 #SET VAR NAMES AND SOURCE
-fwd_list=$1; bwd_list=$2; meth=$3; name=$4; slurm_ass=$5
-ass_contigs=$6; prod_meth=$7; slurm_orf=$8; slurm_clust=$9
-clust_meth=${11}; slurm_quast=${10}; slurm_gorg=${12};
-slurm_krona=${13}
+samp_doc=$1; name=$2; slurm_ass=$3; ass_contigs=$4
+slurm_orf=$5; slurm_clust=$6; slurm_quast=${7}; slurm_gorg=${8}
+slurm_krona=${9}; sample=${10}
+
+fwd_list="$(grep 'FWD READ FILE:' $samp_doc | sed 's/^.*: //')"
+bwd_list="$(grep 'REV READ FILE:' $samp_doc | sed 's/^.*: //')"
+ass_meth="$(grep '    ASSEMBLY  :' $samp_doc | sed 's/^.*: //')"
+prod_meth="$(grep '    GENE PRED :' $samp_doc | sed 's/^.*: //')"
+clust_meth="$(grep '    CLUSTERING:' $samp_doc | sed 's/^.*: //')"
 
 source workflow/rules/report.smk
 
 #PRINT HEADER
-print_head $name
+print_head $name $sample
 
 #PRINT INPUT FILES
 print_inp $fwd_list $bwd_list
 
 #PRINT ASSEMBLY SUMMARY
-print_assembly $ass_contigs $slurm_ass $fwd_list $meth
+rep_path=$(get_report_path $sample)
+print_assembly $ass_contigs $slurm_ass $fwd_list $ass_meth $sample $rep_path
 
 ####################### GORG ###########################
 
@@ -25,7 +31,7 @@ kaiju_mismatches=$(grep "Kaiju mismatches" $slurm_gorg | sed 's/[^,:]*: //g')
 kaiju_min_al=$(grep "Kaiju minimum alignment length" $slurm_gorg | sed 's/[^,:]*: //g')
 kaiju_cpus=$(grep "Kaiju CPUs" $slurm_gorg | sed 's/[^,:]*: //g')
 
-gorg_sum="results/gorg_classification/summaries/contigs_summary.txt"
+gorg_sum="results/06-gorg_classification/${sample}_classification/summaries/contigs_summary.txt"
 gorg_seqs=$(grep "Sequences" $gorg_sum | sed 's/[^,:]*: //g')
 g_super=$(grep "Superkingdom" $gorg_sum | sed 's/[^,:]*: //g')
 g_super_num=$(echo $g_super | awk '{print $1}')
@@ -62,6 +68,7 @@ echo " "
 echo "                  GORG CLASSIFICATION REPORT"
 echo "COMPLETION  STATUS : $gorg_status"
 echo "TOTAL ELAPSED TIME : $(secs_to_time $gorg_time)"
+echo "GORGC TIME IN SECS : $sec"
 echo "KAIJU PARAMETERS"
 echo "  KAIJU MISMATCHES : $kaiju_mismatches"
 echo "  MIN ALIGNMNT LEN : $kaiju_min_al"
@@ -107,6 +114,7 @@ time=$(secs_to_time $sec)
 echo " "
 echo "                     KRONA REPORT"
 echo "TOTAL TIME ELAPSED : $time"
+echo "TOTAL TIME IN SECS : $sec"
 echo " "
 echo "-----------------------------------------------------------------"
 
@@ -114,14 +122,14 @@ echo "-----------------------------------------------------------------"
 
 sec=$(tail -n 1 $slurm_quast); sec_QUAST=$sec
 min=$(($sec / 60)); only_sec=$(($sec - ($min * 60)))
-tot_len=$(grep "Total length  " results/quast_out/combined_\
-reference/report.txt | awk '{print $3}')
+tot_len=$(grep "Total length  " $rep_path | awk '{print $3}')
 ave_len=$(($tot_len / $num_contigs))
-n_fif=$(grep "N50 " results/quast_out/combined_reference/report.txt | awk '{print $2}')
+n_fif=$(grep "N50 " $rep_path | awk '{print $2}')
 
 echo " "
 echo '              ASSEMBLY QUALITY REPORT (QUAST)'
 echo -n "  TOTAL QUAST TIME : $min"; echo -n "m $only_sec"; echo "s"
+echo "  TOT TIME IN SECS : $sec"
 echo "  NUMBR OF CONTIGS : $num_contigs"
 echo "  TOT ASSEMBLY LEN : $tot_len"
 echo "  AVG CONTIG LNGTH : $ave_len"
@@ -142,6 +150,7 @@ echo "PROTEIN SEQUENCE TIME"
 echo -n "  TOTAL TIME ELAPS : $hour"; echo -n "h $only_min"
 echo -n "m $only_sec"; echo "s"
 sec_c=$(printf "%f\n" $((10**6 * $sec/$num_contigs))e-6)
+echo "  TOT TIME IN SECS : $sec"
 echo -n "  TIME PER PROTEIN : $sec_c"; echo "s"
 echo " "
 echo "-----------------------------------------------------------------"
@@ -151,7 +160,7 @@ echo "-----------------------------------------------------------------"
 sec=$(tail -n 1 $slurm_clust); sec_CLUST=$sec; min=$(($sec / 60))
 only_sec=$(($sec - ($min * 60))); hour=$(($sec / 3600))
 only_min=$(($min - ($hour * 60)))
-clust_num=$(awk -F ',' '{print $1}' ./results/clustered_seqs/clust_cluster.tsv | sort | uniq | wc -l)
+clust_num=$(awk -F ',' '{print $1}' ./results/05-clustered_seqs/${sample}_cluster/${sample}_cluster.tsv | sort | uniq | wc -l)
 
 echo " "
 echo "                       PROTEIN CLUSTERING"
@@ -160,6 +169,7 @@ echo "TOTAL NUM CLUSTERS : $clust_num"
 echo "CLUSTER TIME"
 echo -n "  TOTAL TIME ELAPS : $hour"; echo -n "h $only_min"
 echo -n "m $only_sec"; echo "s"
+echo "  TOT TIME IN SECS : $sec"
 sec_c=$(printf "%f\n" $((10**6 * $sec/$num_contigs))e-6)
 echo -n "  TIME PER PROTEIN : $sec_c"; echo "s"
 echo " "
@@ -167,13 +177,17 @@ echo "-----------------------------------------------------------------"
 
 ######################## TOTALS ###############################
 
-tot_sec=$(($sec_ASS + $sec_ORF + $sec_CLUST + $sec_QUAST)); sec=$tot_sec
-min=$(($sec / 60)); only_sec=$(($sec - ($min * 60)))
-hour=$(($sec / 3600)); only_min=$(($min - ($hour * 60)))
+sec_ASS=$(tail -n 1 $slurm_ass)
+sec_ORF=$(tail -n 1 $slurm_orf)
+sec_CLUST=$(tail -n 1 $slurm_clust)
+sec_QUAST=$(tail -n 1 $slurm_quast)
+sec_GORG=$(tail -n 1 $end_gorg) | head -n 1
+sec_KRONA=$(tail -n 1 $slurm_krona)
+tot_sec=$(($sec_ASS + $sec_ORF + $sec_CLUST + $sec_QUAST + $sec_GORG + $sec_KRONA))
+time=$(secs_to_time $tot_sec)
 
 echo " "
 echo "                            TOTAL"
 echo "TOTAL TIME"
-echo -n "  TOTAL TIME ELAPS : $hour"; echo -n "h $only_min"
-echo -n "m $only_sec"; echo "s"
+echo -n "  TOTAL TIME ELAPS : $time"
 sec_c=$(printf "%f\n" $((10**6 * $sec/$num_contigs))e-6)

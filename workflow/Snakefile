@@ -4,30 +4,30 @@ report: "report/workflow.rst"
 
 rule all:
 	input:
-		final_output = config["final_output"]	
-
+		report_final_cell = "workflow/report/report_final_cellular_subset.txt",
+		report_final_ves = "workflow/report/report_final_vesicle_subset.txt"		
+			
 rule make_documentation:
 	input:
 		manifest = "config/manifest.csv"
 	output:
-		slurm_mkdoc = "results/slurm_mkdoc.out"
+		return_mkdoc = "logs/01-return_mkdoc.out"
 	shell:
 		'''
-		python3 workflow/scripts/make_documentation.py \
-		{input.manifest} > {output.slurm_mkdoc}
-		
+		python3 -m workflow.scripts.make_documentation \
+		{input.manifest} > {output.return_mkdoc}
+				
 		'''
 
 rule assemble_data:
 	input: 
-		#fwd_list = config["trimmed_fastq_fwd_loc_list"],
-		#bwd_list = config["trimmed_fastq_bwd_loc_list"]
+		samp_doc = "results/01-documentation/{sample}_documentation.txt",
+		return_mkdoc = "logs/01-return_mkdoc.out",
+		manifest = "config/manifest.csv"
 	output:
-		slurm_ass = "results/slurm_ass.out",
-		ass_contigs = "results/assembled_seqs/contigs.fasta"
-			#THUS FAR ONLY WORKS FOR FIRST ITEM IN ASS_DATA
+		slurm_ass = "logs/02-return_assmb_{sample}.out",
+		ass_contigs = "results/02-assembled_seqs/{sample}_assembly/contigs.fasta"
 	params:
-		#meth = config["assembly_meth"],
 		ass_thresh = config["assemble_thresh"],
 		threads = config["threads"],
 		spm = config["spades_py_memory"],
@@ -35,9 +35,8 @@ rule assemble_data:
 	shell:
 		'''
 		bash workflow/scripts/assemble_meat.sh \
-		{input.fwd_list} \
-		{input.bwd_list} \
-		{params.meth} \
+		{input.samp_doc} \
+		{input.manifest} \
 		{params.ass_thresh} \
 		{params.threads} \
 		{params.spm} \
@@ -47,61 +46,68 @@ rule assemble_data:
 
 rule RM1:
 	input:
-		ass_contigs = "results/assembled_seqs/contigs.fasta"
+		ass_contigs = "results/02-assembled_seqs/{sample}_assembly/contigs.fasta"
 	output:
-		RM1_rep = "results/assembled_seqs/RM1_rep.txt"
+		RM1_rep = "logs/03-return_RM1_rep_{sample}.txt"
 	params:
 		rm1_files = config["rm1_files"]
 	shell:
 		'''
 		bash workflow/scripts/RM1.sh \
-		{params.rm1_files} > {output.RM1_rep}
+		{params.rm1_files} \
+		{wildcards.sample} > {output.RM1_rep}
 
 		'''
 
 rule RM2:
         input:
-                clustered_seqs = "results/clustered_seqs/clust_all_seqs.fasta"
+                clustered_seqs = "results/05-clustered_seqs/{sample}_cluster/{sample}_all_seqs.fasta"
         output:
-                RM2_rep = "results/cluster_tmp/RM2_rep.txt"
+                RM2_rep = "logs/05b-return_RM2_rep_{sample}.txt"
         params:
                 rm2_files = config["rm2_files"]
         shell:
                 '''
                 bash workflow/scripts/RM2.sh \
-                {params.rm2_files} > {output.RM2_rep}
+                {params.rm2_files} \
+		{wildcards.sample} > {output.RM2_rep}
 
                 '''
 
 rule find_orfs:
 	input:
-		ass_contigs = "results/assembled_seqs/contigs.fasta",
-		RM1_rep = "results/assembled_seqs/RM1_rep.txt"
+		ass_contigs = "results/02-assembled_seqs/{sample}_assembly/contigs.fasta",
+		RM1_rep = "logs/03-return_RM1_rep_{sample}.txt",
+		manifest = "config/manifest.csv",
+		samp_doc = "results/01-documentation/{sample}_documentation.txt"
 	output:
-		slurm_orf = "results/slurm_orf.out",
-		prot_seqs = "results/protein_seqs/protein_translations.faa"
+		slurm_orf = "logs/04-return_orf_{sample}.out",
+		prot_seqs = "results/04-protein_seqs/{sample}_prot_seqs/protein_translations.faa"
 	params:
 		prod_path = config["prod_path"],
-		#prod_meth = config["prodigal_meth"]
+		prod_meth = config["prodigal_meth"]
 	shell:
 		'''
 		bash workflow/scripts/find_orfs.sh \
 		{input.ass_contigs} \
 		{params.prod_path} \
-		{params.prod_meth} > {output.slurm_orf}
+		{input.manifest} \
+		{wildcards.sample} \
+		{input.samp_doc} > {output.slurm_orf}
 		
 		'''
 	
 rule cluster:
 	input:
-		prot_seqs = "results/protein_seqs/protein_translations.faa"
+		prot_seqs = "results/04-protein_seqs/{sample}_prot_seqs/protein_translations.faa"
 	output:
-		slurm_clust = "results/slurm_clust.out",
-		clustered_seqs = "results/clustered_seqs/clust_all_seqs.fasta"
+		slurm_clust = "logs/05-return_cluster_{sample}.out",
+		clustered_seqs = "results/05-clustered_seqs/{sample}_cluster/{sample}_all_seqs.fasta"
 	params:
-		#mmseq_meth = config["mmseq_cluster_method"],
+		mmseq_meth = config["mmseq_cluster_method"],
 		nuc_id = config["cluster_nuc_id"],
-		overlap = config["cluster_overlap"]
+		overlap = config["cluster_overlap"],
+		cluster_db = config["cluster_db"]
 	shell:
 		'''
 		bash workflow/scripts/cluster_gen.sh \
@@ -109,33 +115,34 @@ rule cluster:
 		{params.mmseq_meth} \
 		{params.nuc_id} \
 		{params.overlap} \
-		{params.db} > {output.slurm_clust}
+		{params.cluster_db} \
+		{wildcards.sample} > {output.slurm_clust}
 		
 		'''	
 
 rule quast:
 	input:
-		ass_contigs = "results/assembled_seqs/contigs.fasta",
+		ass_contigs = "results/02-assembled_seqs/{sample}_assembly/contigs.fasta",
+		manifest = "config/manifest.csv"
 	output:
-		slurm_quast = "results/slurm_quast.out"
+		slurm_quast = "logs/03b_return_quast_{sample}.out"
 	params:
-		quast_path = config["quast_path"],
-		#quast_method = config["quast_method"]
+		quast_path = config["quast_path"]
 	shell:
                 '''
                 bash workflow/scripts/quasting.sh \
 		{params.quast_path} \
 		{input.ass_contigs} \
-		{params.quast_method} > {output.slurm_quast}
+		{wildcards.sample} > {output.slurm_quast}
 		
 		'''
 
 rule gorg_class:
 	input:
-		ass_contigs = "results/assembled_seqs/contigs.fasta"
+		ass_contigs = "results/02-assembled_seqs/{sample}_assembly/contigs.fasta"
 	output:
-		slurm_gorg = "results/slurm_gorg.out",
-		gorg_results = "results/gorg_classification/annotations/contigs_annotated.txt"
+		slurm_gorg = "logs/06-return_gorg_{sample}.out",
+		gorg_results = "results/06-gorg_classification/{sample}_classification/annotations/contigs_annotated.txt"
 	params:
 		nextflow_path = config["nextflow_path"],
 		gorg_path = config["gorg_path"]
@@ -144,16 +151,17 @@ rule gorg_class:
 		bash workflow/scripts/gorg_classifier.sh \
 		{params.nextflow_path} \
 		{input.ass_contigs} \
-		{params.gorg_path} > {output.slurm_gorg}
+		{params.gorg_path} \
+		{wildcards.sample} > {output.slurm_gorg}
 				
 		'''
 
 rule gorg_krona:
 	input:
-		gorg_results = "results/gorg_classification/annotations/contigs_annotated.txt"
+		gorg_results = "results/06-gorg_classification/{sample}_classification/annotations/contigs_annotated.txt"
 	output:
-		krona_file = "results/gorg_krona/gorg_contann.krona",
-		slurm_krona = "results/slurm_krona.out"
+		krona_file = "results/07-gorg_krona/{sample}_krona/gorg_contann.krona",
+		slurm_krona = "logs/07-return_krona_{sample}.out"
 	params:
 		nodes_dmp = config["krona_nodes_dmp"],
 		names_dmp = config["krona_names_dmp"]
@@ -163,44 +171,38 @@ rule gorg_krona:
 		{params.nodes_dmp} \
 		{params.names_dmp} \
 		{input.gorg_results} \
-		{output.krona_file} > {output.slurm_krona}
+		{output.krona_file} \
+		{wildcards.sample} > {output.slurm_krona}
 
 		'''
 
 rule report_final:
 	input:
-		slurm_ass = "results/slurm_ass.out",
-		ass_contigs = "results/assembled_seqs/contigs.fasta",
-		slurm_orf = "results/slurm_orf.out",           
-		slurm_clust = "results/slurm_clust.out",
-		slurm_quast = "results/slurm_quast.out",
-		slurm_gorg = "results/slurm_gorg.out",
-		slurm_krona = "results/slurm_krona.out"
+		samp_doc = "results/01-documentation/{sample}_documentation.txt",
+		slurm_ass = "logs/02-return_assmb_{sample}.out",
+		ass_contigs = "results/02-assembled_seqs/{sample}_assembly/contigs.fasta",
+		slurm_orf = "logs/04-return_orf_{sample}.out",
+		slurm_clust = "logs/05-return_cluster_{sample}.out",
+		slurm_quast = "logs/03b_return_quast_{sample}.out",
+		slurm_gorg = "logs/06-return_gorg_{sample}.out",
+		slurm_krona = "logs/07-return_krona_{sample}.out"
 	output:
-		report_final = "workflow/report/report_final.txt"
+		report_final = "workflow/report/report_final_{sample}.txt"
 	params:
-		#meth = config["assembly_meth"],
 		name = config["run_name"],
-		#fwd_list = config["trimmed_fastq_fwd_loc_list"],
-                #bwd_list = config["trimmed_fastq_bwd_loc_list"],
-		#prod_meth = config["prodigal_meth"],
-		#clust_meth = config["mmseq_cluster_method"]
 	shell:
 		'''
 		bash workflow/scripts/assemble_report.sh \
-		{params.fwd_list} \
-		{params.bwd_list} \
-		{params.meth} \
+		{input.samp_doc} \
 		{params.name} \
 		{input.slurm_ass} \
 		{input.ass_contigs} \
-		{params.prod_meth} \
 		{input.slurm_orf} \
 		{input.slurm_clust} \
 		{input.slurm_quast} \
-		{params.clust_meth} \
 		{input.slurm_gorg} \
-		{input.slurm_krona} > {output.report_final}
+		{input.slurm_krona} \
+		{wildcards.sample} > {output.report_final}
 		
 		'''
 
