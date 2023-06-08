@@ -1,0 +1,319 @@
+/nfs/pool002/users/biller/databases/quast/metaquast.py results/02-assembled_seqs/cellular_subset_assembly/contigs.fasta -o ./results/03b-quast_out/cellular_subset_quast
+
+Version: 5.2.0
+
+System information:
+  OS: Linux-3.10.0-1062.el7.x86_64-x86_64-with-glibc2.17 (linux_64)
+  Python version: 3.11.0
+  CPUs number: 20
+
+Started: 2023-06-08 12:48:29
+
+Logging to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/metaquast.log
+NOTICE: Maximum number of threads is set to 5 (use --threads option to set it manually)
+
+WARNING: Can't draw plots: python-matplotlib is missing or corrupted.
+
+Contigs:
+  Pre-processing...
+  results/02-assembled_seqs/cellular_subset_assembly/contigs.fasta ==> contigs
+
+No references are provided, starting to search for reference genomes in SILVA 16S rRNA database and to download them from NCBI...
+
+2023-06-08 12:48:32
+Running BlastN..
+  processing contigs
+  BLAST results for contigs are saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_downloaded_references/blast.res_contigs...
+
+
+2023-06-08 12:51:55
+Trying to download found references from NCBI. Totally 21 organisms to try.
+  unidentified_marine_bacterioplankton        | not found in the NCBI database
+  unidentified_marine_bacterioplankton was not found in NCBI database, trying to download the next best match
+  Candidatus_Pelagibacter_sp._RS39            | successfully downloaded (total 1, 20 more to go)
+  unidentified_bacterium_wb1_P06              | not found in the NCBI database
+  unidentified_bacterium_wb1_P06 was not found in NCBI database, trying to download the next best match
+wastewater metagenome has too fragmented reference genome! It will not be downloaded.
+  wastewater_metagenome                       | not found in the NCBI database
+  wastewater_metagenome was not found in NCBI database, trying to download the next best match
+  bacterium_YC-LK-LKJ22                       | not found in the NCBI database
+  marine_metagenome                           | successfully downloaded (total 2, 18 more to go)
+  marine_gamma_proteobacterium_HTCC2080       | successfully downloaded (total 3, 17 more to go)
+  hydrothermal_vent_metagenome                | successfully downloaded (total 4, 16 more to go)
+  gamma_proteobacterium_SCGC_AAA076-P13       | successfully downloaded (total 5, 15 more to go)
+  bacterium_WHC4-9                            | not found in the NCBI database
+  bacterium_WHC4-9 was not found in NCBI database, trying to download the next best match
+SAR86 cluster bacterium BACL1 MAG-120507-bin14 has too fragmented reference genome! It will not be downloaded.
+  SAR86_cluster_bacterium_BACL1_MAG-120507-bin14 | not found in the NCBI database
+  alpha_proteobacterium_HIMB5                 | successfully downloaded (total 6, 13 more to go)
+  actinobacterium_SCGC_AAA015-M09             | successfully downloaded (total 7, 12 more to go)
+  Ulvibacter_sp._LPB0005                      | successfully downloaded (total 8, 11 more to go)
+  Streptococcus_pneumoniae                    | successfully downloaded (total 9, 10 more to go)
+  SAR86_cluster_bacterium_SAR86B              | successfully downloaded (total 10, 9 more to go)
+  Roseobacter_sp._UAzPsK-5                    | not found in the NCBI database
+  Roseobacter_sp._UAzPsK-5 was not found in NCBI database, trying to download the next best match
+  alpha_proteobacterium_C13                   | not found in the NCBI database
+  alpha_proteobacterium_C13 was not found in NCBI database, trying to download the next best match
+bioreactor metagenome has too fragmented reference genome! It will not be downloaded.
+  bioreactor_metagenome                       | not found in the NCBI database
+  bioreactor_metagenome was not found in NCBI database, trying to download the next best match
+  Rhodobacteraceae_bacterium_2tb2             | not found in the NCBI database
+  Prochlorococcus_sp._RS01                    | successfully downloaded (total 11, 7 more to go)
+  Marinomonas_sp._ZXY12VA15                   | not found in the NCBI database
+  Marinomonas_sp._ZXY12VA15 was not found in NCBI database, trying to download the next best match
+  Marinomonas_rhizomae                        | successfully downloaded (total 12, 6 more to go)
+  Marinimicrobia_bacterium_SCGC_AAA160-I06    | successfully downloaded (total 13, 5 more to go)
+  Klebsiella_pneumoniae                       | successfully downloaded (total 14, 4 more to go)
+  Geobacter_sulfurreducens_subsp._ethanolicus | not found in the NCBI database
+  Geobacter_sulfurreducens_subsp._ethanolicus was not found in NCBI database, trying to download the next best match
+  Geobacter_sulfurreducens                    | successfully downloaded (total 15, 3 more to go)
+  Candidatus_Pelagibacter_sp._RS40            | successfully downloaded (total 16, 2 more to go)
+  Candidatus_Actinomarina_minuta              | not found in the NCBI database
+  Alteromonas_macleodii                       | successfully downloaded (total 17, 0 more to go)
+
+Downloaded reference(s):
+  /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_downloaded_references/Alteromonas_macleodii.fasta ==> Alteromonas_macleodii
+  /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_downloaded_references/Candidatus_Pelagibacter_sp._RS39.fasta ==> Candidatus_Pelagibacter_sp._RS39
+  /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_downloaded_references/Candidatus_Pelagibacter_sp._RS40.fasta ==> Candidatus_Pelagibacter_sp._RS40
+  /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_downloaded_references/Geobacter_sulfurreducens.fasta ==> Geobacter_sulfurreducens
+  /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_downloaded_references/Klebsiella_pneumoniae.fasta ==> Klebsiella_pneumoniae
+  /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_downloaded_references/Marinimicrobia_bacterium_SCGC_AAA160-I06.fasta ==> Marinimicrobia_bacterium_SCGC_AAA160-I06
+  /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_downloaded_references/Marinomonas_rhizomae.fasta ==> Marinomonas_rhizomae
+  /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_downloaded_references/Prochlorococcus_sp._RS01.fasta ==> Prochlorococcus_sp._RS01
+  /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_downloaded_references/SAR86_cluster_bacterium_SAR86B.fasta ==> SAR86_cluster_bacterium_SAR86B
+  /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_downloaded_references/Streptococcus_pneumoniae.fasta ==> Streptococcus_pneumoniae
+  /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_downloaded_references/Ulvibacter_sp._LPB0005.fasta ==> Ulvibacter_sp._LPB0005
+  /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_downloaded_references/actinobacterium_SCGC_AAA015-M09.fasta ==> actinobacterium_SCGC_AAA015-M09
+  /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_downloaded_references/alpha_proteobacterium_HIMB5.fasta ==> alpha_proteobacterium_HIMB5
+  /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_downloaded_references/gamma_proteobacterium_SCGC_AAA076-P13.fasta ==> gamma_proteobacterium_SCGC_AAA076-P13
+  /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_downloaded_references/hydrothermal_vent_metagenome.fasta ==> hydrothermal_vent_metagenome
+  /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_downloaded_references/marine_gamma_proteobacterium_HTCC2080.fasta ==> marine_gamma_proteobacterium_HTCC2080
+  /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_downloaded_references/marine_metagenome.fasta ==> marine_metagenome
+  All references were combined in combined_reference.fasta
+
+Starting quast.py for the combined reference...
+/nfs/pool002/users/biller/databases/quast/quast.py --min-identity 90.0 --combined-ref --colors #E31A1C --ls solid --ambiguity-usage all results/02-assembled_seqs/cellular_subset_assembly/contigs.fasta -R /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_corrected_input/combined_reference.fasta -o /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/combined_reference --labels contigs
+
+Started: 2023-06-08 13:00:15
+
+Logging to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/combined_reference/quast.log
+NOTICE: Maximum number of threads is set to 5 (use --threads option to set it manually)
+
+CWD: /nobackup1c/users/biller/gray/genPride
+Main parameters: 
+  MODE: meta, threads: 5, min contig length: 500, min alignment length: 65, min alignment IDY: 90.0, \
+  ambiguity: all, min local misassembly length: 200, min extensive misassembly length: 1000
+
+Reference:
+  /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_corrected_input/combined_reference.fasta ==> combined_reference
+
+Contigs:
+  Pre-processing...
+  results/02-assembled_seqs/cellular_subset_assembly/contigs.fasta ==> contigs
+
+2023-06-08 13:00:17
+Running Basic statistics processor...
+  Reference genome:
+    combined_reference.fasta, length = 44067470, num fragments = 338, GC % = 45.77
+WARNING:   Reference genome is fragmented. You may consider rerunning QUAST using --fragmented option. QUAST will try to detect misassemblies caused by the fragmentation and mark them fake (will be excluded from # misassemblies).
+  Contig files: 
+    contigs
+  Calculating N50 and L50...
+    contigs, N50 = 833, L50 = 3099, auN = 2549.8, Total length = 10400037, GC % = 32.17, # N's per 100 kbp =  0.00
+Done.
+
+2023-06-08 13:00:20
+Running Contig analyzer...
+  contigs
+  Logging to files /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/combined_reference/contigs_reports/contigs_report_contigs.stdout and contigs_report_contigs.stderr...
+  Aligning contigs to the reference
+  Analysis is finished.
+  Information about interspecies translocations by references for contigs is saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/combined_reference/contigs_reports/interspecies_translocations_by_refs_contigs.info
+  Creating total report...
+    saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/combined_reference/contigs_reports/misassemblies_report.txt, misassemblies_report.tsv, and misassemblies_report.tex
+  Transposed version of total report...
+    saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/combined_reference/contigs_reports/transposed_report_misassemblies.txt, transposed_report_misassemblies.tsv, and transposed_report_misassemblies.tex
+  Creating total report...
+    saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/combined_reference/contigs_reports/unaligned_report.txt, unaligned_report.tsv, and unaligned_report.tex
+Done.
+
+2023-06-08 13:00:26
+Running NA-NGA calculation...
+  contigs, Largest alignment = 30167, NA50 = None, LA50 = None
+Done.
+
+2023-06-08 13:00:27
+Running Genome analyzer...
+  NOTICE: No file with genomic features were provided. Use the --features option if you want to specify it.
+
+  NOTICE: No file with operons were provided. Use the -O option if you want to specify it.
+  contigs
+  Analysis is finished.
+Done.
+
+NOTICE: Genes are not predicted by default. Use --gene-finding or --glimmer option to enable it.
+
+2023-06-08 13:00:34
+Creating large visual summaries...
+This may take a while: press Ctrl-C to skip this step..
+  1 of 1: Creating Icarus viewers...
+Done
+
+2023-06-08 13:00:35
+RESULTS:
+  Text versions of total report are saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/combined_reference/report.txt, report.tsv, and report.tex
+  Text versions of transposed total report are saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/combined_reference/transposed_report.txt, transposed_report.tsv, and transposed_report.tex
+  HTML version (interactive tables and plots) is saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/combined_reference/report.html
+  Icarus (contig browser) is saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/combined_reference/icarus.html
+
+Excluding downloaded references with low genome fraction from further analysis..
+
+Filtered reference(s):
+  /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_downloaded_references/Candidatus_Pelagibacter_sp._RS39.fasta ==> Candidatus_Pelagibacter_sp._RS39
+  /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_downloaded_references/Prochlorococcus_sp._RS01.fasta ==> Prochlorococcus_sp._RS01
+  All references were combined in combined_reference.fasta
+  Pre-processing...
+  results/02-assembled_seqs/cellular_subset_assembly/contigs.fasta ==> contigs
+
+Starting quast.py for the corrected combined reference...
+/nfs/pool002/users/biller/databases/quast/quast.py --min-identity 90.0 --combined-ref --colors #E31A1C --ls solid --ambiguity-usage all results/02-assembled_seqs/cellular_subset_assembly/contigs.fasta -R /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_corrected_input/combined_reference.fasta -o /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/combined_reference --labels contigs
+
+Started: 2023-06-08 13:00:38
+
+Logging to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/combined_reference/quast.log
+NOTICE: Output directory already exists and looks like a QUAST output dir. Existing results can be reused (e.g. previously generated alignments)!
+NOTICE: Maximum number of threads is set to 5 (use --threads option to set it manually)
+
+CWD: /nobackup1c/users/biller/gray/genPride
+Main parameters: 
+  MODE: meta, threads: 5, min contig length: 500, min alignment length: 65, min alignment IDY: 90.0, \
+  ambiguity: all, min local misassembly length: 200, min extensive misassembly length: 1000
+
+Reference:
+  /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_corrected_input/combined_reference.fasta ==> combined_reference
+
+Contigs:
+  Pre-processing...
+  results/02-assembled_seqs/cellular_subset_assembly/contigs.fasta ==> contigs
+
+2023-06-08 13:00:40
+Running Basic statistics processor...
+  Reference genome:
+    combined_reference.fasta, length = 2857789, num fragments = 2, GC % = 30.47
+  Contig files: 
+    contigs
+  Calculating N50 and L50...
+    contigs, N50 = 833, L50 = 3099, auN = 2549.8, Total length = 10400037, GC % = 32.17, # N's per 100 kbp =  0.00
+Done.
+
+2023-06-08 13:00:41
+Running Contig analyzer...
+  contigs
+  Logging to files /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/combined_reference/contigs_reports/contigs_report_contigs.stdout and contigs_report_contigs.stderr...
+  Aligning contigs to the reference
+  Analysis is finished.
+  Information about interspecies translocations by references for contigs is saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/combined_reference/contigs_reports/interspecies_translocations_by_refs_contigs.info
+  Creating total report...
+    saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/combined_reference/contigs_reports/misassemblies_report.txt, misassemblies_report.tsv, and misassemblies_report.tex
+  Transposed version of total report...
+    saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/combined_reference/contigs_reports/transposed_report_misassemblies.txt, transposed_report_misassemblies.tsv, and transposed_report_misassemblies.tex
+  Creating total report...
+    saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/combined_reference/contigs_reports/unaligned_report.txt, unaligned_report.tsv, and unaligned_report.tex
+Done.
+
+2023-06-08 13:00:42
+Running NA-NGA calculation...
+  contigs, Largest alignment = 30167, NA50 = None, LA50 = None
+Done.
+
+2023-06-08 13:00:42
+Running Genome analyzer...
+  NOTICE: No file with genomic features were provided. Use the --features option if you want to specify it.
+
+  NOTICE: No file with operons were provided. Use the -O option if you want to specify it.
+  contigs
+  Analysis is finished.
+Done.
+
+NOTICE: Genes are not predicted by default. Use --gene-finding or --glimmer option to enable it.
+
+2023-06-08 13:00:43
+Creating large visual summaries...
+This may take a while: press Ctrl-C to skip this step..
+  1 of 1: Creating Icarus viewers...
+Done
+
+2023-06-08 13:00:43
+RESULTS:
+  Text versions of total report are saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/combined_reference/report.txt, report.tsv, and report.tex
+  Text versions of transposed total report are saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/combined_reference/transposed_report.txt, transposed_report.tsv, and transposed_report.tex
+  HTML version (interactive tables and plots) is saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/combined_reference/report.html
+  Icarus (contig browser) is saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/combined_reference/icarus.html
+
+Partitioning contigs into bins aligned to each reference..
+  processing contigs
+
+Run QUAST on different references in parallel..
+
+Starting quast.py for the contigs aligned to Candidatus_Pelagibacter_sp._RS39... (logging to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/runs_per_reference/Candidatus_Pelagibacter_sp._RS39/quast.log)
+
+Starting quast.py for the contigs aligned to Prochlorococcus_sp._RS01... (logging to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/runs_per_reference/Prochlorococcus_sp._RS01/quast.log)
+
+Starting quast.py for the contigs not aligned anywhere... (logging to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/not_aligned/quast.log)
+/nfs/pool002/users/biller/databases/quast/quast.py --min-identity 90.0 --colors #E31A1C --ls solid --no-check-meta --contig-thresholds 1000,5000,10000,25000,50000 -t 5 /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_corrected_input/contigs_not_aligned_anywhere.fasta -o /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/not_aligned --labels contigs
+
+Started: 2023-06-08 13:00:46
+
+Logging to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/not_aligned/quast.log
+
+CWD: /nobackup1c/users/biller/gray/genPride
+Main parameters: 
+  MODE: meta, threads: 5, min contig length: 500, min alignment length: 65, min alignment IDY: 90.0, \
+  ambiguity: one, min local misassembly length: 200, min extensive misassembly length: 1000
+
+Contigs:
+  Pre-processing...
+  /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/quast_corrected_input/contigs_not_aligned_anywhere.fasta ==> contigs
+
+2023-06-08 13:00:46
+Running Basic statistics processor...
+  Contig files: 
+    contigs
+  Calculating N50 and L50...
+    contigs, N50 = 751, L50 = 3541, auN = 1122.9, Total length = 8646409, GC % = 32.37, # N's per 100 kbp =  0.00
+Done.
+
+NOTICE: Genes are not predicted by default. Use --gene-finding or --glimmer option to enable it.
+
+2023-06-08 13:00:47
+Creating large visual summaries...
+This may take a while: press Ctrl-C to skip this step..
+  1 of 1: Creating Icarus viewers...
+Done
+
+2023-06-08 13:00:47
+RESULTS:
+  Text versions of total report are saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/not_aligned/report.txt, report.tsv, and report.tex
+  Text versions of transposed total report are saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/not_aligned/transposed_report.txt, transposed_report.tsv, and transposed_report.tex
+  HTML version (interactive tables and plots) is saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/not_aligned/report.html
+  Icarus (contig browser) is saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/not_aligned/icarus.html
+
+2023-06-08 13:00:47
+Summarizing results...
+
+  Text versions of reports and plots for each metric (for all references and assemblies) are saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/summary/
+  Icarus (contig browser) is saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/icarus.html
+  Drawing interactive Krona plots...
+  Krona chart for contigs is saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/krona_charts/contigs_taxonomy_chart.html
+  Extended version of HTML-report (for all references and assemblies) is saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/report.html
+
+MetaQUAST finished.
+  Log is saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/cellular_subset_quast/metaquast.log
+
+Finished: 2023-06-08 13:00:48
+Elapsed time: 0:12:19.314974
+Total NOTICEs: 10; WARNINGs: 1; non-fatal ERRORs: 0
+
+Thank you for using QUAST!
+time(sec):
+739
