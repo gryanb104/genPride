@@ -2,20 +2,23 @@ configfile: "config/config.yaml"
 
 report: "report/workflow.rst"
 
+SAMPLES = ['cellular_subset', 'vesicle_subset']
+
 rule all:
 	input:
-		report_final_cell = "workflow/report/report_final_cellular_subset.txt",
-		report_final_ves = "workflow/report/report_final_vesicle_subset.txt"		
-			
+		expand("logs/08-return_coverage_{sample}.out", sample=SAMPLES)
+
 rule make_documentation:
 	input:
-		manifest = "config/manifest.csv"
+		manifest = "config/manifest.csv",
+		config_file = "config/config.yaml"
 	output:
 		return_mkdoc = "logs/01-return_mkdoc.out"
 	shell:
 		'''
 		python3 -m workflow.scripts.make_documentation \
-		{input.manifest} > {output.return_mkdoc}
+		{input.manifest} \
+		{input.config_file} > {output.return_mkdoc}
 				
 		'''
 
@@ -25,8 +28,8 @@ rule assemble_data:
 		return_mkdoc = "logs/01-return_mkdoc.out",
 		manifest = "config/manifest.csv"
 	output:
-		slurm_ass = "logs/02-return_assmb_{sample}.out",
-		ass_contigs = "results/02-assembled_seqs/{sample}_assembly/contigs.fasta"
+		slurm_ass = "logs/03-return_assmb_{sample}.out",
+		ass_contigs = "results/03-assembled_seqs/{sample}_assembly/contigs.fasta"
 	params:
 		ass_thresh = config["assemble_thresh"],
 		threads = config["threads"],
@@ -40,22 +43,25 @@ rule assemble_data:
 		{params.ass_thresh} \
 		{params.threads} \
 		{params.spm} \
-		{params.spades_path} > {output.slurm_ass}
+		{params.spades_path} \
+		{output.ass_contigs} > {output.slurm_ass}
 		
 		'''
 
 rule RM1:
 	input:
-		ass_contigs = "results/02-assembled_seqs/{sample}_assembly/contigs.fasta"
+		ass_contigs = "results/03-assembled_seqs/{sample}_assembly/contigs.fasta"
 	output:
 		RM1_rep = "logs/03-return_RM1_rep_{sample}.txt"
 	params:
-		rm1_files = config["rm1_files"]
+		rm1_files = config["rm1_files"],
+		assembly_dir = "results/03-assembled_seqs"
 	shell:
 		'''
 		bash workflow/scripts/RM1.sh \
 		{params.rm1_files} \
-		{wildcards.sample} > {output.RM1_rep}
+		{wildcards.sample} \
+		{params.assembly_dir} > {output.RM1_rep}
 
 		'''
 
@@ -76,7 +82,7 @@ rule RM2:
 
 rule find_orfs:
 	input:
-		ass_contigs = "results/02-assembled_seqs/{sample}_assembly/contigs.fasta",
+		ass_contigs = "results/03-assembled_seqs/{sample}_assembly/contigs.fasta",
 		RM1_rep = "logs/03-return_RM1_rep_{sample}.txt",
 		manifest = "config/manifest.csv",
 		samp_doc = "results/01-documentation/{sample}_documentation.txt"
@@ -122,7 +128,7 @@ rule cluster:
 
 rule quast:
 	input:
-		ass_contigs = "results/02-assembled_seqs/{sample}_assembly/contigs.fasta",
+		ass_contigs = "results/03-assembled_seqs/{sample}_assembly/contigs.fasta",
 		manifest = "config/manifest.csv"
 	output:
 		slurm_quast = "logs/03b_return_quast_{sample}.out"
@@ -139,7 +145,7 @@ rule quast:
 
 rule gorg_class:
 	input:
-		ass_contigs = "results/02-assembled_seqs/{sample}_assembly/contigs.fasta"
+		ass_contigs = "results/03-assembled_seqs/{sample}_assembly/contigs.fasta"
 	output:
 		slurm_gorg = "logs/06-return_gorg_{sample}.out",
 		gorg_results = "results/06-gorg_classification/{sample}_classification/annotations/contigs_annotated.txt"
@@ -179,8 +185,8 @@ rule gorg_krona:
 rule report_final:
 	input:
 		samp_doc = "results/01-documentation/{sample}_documentation.txt",
-		slurm_ass = "logs/02-return_assmb_{sample}.out",
-		ass_contigs = "results/02-assembled_seqs/{sample}_assembly/contigs.fasta",
+		slurm_ass = "logs/03-return_assmb_{sample}.out",
+		ass_contigs = "results/03-assembled_seqs/{sample}_assembly/contigs.fasta",
 		slurm_orf = "logs/04-return_orf_{sample}.out",
 		slurm_clust = "logs/05-return_cluster_{sample}.out",
 		slurm_quast = "logs/03b_return_quast_{sample}.out",
@@ -208,12 +214,17 @@ rule report_final:
 
 rule coverage:
 	input:
-		cover_seqs = config["coverage_of_what"]
+		samp_doc = "results/01-documentation/{sample}_documentation.txt",
+		covr_inp = lambda w: config[f'{w.sample}_covr_inp']
 	output:
-		coverage_slurm = "results/slurm_coverage.out"
+		coverage_slurm = "logs/08-return_coverage_{sample}.out",
+		coverage_outfile = "results/08-coverage/coverage_{sample}"
 	shell:					
 		'''
 		bash workflow/scripts/coverage.sh \
-		{input.cover_seqs} > {output.coverage_slurm}
+		{input.samp_doc} \
+		{input.covr_inp} \
+		{wildcards.sample} \
+		{output.coverage_outfile} > {output.coverage_slurm}
 
 		'''

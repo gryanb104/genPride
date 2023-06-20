@@ -1,3 +1,4 @@
-sample_id,absolute_path_fwd,absolute_path_rev,trimmed,paired,assembly,gene_prediction,clustering,taxonomic_classifier,coverage
-cellular_subset,/nobackup1/biller/gray/data_GP/cellular_subset_fwd_trimmed_paired.fastq.gz,/nobackup1/biller/gray/data_GP/cellular_subset_rev_trimmed_paired.fastq.gz,YES,YES,spades:metaspades,prodigal:meta_comp,mmseqs2:easy_cluster,GORG-Tropics,minimap2
-vesicle_subset,/nobackup1/biller/gray/data_GP/vesicle_subset_fwd_trimmed_paired.fastq.gz,/nobackup1/biller/gray/data_GP/vesicle_subset_rev_trimmed_paired.fastq.gz,YES,YES,spades:metaspades,prodigal:meta_comp,mmseqs2:easy_cluster,GORG-Tropics,minimap2
+sample_id,absolute_path_fwd,absolute_path_rev,trimmed,paired,assembly,gene_prediction,clustering,taxonomic_classifier,coverage_method,coverage_reference_type,coverage_reference_sample_or_path
+vesicle_illumina,/nfs/chisholmlab002/sbiller/vesicle_nanopore/illumina/HSD00-20a-319-25m-LV-Vessicle_S22_R1_001_trimmed_paired.fastq.gz,/nfs/chisholmlab002/sbiller/vesicle_nanopore/illumina/HSD00-20a-319-25m-LV-Vessicle_S22_R2_001_trimmed_paired.fastq.gz,YES,YES,spades:metaspades,prodigal:meta_comp,mmseqs2:easy_cluster,GORG-Tropics,coverM:contigs,sample,cellular_illumina
+cellular_illumina,/nfs/chisholmlab002/sbiller/vesicle_nanopore/illumina/HSD00-20a-319-25m-LV-0_2um_S9_R1_001_trimmed_paired.fastq.gz,/nfs/chisholmlab002/sbiller/vesicle_nanopore/illumina/HSD00-20a-319-25m-LV-0_2um_S9_R2_001_trimmed_paired.fastq.gz,YES,YES,spades:metaspades,prodigal:meta_comp,mmseqs2:easy_cluster,GORG-Tropics,none,none,none
+

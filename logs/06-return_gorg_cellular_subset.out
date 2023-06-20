@@ -1,5 +1,5 @@
 N E X T F L O W  ~  version 22.10.7
-Launching `https://github.com/BigelowLab/gorg-classifier` [elated_chandrasekhar] DSL2 - revision: 5ae3a4beb7 [master]
+Launching `https://github.com/BigelowLab/gorg-classifier` [desperate_stonebraker] DSL2 - revision: 5ae3a4beb7 [master]
 
 
 =======================================================================
@@ -17,7 +17,7 @@ License: Attribution-NonCommercial 4.0 International.
 Joe Brown <brwnjm@gmail.com>
 -----------------------------------------------------------------------
 
-Sequences          (*.fq/*.fna)   : results/02-assembled_seqs/cellular_subset_assembly/contigs.fasta
+Sequences          (*.fq/*.fna)   : results/03-assembled_seqs/cellular_subset_assembly/contigs.fasta
 Mode                              : ncbi
 Nodes              (nodes.dmp)    : /v1/resources/pcwj9/providers/osfstorage/5db12d3446b571000d06473b
 Names              (names.dmp)    : /v1/resources/pcwj9/providers/osfstorage/5db12d3146b571000b0663af
@@ -29,8 +29,6 @@ Kaiju minimum alignment length    : 11
 Kaiju CPUs                        : 8
 -----------------------------------------------------------------------
 
-
-[-        ] process > run_kaiju -
 
 [-        ] process > run_kaiju             -
 [-        ] process > add_taxonomy          -
@@ -50,7 +48,8 @@ Staging foreign file: https://files.osf.io/v1/resources/pcwj9/providers/osfstora
 Staging foreign file: https://files.osf.io/v1/resources/pcwj9/providers/osfstorage/5db12d3446b571000d06473b
 Staging foreign file: https://files.osf.io/v1/resources/pcwj9/providers/osfstorage/5db12d0946b571000d064725
 
-[-        ] process > run_kaiju             [  0%] 0 of 1
+executor >  local (1)
+[3d/38d7c7] process > run_kaiju (contigs)   [  0%] 0 of 1
 [-        ] process > add_taxonomy          -
 [-        ] process > add_functions         -
 [-        ] process > summarize_annotations -
@@ -58,98 +57,93 @@ Staging foreign file: https://files.osf.io/v1/resources/pcwj9/providers/osfstora
 
 
 executor >  local (1)
-[56/e58f6f] process > run_kaiju (contigs)   [  0%] 0 of 1
+[3d/38d7c7] process > run_kaiju (contigs)   [  0%] 0 of 1
 [-        ] process > add_taxonomy          -
 [-        ] process > add_functions         -
 [-        ] process > summarize_annotations -
 
 
+
 executor >  local (1)
-[56/e58f6f] process > run_kaiju (contigs)   [100%] 1 of 1 ✔
+[3d/38d7c7] process > run_kaiju (contigs)   [100%] 1 of 1 ✔
 [-        ] process > add_taxonomy          -
 [-        ] process > add_functions         -
 [-        ] process > summarize_annotations -
 
 executor >  local (1)
-[56/e58f6f] process > run_kaiju (contigs)   [100%] 1 of 1 ✔
+[3d/38d7c7] process > run_kaiju (contigs)   [100%] 1 of 1 ✔
 [-        ] process > add_taxonomy          -
-[-        ] process > add_functions         -
-[-        ] process > summarize_annotations -
-Staging foreign file: https://files.osf.io/v1/resources/pcwj9/providers/osfstorage/5db12d3146b571000b0663af
-
-executor >  local (1)
-[56/e58f6f] process > run_kaiju (contigs)   [100%] 1 of 1 ✔
-[-        ] process > add_taxonomy          [  0%] 0 of 1
 [-        ] process > add_functions         -
 [-        ] process > summarize_annotations -
 Staging foreign file: https://files.osf.io/v1/resources/pcwj9/providers/osfstorage/5db12d3146b571000b0663af
 
 executor >  local (2)
-[56/e58f6f] process > run_kaiju (contigs)    [100%] 1 of 1 ✔
-[73/75422a] process > add_taxonomy (contigs) [  0%] 0 of 1
+[3d/38d7c7] process > run_kaiju (contigs)    [100%] 1 of 1 ✔
+[72/0ad793] process > add_taxonomy (contigs) [  0%] 0 of 1
 [-        ] process > add_functions          -
 [-        ] process > summarize_annotations  -
 Staging foreign file: https://files.osf.io/v1/resources/pcwj9/providers/osfstorage/5db12d3146b571000b0663af
 
 executor >  local (2)
-[56/e58f6f] process > run_kaiju (contigs)    [100%] 1 of 1 ✔
-[73/75422a] process > add_taxonomy (contigs) [  0%] 0 of 1 ✔
+[3d/38d7c7] process > run_kaiju (contigs)    [100%] 1 of 1 ✔
+[72/0ad793] process > add_taxonomy (contigs) [100%] 1 of 1 ✔
 [-        ] process > add_functions          -
 [-        ] process > summarize_annotations  -
 Staging foreign file: https://files.osf.io/v1/resources/pcwj9/providers/osfstorage/5db12d3146b571000b0663af
 
 executor >  local (2)
-[56/e58f6f] process > run_kaiju (contigs)    [100%] 1 of 1 ✔
-[73/75422a] process > add_taxonomy (contigs) [100%] 1 of 1 ✔
+[3d/38d7c7] process > run_kaiju (contigs)    [100%] 1 of 1 ✔
+[72/0ad793] process > add_taxonomy (contigs) [100%] 1 of 1 ✔
 [-        ] process > add_functions          -
 [-        ] process > summarize_annotations  -
 Staging foreign file: https://files.osf.io/v1/resources/pcwj9/providers/osfstorage/5db12d3146b571000b0663af
+Staging foreign file: https://files.osf.io/v1/resources/pcwj9/providers/osfstorage/5db12a440db187000e3afd8a
 
 executor >  local (2)
-[56/e58f6f] process > run_kaiju (contigs)    [100%] 1 of 1 ✔
-[73/75422a] process > add_taxonomy (contigs) [100%] 1 of 1 ✔
-[-        ] process > add_functions          -
+[3d/38d7c7] process > run_kaiju (contigs)    [100%] 1 of 1 ✔
+[72/0ad793] process > add_taxonomy (contigs) [100%] 1 of 1 ✔
+[-        ] process > add_functions          [  0%] 0 of 1
 [-        ] process > summarize_annotations  -
 Staging foreign file: https://files.osf.io/v1/resources/pcwj9/providers/osfstorage/5db12d3146b571000b0663af
 Staging foreign file: https://files.osf.io/v1/resources/pcwj9/providers/osfstorage/5db12a440db187000e3afd8a
 
 executor >  local (3)
-[56/e58f6f] process > run_kaiju (contigs)     [100%] 1 of 1 ✔
-[73/75422a] process > add_taxonomy (contigs)  [100%] 1 of 1 ✔
-[8c/0a7ed9] process > add_functions (contigs) [  0%] 0 of 1
+[3d/38d7c7] process > run_kaiju (contigs)     [100%] 1 of 1 ✔
+[72/0ad793] process > add_taxonomy (contigs)  [100%] 1 of 1 ✔
+[52/d894c5] process > add_functions (contigs) [  0%] 0 of 1
 [-        ] process > summarize_annotations   -
 Staging foreign file: https://files.osf.io/v1/resources/pcwj9/providers/osfstorage/5db12d3146b571000b0663af
 Staging foreign file: https://files.osf.io/v1/resources/pcwj9/providers/osfstorage/5db12a440db187000e3afd8a
 
 executor >  local (4)
-[56/e58f6f] process > run_kaiju (contigs)            [100%] 1 of 1 ✔
-[73/75422a] process > add_taxonomy (contigs)         [100%] 1 of 1 ✔
-[8c/0a7ed9] process > add_functions (contigs)        [100%] 1 of 1 ✔
-[6e/201ad4] process > summarize_annotations (cont... [  0%] 0 of 1
+[3d/38d7c7] process > run_kaiju (contigs)            [100%] 1 of 1 ✔
+[72/0ad793] process > add_taxonomy (contigs)         [100%] 1 of 1 ✔
+[52/d894c5] process > add_functions (contigs)        [100%] 1 of 1 ✔
+[cf/22ae60] process > summarize_annotations (cont... [  0%] 0 of 1
 
 
 
 executor >  local (4)
-[56/e58f6f] process > run_kaiju (contigs)            [100%] 1 of 1 ✔
-[73/75422a] process > add_taxonomy (contigs)         [100%] 1 of 1 ✔
-[8c/0a7ed9] process > add_functions (contigs)        [100%] 1 of 1 ✔
-[6e/201ad4] process > summarize_annotations (cont... [100%] 1 of 1 ✔
+[3d/38d7c7] process > run_kaiju (contigs)            [100%] 1 of 1 ✔
+[72/0ad793] process > add_taxonomy (contigs)         [100%] 1 of 1 ✔
+[52/d894c5] process > add_functions (contigs)        [100%] 1 of 1 ✔
+[cf/22ae60] process > summarize_annotations (cont... [100%] 1 of 1 ✔
 
 
 
 executor >  local (4)
-[56/e58f6f] process > run_kaiju (contigs)            [100%] 1 of 1 ✔
-[73/75422a] process > add_taxonomy (contigs)         [100%] 1 of 1 ✔
-[8c/0a7ed9] process > add_functions (contigs)        [100%] 1 of 1 ✔
-[6e/201ad4] process > summarize_annotations (cont... [100%] 1 of 1 ✔
-Completed at: 07-Jun-2023 23:09:08
-Duration    : 2m 35s
+[3d/38d7c7] process > run_kaiju (contigs)            [100%] 1 of 1 ✔
+[72/0ad793] process > add_taxonomy (contigs)         [100%] 1 of 1 ✔
+[52/d894c5] process > add_functions (contigs)        [100%] 1 of 1 ✔
+[cf/22ae60] process > summarize_annotations (cont... [100%] 1 of 1 ✔
+Completed at: 09-Jun-2023 20:25:55
+Duration    : 2m 30s
 CPU hours   : (a few seconds)
 Succeeded   : 4
 
 
 time(sec):
-172
+167
  
 status:
 successful

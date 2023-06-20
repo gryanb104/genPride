@@ -78,7 +78,35 @@
 
 6/8/2023
 	*today: 
-		-finish generalizing workflow:
-		-run to get all the reports
+		-finish generalizing workflow: DONE
+		-run to get all the reports:
 		-set up assignment for Mary (formatting the re-
-			ports into a table)
+			ports into a table): DONE
+
+6/9/2023
+	*add coverage step (coverM):
+		-change make doc to include coverage informati-
+			on, including the paths for the covera-
+			ge step inputs
+	*start running gggenome plots with some of the data fr-
+		om the cluster
+
+6/16/2023
+	*today's goals:
+		-get coverage generalization going: seems to be
+			working
+		-write coverage script
+		-run coverage
+		-make some gggenome graphs
+
+6/19/2023
+	*genPride: work on coverage
+		-establishing if elif else statement functiona-
+			lity: DONE, ASSEMBLY RUNNING
+	*meanwhile, network gggenome plots
+		-get prok_to_ggff script working: WORKING ON IT
+
+6/20/2023
+	*ggenome stuff: working with several sequences
+	*back to genPride coverage
+		-run from yesterday: SUCCESS

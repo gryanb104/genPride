@@ -1,4 +1,4 @@
-/nfs/pool002/users/biller/databases/quast/metaquast.py results/02-assembled_seqs/vesicle_subset_assembly/contigs.fasta -o ./results/03b-quast_out/vesicle_subset_quast
+/nfs/pool002/users/biller/databases/quast/metaquast.py results/03-assembled_seqs/vesicle_subset_assembly/contigs.fasta -o ./results/03b-quast_out/vesicle_subset_quast
 
 Version: 5.2.0
 
@@ -7,7 +7,7 @@ System information:
   Python version: 3.11.0
   CPUs number: 20
 
-Started: 2023-06-08 12:21:19
+Started: 2023-06-09 20:23:11
 
 Logging to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/vesicle_subset_quast/metaquast.log
 NOTICE: Maximum number of threads is set to 5 (use --threads option to set it manually)
@@ -16,11 +16,11 @@ WARNING: Can't draw plots: python-matplotlib is missing or corrupted.
 
 Contigs:
   Pre-processing...
-  results/02-assembled_seqs/vesicle_subset_assembly/contigs.fasta ==> contigs
+  results/03-assembled_seqs/vesicle_subset_assembly/contigs.fasta ==> contigs
 
 No references are provided, starting to search for reference genomes in SILVA 16S rRNA database and to download them from NCBI...
 
-2023-06-08 12:21:23
+2023-06-09 20:23:15
 Running BlastN..
   processing contigs
   BLAST results for contigs are saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/vesicle_subset_quast/quast_downloaded_references/blast.res_contigs...
@@ -28,7 +28,7 @@ Running BlastN..
 Reference genomes are not found.
 
 NOTICE: No references are provided, starting regular QUAST with MetaGeneMark gene finder
-/nfs/pool002/users/biller/databases/quast/quast.py --min-identity 90.0 results/02-assembled_seqs/vesicle_subset_assembly/contigs.fasta -o /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/vesicle_subset_quast --labels contigs
+/nfs/pool002/users/biller/databases/quast/quast.py --min-identity 90.0 results/03-assembled_seqs/vesicle_subset_assembly/contigs.fasta -o /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/vesicle_subset_quast --labels contigs
 
 Version: 5.2.0
 
@@ -37,7 +37,7 @@ System information:
   Python version: 3.11.0
   CPUs number: 20
 
-Started: 2023-06-08 12:22:07
+Started: 2023-06-09 20:23:59
 
 Logging to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/vesicle_subset_quast/quast.log
 NOTICE: Output directory already exists and looks like a QUAST output dir. Existing results can be reused (e.g. previously generated alignments)!
@@ -50,9 +50,9 @@ Main parameters:
 
 Contigs:
   Pre-processing...
-  results/02-assembled_seqs/vesicle_subset_assembly/contigs.fasta ==> contigs
+  results/03-assembled_seqs/vesicle_subset_assembly/contigs.fasta ==> contigs
 
-2023-06-08 12:22:09
+2023-06-09 20:24:01
 Running Basic statistics processor...
   Contig files: 
     contigs
@@ -62,13 +62,13 @@ Done.
 
 NOTICE: Genes are not predicted by default. Use --gene-finding or --glimmer option to enable it.
 
-2023-06-08 12:22:10
+2023-06-09 20:24:03
 Creating large visual summaries...
 This may take a while: press Ctrl-C to skip this step..
   1 of 1: Creating Icarus viewers...
 Done
 
-2023-06-08 12:22:10
+2023-06-09 20:24:04
 RESULTS:
   Text versions of total report are saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/vesicle_subset_quast/report.txt, report.tsv, and report.tex
   Text versions of transposed total report are saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/vesicle_subset_quast/transposed_report.txt, transposed_report.tsv, and transposed_report.tex
@@ -76,10 +76,10 @@ RESULTS:
   Icarus (contig browser) is saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/vesicle_subset_quast/icarus.html
   Log is saved to /nobackup1c/users/biller/gray/genPride/results/03b-quast_out/vesicle_subset_quast/quast.log
 
-Finished: 2023-06-08 12:22:10
-Elapsed time: 0:00:03.591151
+Finished: 2023-06-09 20:24:04
+Elapsed time: 0:00:05.027463
 NOTICEs: 3; WARNINGs: 0; non-fatal ERRORs: 0
 
 Thank you for using QUAST!
 time(sec):
-51
+55

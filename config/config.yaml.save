@@ -18,7 +18,6 @@ gorg_path: "/nobackup1/biller/gray/gorg-classifier"
 krona_nodes_dmp: "resources/NCBI/nodes2.dmp"
 krona_names_dmp: "resources/NCBI/names2.dmp"
 cluster_db: "NA"
-coverm_path: "resources/"
 
 ### METHODS ###
 
@@ -46,6 +45,6 @@ coverage_of_what: "results/assembled_seqs/contigs.fasta"
 #COMPARE
 do_compare: TRUE
 
-#COVERAGE INPUTS
+#COVERAGE INPUTS:
 cellular_subset_covr_inp: "results/01-documentation/cellular_subset_documentation.txt"
 vesicle_subset_covr_inp: "results/03-assembled_seqs/cellular_subset_assembly/contigs.fasta"
