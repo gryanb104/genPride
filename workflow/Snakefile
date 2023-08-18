@@ -1,50 +1,106 @@
 configfile: "config/config.yaml"
-
 report: "report/workflow.rst"
 
-SAMPLES = ['cellular_subset', 'vesicle_subset']
+from rules import documentation as doc
+import pandas as pd
+
+SAMPS = (pd.read_csv("config/manifest.csv")).loc[:,'sample_id'].values 
+FWD_PATHS = (pd.read_csv("config/manifest.csv")).loc[:,'absolute_path_fwd'].values
+MANIFEST = pd.read_csv("config/manifest.csv", index_col=0)
+
+return_mkdoc = "logs/01-return_mkdoc_{sample}.out"
+return_ass = "logs/03-return_assmb_{sample}.out"
+return_coverage = "logs/08-return_coverage_{sample}.out",
+
+samp_doc_dir = "results/01-documentation/"
+samp_doc = "results/01-documentation/{sample}_documentation.txt"
+ass_contigs_dir = "results/03-assembled_seqs/{sample}_assembly/"
+ass_contigs = "results/03-assembled_seqs/{sample}_assembly/contigs.fasta"
+coverage_outfile_dir = "results/08-coverage/"
+coverage_outfile = "results/08-coverage/{sample}_coverage"
+
+manifest = "config/manifest.csv"
+confg = "/nobackup1/biller/gray/genPride/config/config.yaml"
 
 rule all:
 	input:
-		expand("logs/08-return_coverage_{sample}.out", sample=SAMPLES)
+		#expand("results/01-documentation/{sample}_documentation.txt", sample=SAMPS)
+		#expand("results/03-assembled_seqs/{sample}_assembly/contigs.fasta", sample=SAMPS)
+		expand("results/08-coverage/{sample}_coverage", sample=SAMPS)
 
 rule make_documentation:
 	input:
-		manifest = "config/manifest.csv",
-		config_file = "config/config.yaml"
+		inp_fwd = lambda w: MANIFEST.at[f"{w.sample}", "absolute_path_fwd"],
+		inp_rev = lambda w: MANIFEST.at[f"{w.sample}", "absolute_path_rev"],
+		confg = confg
 	output:
-		return_mkdoc = "logs/01-return_mkdoc.out"
+		samp_doc = samp_doc,
+		return_mkdoc = return_mkdoc
+	params:
+		samp_doc_dir = samp_doc_dir,
+		trimmed = lambda w: MANIFEST.at[f"{w.sample}", "trimmed"],
+		paired = lambda w: MANIFEST.at[f"{w.sample}", "paired"],
+		assembly_method = lambda w: MANIFEST.at[f"{w.sample}", "assembly"],
+		gene_pred = lambda w: MANIFEST.at[f"{w.sample}", "gene_prediction"],
+		clustering_meth = lambda w: MANIFEST.at[f"{w.sample}", "clustering"],
+		tax_class = lambda w: MANIFEST.at[f"{w.sample}", "taxonomic_classifier"],
+		coverage_meth = lambda w: MANIFEST.at[f"{w.sample}", "coverage_method"],
+		coverage_ref_type = lambda w: MANIFEST.at[f"{w.sample}", "coverage_reference_type"],
+		samp_or_path = lambda w: MANIFEST.at[f"{w.sample}", "coverage_reference_sample_or_path"]
 	shell:
 		'''
+		python3 -m workflow.scripts.make_documentation_cofg_reset \
+		{input.confg} "COVERAGE INPUTS"
 		python3 -m workflow.scripts.make_documentation \
-		{input.manifest} \
-		{input.config_file} > {output.return_mkdoc}
-				
+		{input.inp_fwd} \
+		{input.confg} \
+		{input.inp_rev} \
+		{wildcards.sample} \
+		{params.trimmed} \
+		{params.samp_doc_dir} \
+		{params.samp_or_path} \
+		{params.paired} \
+		{params.assembly_method} \
+		{params.gene_pred} \
+		{params.clustering_meth} \
+		{params.tax_class} \
+		{params.coverage_meth} \
+		{params.coverage_ref_type} \
+		{output.samp_doc} > {output.return_mkdoc}
+		
 		'''
 
 rule assemble_data:
 	input: 
-		samp_doc = "results/01-documentation/{sample}_documentation.txt",
-		return_mkdoc = "logs/01-return_mkdoc.out",
-		manifest = "config/manifest.csv"
+		inp_fwd = lambda w: MANIFEST.at[f"{w.sample}", "absolute_path_fwd"]
 	output:
-		slurm_ass = "logs/03-return_assmb_{sample}.out",
-		ass_contigs = "results/03-assembled_seqs/{sample}_assembly/contigs.fasta"
+		ass_contigs = ass_contigs
 	params:
+		ass_contigs_dir = ass_contigs_dir,
 		ass_thresh = config["assemble_thresh"],
 		threads = config["threads"],
 		spm = config["spades_py_memory"],
-		spades_path = config["spades_path"]	
+		spades_path = config["spades_path"],	
+		ass_meth = lambda w: MANIFEST.at[f"{w.sample}", "assembly"],
+		paired = lambda w: MANIFEST.at[f"{w.sample}", "paired"],
+		return_ass = return_ass,
+		inp_rev = lambda w: MANIFEST.at[f"{w.sample}", "absolute_path_rev"],
+		min_contig_length = config["min_contig_length"]
 	shell:
 		'''
 		bash workflow/scripts/assemble_meat.sh \
-		{input.samp_doc} \
-		{input.manifest} \
+		{params.ass_contigs_dir} \
 		{params.ass_thresh} \
 		{params.threads} \
 		{params.spm} \
 		{params.spades_path} \
-		{output.ass_contigs} > {output.slurm_ass}
+		{output.ass_contigs} \
+		{wildcards.sample} \
+		"{params.ass_meth}" \
+		{input.inp_fwd} \
+		{params.inp_rev} \
+		{params.paired} \
+		{params.min_contig_length} > {params.return_ass}
 		
 		'''
 
@@ -91,12 +147,10 @@ rule find_orfs:
 		prot_seqs = "results/04-protein_seqs/{sample}_prot_seqs/protein_translations.faa"
 	params:
 		prod_path = config["prod_path"],
-		prod_meth = config["prodigal_meth"]
 	shell:
 		'''
 		bash workflow/scripts/find_orfs.sh \
 		{input.ass_contigs} \
-		{params.prod_path} \
 		{input.manifest} \
 		{wildcards.sample} \
 		{input.samp_doc} > {output.slurm_orf}
@@ -110,7 +164,6 @@ rule cluster:
 		slurm_clust = "logs/05-return_cluster_{sample}.out",
 		clustered_seqs = "results/05-clustered_seqs/{sample}_cluster/{sample}_all_seqs.fasta"
 	params:
-		mmseq_meth = config["mmseq_cluster_method"],
 		nuc_id = config["cluster_nuc_id"],
 		overlap = config["cluster_overlap"],
 		cluster_db = config["cluster_db"]
@@ -118,7 +171,6 @@ rule cluster:
 		'''
 		bash workflow/scripts/cluster_gen.sh \
 		{input.prot_seqs} \
-		{params.mmseq_meth} \
 		{params.nuc_id} \
 		{params.overlap} \
 		{params.cluster_db} \
@@ -214,17 +266,20 @@ rule report_final:
 
 rule coverage:
 	input:
-		samp_doc = "results/01-documentation/{sample}_documentation.txt",
 		covr_inp = lambda w: config[f'{w.sample}_covr_inp']
 	output:
-		coverage_slurm = "logs/08-return_coverage_{sample}.out",
-		coverage_outfile = "results/08-coverage/coverage_{sample}"
+		coverage_outfile = coverage_outfile,
+		return_coverage = return_coverage
+	params:
+		paired = lambda w: MANIFEST.at[f"{w.sample}", "paired"],
+		coverage_method = lambda w: MANIFEST.at[f"{w.sample}", "coverage_method"],
 	shell:					
 		'''
 		bash workflow/scripts/coverage.sh \
-		{input.samp_doc} \
+		{params.paired} \
 		{input.covr_inp} \
 		{wildcards.sample} \
-		{output.coverage_outfile} > {output.coverage_slurm}
+		{output.coverage_outfile} \
+		{params.coverage_method} > {output.return_coverage}
 
 		'''

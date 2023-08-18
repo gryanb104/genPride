@@ -1,112 +1,94 @@
-5/11/2023
-	*check genPride run
-		-still working to get working with both
-		-next idea is to rename everything upon comple-
-			tion of assembly: table this
-	*tourmaline goals
-		-get quality report to come out of it: DONE
-		-now starting on getting the trimming step wor-
-			king
-			#steps up to 1.6 on the gihub (link fr-
-				om Dr. Biller)
+8/16/2023
+	*status
+		-genPride
+			#still stuck with an issue that I do n-
+				ot understand
+		-mge clustering
+			#the color fix 2 run failed... fixed c-
+				ommunity mark to be sub cluste-
+				rs-specific, running again
+		-loci v loci
+			#redoing those few clusters caused som-
+				e memory issues, but everything
+				else seems to have finished ru-
+				nning
+	*continue working	
+		-loci v loci
+			#moving everything out
+			#plots made and sent to Dr. Biller
+			#NEXT STEPS: 
+				*use cluster ID for the gene c-
+					olor fill
+				*reorder, by sequence identity?
+				*look at the distribution of r-
+					eads from different ta-
+					xonomic groupings in e-
+					ach cluster 
+				*put together a list of what M-
+					GE genes are found wit-
+					hin each cluster and t-
+					he various annotations 
+					that we have from thos-
+					e in terms of categori-
+					es
+		-mge clustering
+			#another color issue: yellow in plot b-
+				ut no yellow in the key
 
-5/15/2023
-	*adding trimming step to tourmaline
-		-Through 1.6 in the link Dr. Biller sent
-			#1.1 - Format metadata file: DONE
-			#1.2 - Set number of cores: DONE
-			#1.3 - Inspect read quality
-				*need to install fastqc: DONE
-				*need to install multiQC: DONE
-				*run preprocess: DONE
-			#1.4 -  python
-			#through
+8/17/2023
+	*status
+		-loci v loci: list of various things to try ev-
+			entually
+		-clustering mge: issue with yellow showing up
+		-genPride: stil broke
+	*working
+		-clustering mge
+			#added col=V(sub_mge_graph_1)$color and
+				col=V(sub_mge_graph_2)$color i-
+				nto the plotting step, running
+		-doing a little bit of reading 
+			#sveen et al. 2023 
 
-5/16/2023
-	*running, but the number of starting sequences differ
-		-running an iteration with no trimming and ano-
-			ther with
-
-5/21/2023
-	*GOAL: figure out why the trimming step is losing orig-
-		inal sequences: DONE
-	*GOAL: fix the issue: UNNEEDED	
-	
-	
-5/22/2023
-	*run full tourmaline pipeline including the cutadapt s-
-		tep: DONE
-	*next goals:
-		-move everything in the MOVEOUT folder to an a-
-		ccessible place: WAITING
-		-continue generalizing workflow: WORKING
-		-add coverage step:
-		-genPride low-hanging fruit
-			#trimming step:
-			#KEGG annotation:
-			#megahit assembly:
-
-5/23/2023
-        *next goals:
-                -move everything in the MOVEOUT folder to an a-
-                ccessible place: WAITING
-                -continue generalizing workflow: WORKING
-                -add coverage step:
-                -genPride low-hanging fruit
-                        #trimming step:
-                        #KEGG annotation:
-                        #megahit assembly:
-
-5/31/2023
-        *continue working on generalizing the workflow
-
-6/1/2023
-	*today:
-		-move out coral stuff: DONE
-		-put together coral slides and send to Dr. Bil-
-			ler: DONE
-		-send list to Monica: DONE
-		-reach out to Mary, set weekly meeting time?
-		-update calendar: DONE
-		-finish generalizing workflow: WORKING
-		-start on coverage
-
-6/2/2023
-	*today:
-		-finish generalizing workflow: WORKING
-		-start on coverage: 
-
-6/8/2023
-	*today: 
-		-finish generalizing workflow: DONE
-		-run to get all the reports:
-		-set up assignment for Mary (formatting the re-
-			ports into a table): DONE
-
-6/9/2023
-	*add coverage step (coverM):
-		-change make doc to include coverage informati-
-			on, including the paths for the covera-
-			ge step inputs
-	*start running gggenome plots with some of the data fr-
-		om the cluster
-
-6/16/2023
-	*today's goals:
-		-get coverage generalization going: seems to be
-			working
-		-write coverage script
-		-run coverage
-		-make some gggenome graphs
-
-6/19/2023
-	*genPride: work on coverage
-		-establishing if elif else statement functiona-
-			lity: DONE, ASSEMBLY RUNNING
-	*meanwhile, network gggenome plots
-		-get prok_to_ggff script working: WORKING ON IT
-
-6/20/2023
-	*ggenome stuff: working with several sequences
-	*back to genPride coverage
-		-run from yesterday: SUCCESS
+8/18/2023
+	*accomplished
+		-clustering mge:
+			#fixed the yellow issue, made the poin-
+				ts opaque
+	*next steps:
+		-clustering mge:
+			#manual pull out of aux clusters
+			#move legend, make larger
+			#kk layout
+			#shrink figure of aux clusters? try ot-
+		
+				her seeds?
+		-loci v loci:
+			#use cluster ID for the gene color fill
+                        #reorder, by sequence identity?
+			#look at the distribution of reads from
+				different tax groupings in each
+				cluster
+                        #put together a list of what mges (gen-
+				es) are found within each clus-
+				ter and the various annotations
+				that we have from those in ter-
+				ms of categories
+		-genPride:
+			#unfuck this boi
+	*let's work
+		-genPride:
+			#attempting to comment out things in t-
+				he snakefile rule make_documen-
+				tation, trying to figure out w-
+				here the issue is coming from
+			#error was fixed by commenting out inp-
+				ut fwd and bwd reads
+			#tried putting the NA for the absolute-
+				_path_rev_read in unpaired data
+				in quotes
+			#did not work, trying to put "none" in-
+				stead
+			#failed, trying to put the fwd read tw-
+				ice as placeholder
+			#worked! next run everything through co-
+				verage

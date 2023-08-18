@@ -1,4 +1,4 @@
-run_name: "test_one"
+run_name: "cvrg_sbst_gp"
 final_output: "results/assembled_seqs/{cellular,vesicle}_subset_contigs.fasta"
 
 ### THRESHOLDS ###
@@ -20,32 +20,18 @@ krona_names_dmp: "resources/NCBI/names2.dmp"
 cluster_db: "NA"
 coverm_path: "resources/"
 
-### METHODS ###
-
-quast_method: "metaQUAST"
-assembly_method: "metaspades"
-prodigal_meth: "meta_comp"
-mmseq_cluster_method: "easy_cluster"
-
 ### COMPUTING RESOURCES ###
 
 threads: 20
 spades_py_memory: 250
 
-### FOR MEMORY - SAVING PURPOSES ###
+### FOR MEMORY/TIME - SAVING PURPOSES ###
 
-#ASSEMBLY PRODUCTS
 rm1_files: "config/rm1_files.txt"   
-
-#CLUSTER PRODUCTS
 rm2_files: "config/rm2_files.txt"
 
-#COVERAGE
-coverage_of_what: "results/assembled_seqs/contigs.fasta"
+### COVERAGE INPUTS
 
-#COMPARE
-do_compare: TRUE
-
-#COVERAGE INPUTS
+vesicle_subset_nanopore_covr_inp: "results/03-assembled_seqs/cellular_subset_assembly/contigs.fasta"
 cellular_subset_covr_inp: "results/01-documentation/cellular_subset_documentation.txt"
-vesicle_subset_covr_inp: "results/03-assembled_seqs/cellular_subset_assembly/contigs.fasta"
+vesicle_subset_illumina_covr_inp: "results/03-assembled_seqs/cellular_subset_assembly/contigs.fasta"

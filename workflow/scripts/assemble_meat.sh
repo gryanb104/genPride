@@ -2,31 +2,50 @@
 
 #reassign variable names
 
-samp_doc=$1
-manifest=$2
-ass_thresh=$3
-threads=$4
-spm=$5
-spades_path=$6
-contig_output=$7
+out_path=$1
+ass_thresh=$2
+threads=$3
+spm=$4
+spades_path=$5
+contig_output=$6
+sample=$7
+meth=$8
+fwd_list=$9
+bwd_list=${10}
+paired=${11}
+min_contig_length=${12}
 
 #reset timer
 start=$SECONDS
 
-sample="$(grep 'SAMPLE:' $samp_doc | sed 's/^.*: //')"
-meth="$(grep '    ASSEMBLY  :' $samp_doc | sed 's/^.*: //')"
-fwd_list="$(grep 'FWD READ FILE:' $samp_doc | sed 's/^.*: //')"
-bwd_list="$(grep 'REV READ FILE:' $samp_doc | sed 's/^.*: //')"
-out_path="$(echo $contig_output | sed 's/contigs.*//')"
+meth_first="$(echo $meth | grep -o '^[^:]*')"
+meth_second="$(echo $meth | awk -F ':' '{print $2}')"
 
-if [[ "$meth" == "spades:metaspades" ]]
+if [[ "$meth_first" == "spades" ]] && [[ "$meth_second" == "metaspades" ]]
 then
-	${spades_path}/spades.py \
-		-o ${out_path} \
-		--meta \
-		-1 ${fwd_list} \
-		-2 ${bwd_list} \
-		-t ${threads} -m ${spm}
+	if [[ "$paired" == "NO" ]] || [[ "$paired" == "No" ]] || [[ "$paired" == "no" ]]
+	then
+		echo "Metaspades assembly cannot be used for unpaired reads"
+	else
+		${spades_path}/spades.py \
+			-o ${out_path} \
+			--meta \
+			-1 ${fwd_list} \
+			-2 ${bwd_list} \
+			-t ${threads} -m ${spm}
+	fi
+elif [[ "$meth_first" == "megahit" ]]
+then
+	if [[ "$paired" == "NO" ]] || [[ "$paired" == "No" ]] || [[ "$paired" == "no" ]]
+	then
+		rm -r $out_path
+		megahit -r "$fwd_list" -t $threads --min-contig-len $min_contig_length --presets $meth_second -o $out_path
+		mv ${out_path}final.contigs.fa ${out_path}contigs.fasta
+	else
+		rm -r $out_path
+		megahit -1 "$fwd_list" -2 "$bwd_list" -t $threads --min-contig-len $min_contig_length --presets $meth_second -o $out_path
+		mv ${out_path}final.contigs.fa ${out_path}contigs.fasta
+	fi
 else
 	echo "Assembly method $meth not valid"
 fi
