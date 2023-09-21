@@ -24,9 +24,9 @@ confg = "/nobackup1/biller/gray/genPride/config/config.yaml"
 
 rule all:
 	input:
-		#expand("results/01-documentation/{sample}_documentation.txt", sample=SAMPS)
-		#expand("results/03-assembled_seqs/{sample}_assembly/contigs.fasta", sample=SAMPS)
-		expand("results/08-coverage/{sample}_coverage", sample=SAMPS)
+		samp_doc = expand("results/01-documentation/{sample}_documentation.txt", sample=SAMPS)
+		#final_output = config["final_output"]
+		coverage_outfile = expand('results/08-coverage/{sample}_coverage', sample=SAMPS)
 
 rule make_documentation:
 	input:
@@ -266,13 +266,15 @@ rule report_final:
 
 rule coverage:
 	input:
-		covr_inp = lambda w: config[f'{w.sample}_covr_inp']
+		covr_inp = lambda w: config[f'{w.sample}_covr_inp'],
+		inp_fwd = lambda w: MANIFEST.at[f"{w.sample}", "absolute_path_fwd"]
 	output:
-		coverage_outfile = coverage_outfile,
-		return_coverage = return_coverage
+		coverage_outfile = coverage_outfile
 	params:
+		inp_rev = lambda w: MANIFEST.at[f"{w.sample}", "absolute_path_rev"],
 		paired = lambda w: MANIFEST.at[f"{w.sample}", "paired"],
 		coverage_method = lambda w: MANIFEST.at[f"{w.sample}", "coverage_method"],
+		return_coverage = "logs/08-return_coverage_{sample}.out"
 	shell:					
 		'''
 		bash workflow/scripts/coverage.sh \
@@ -280,6 +282,8 @@ rule coverage:
 		{input.covr_inp} \
 		{wildcards.sample} \
 		{output.coverage_outfile} \
-		{params.coverage_method} > {output.return_coverage}
+		{params.coverage_method} \
+		{input.inp_fwd} \ 
+		{params.inp_rev} > {params.return_coverage}
 
 		'''

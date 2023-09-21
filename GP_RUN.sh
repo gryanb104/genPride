@@ -8,8 +8,10 @@
 #SBATCH --exclusive			#exclusive use of node
 
 source ~/.bashrc
-
 conda activate snakeGenPride
-
 snakemake --unlock
+
+doc_inp=$(python3 workflow/scripts/getDocInp.py)
+
+#snakemake --cores 16 --config final_output=$doc_inp $doc_inp
 snakemake --cores 16

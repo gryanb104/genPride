@@ -60,7 +60,6 @@
 			#move legend, make larger
 			#kk layout
 			#shrink figure of aux clusters? try ot-
-		
 				her seeds?
 		-loci v loci:
 			#use cluster ID for the gene color fill
@@ -90,5 +89,368 @@
 				stead
 			#failed, trying to put the fwd read tw-
 				ice as placeholder
-			#worked! next run everything through co-
-				verage
+			#worked! next run everything through c-
+				overage
+			#strugging with this... getting the un-
+				paired single read to work wit-
+				hin coverm is posing a problem
+
+8/24/2023
+	*status
+		-genPride: coverm single unpaired reads not wo-
+			rking
+		-cluster mge: there is a whole list of new thi-
+			ngs to try
+		-loci v loci: also a list of new things to try
+	*working
+		-genPride
+			#added coverM make condition, currently
+				running with coverage method c-
+				overM:make::minimap2-sr
+			#this is very irritating because it ca-
+				nnot find the config file
+				*well I did not change anything
+					but it magically worked
+				*fuck this stupid thing
+			#some issue with unexpected end of file
+				*commenting out until I find it
+
+8/25/2023
+	*genPride: why is sample wildcard not working? Why can-
+		't I access the fastq files? The fuck is happe-
+		ning?
+
+8/28/2023
+	*goals today:
+		-extract the mge hallmark genes from each clus-
+			ter and the annotations we have from t-
+			hem
+		-which nanopore reads are assigned to each clu-
+			ster
+		-coral qqime
+			#change colors in the tree
+				*done, sent to Sam
+			#incorporate salinity and temperature?
+			#read the documentation
+	*done:
+		-made list of all reads
+			#run started to align everything
+
+8/29/2023
+	*mge_network
+		-an error while trying to run align on everyth-
+			ing
+ 		-running a test iteration of cluster_1 alignme-
+			nt to see what the slurm should look l-
+			ike
+		-maybe it's just too many at a time? I will try
+			individual clusters
+			#also running full cluster 1 and clust-
+				er 23
+		-results
+			#cluster_1_test: failed in a loop
+			#cluster_ALL_23: canceled
+			#cluster_ALL_1: canceled
+		-trying again with corrected full file 
+			#job 51526021, time limit set to 5 hour
+
+8/30/2023
+	*mge_network
+		-check on job 51526021: only made it through l-
+			ike 10% of the reads
+		-I will try doing each cluster separately, 7 h-
+			our limit
+			#just cluster_ALL_0*.reads
+		-RUNS:
+			#51531268: cluster_ALL_01.reads
+				*1 hr update: on seq 231306
+				*2 hr update: on seq 445387
+				*3 hr update: 
+				*4 hr update: on seq 876914
+				*5 hr update:
+				*6 hr update:
+			#51531269: cluster_ALL_02.reads
+                                *1 hr update: on seq 261681
+                                *2 hr update: on seq 351365
+                                *3 hr update: prodigal, traini-
+					ng files
+                                *4 hr update:
+                                *5 hr update:
+                                *6 hr update:
+			#51531270: cluster_ALL_03.reads
+                                *1 hr update: on seq 253831
+                                *2 hr update: on seq 352465
+                                *3 hr update: prodigal, traini-
+					ng files
+                                *4 hr update:
+                                *5 hr update:
+                                *6 hr update:
+			#51531271: cluster_ALL_04.reads
+                                *1 hr update: on seq 190416
+                                *2 hr update: on seq 217210
+                                *3 hr update: prodigal, traini-
+					ng files
+                                *4 hr update:
+                                *5 hr update:
+                                *6 hr update:
+			#51531272: cluster_ALL_05.reads
+                                *1 hr update: on seq 246962
+                                *2 hr update: on seq 499240
+                                *3 hr update: prodigal, traini-
+					ng files
+                                *4 hr update:
+                                *5 hr update:
+                                *6 hr update:
+			#51531273: cluster_ALL_06.reads
+                                *1 hr update: 7. eggnog ann
+                                *2 hr update: 7. eggnog ann
+                                *3 hr update: prodigal, traini-
+					ng files
+                                *4 hr update:
+                                *5 hr update:
+                                *6 hr update:
+			#51531274: cluster_ALL_07.reads
+                                *1 hr update: 7. eggnog ann
+                                *2 hr update: 7. eggnog ann
+                                *3 hr update:
+                                *4 hr update:
+                                *5 hr update:
+                                *6 hr update:
+			#51531275: cluster_ALL_08.reads
+                                *1 hr update: 7. eggnog ann
+                                *2 hr update: 7. eggnog ann
+                                *3 hr update: prodigal, traini-
+					ng files
+                                *4 hr update:
+                                *5 hr update:
+                                *6 hr update:
+			#51531276: cluster_ALL_09.reads
+                                *1 hr update: 7. eggnog ann
+                                *2 hr update: 7. eggnog ann
+                                *3 hr update: prodigal, traini-
+					ng files
+                                *4 hr update:
+                                *5 hr update:
+                                *6 hr update:
+			#Canceling because I didn't need these!
+	*other things to do
+		-mge clustering graphs
+			#make pretty in illustrator
+		-loci v loci
+			#add annotations to master sheet of wh-
+				ich reads go in which cluster
+			#figure out which MGEs are in each clu-
+				ster
+			#extract annotations of MGEs, not reads
+	*extracting annotations of MGEs
+		-51533221: REF_MGEs_CLUSTER_01.reads
+		-51533222: REF_MGEs_CLUSTER_02.reads
+		-51533223: REF_MGEs_CLUSTER_03.reads
+		-51533224: REF_MGEs_CLUSTER_04.reads
+		-51533225: REF_MGEs_CLUSTER_05.reads
+		-51533226: REF_MGEs_CLUSTER_06.reads
+		-51533227: REF_MGEs_CLUSTER_07.reads
+		-51533228: REF_MGEs_CLUSTER_08.reads
+		-51533229: REF_MGEs_CLUSTER_09.reads
+		-all failed, no input sequences to analyze
+	*now I'm running something to find the mges
+
+8/31/2023
+	*mge annotation locations?
+		
+9/3/2023
+	*genPride
+		-still broken, can't take the unpaired nanopore
+			reads
+	*loci v loci
+		-I can make the groupings better somehow
+			#put more-related reads closer together
+				perhaps?	
+			#maybe look at just things containing a
+				pair or two of mges that coocur
+				frequently
+			#map the mges against each other, I ne-
+				ed to get the ref mge annotati-
+				ons (somewhere in slack?)
+			#add ref mge annotations to master she-
+				et of which goes in hich clust-
+				er
+	*mge clustering graph
+		-make this prettier, maybe in illustrator
+	*coral
+		-have a document somewhere with plans for this
+		-incorporate salinity and temperature
+			#as a third variable to explain things?
+			#as a justification which depths to sp-
+				lit the depth categories?
+		-read documentation, see what else quiime is a-
+			ble to tell us
+
+9/5/2023
+	*mge network
+		-going to try making things look nicer
+		-first export each panel separately
+			#running in cluster, jobID 51592894
+	*next steps with the coral data
+		-filtering
+			#filter out unidentified
+			#are there any mitochondria or chlorop-
+				hyll to filer out?
+			#filter out samples with low seq count
+			#remove ctd 5because there was contami-
+				natopn of some sort
+		-identifying even sampling depth?
+		-statistics
+			#linear mixed effects in qiime (in con-
+				text of seamounts?)
+		-re-categorization in the tourmaline workflow
+			#based on salinity and/or temperature
+			#based on seamount-related binning
+		-metagenomes
+			#maybe try running this in genPride (s-
+				equenced by illumina)
+		-in the context of seamounts
+			#difference in community composition b-
+				ased on the proximity to seamo-
+				unts (probably pairwise)
+			#difference in community composition b-
+				etween seamounts within a clus-
+				ter or between clusters
+			#metadata stats: what is covarying alo-
+				ng with the community structure
+				*some tools to try:
+					-ANACOM (qiime)
+					-phyloseq (R)
+
+9/6/2023
+	*meeting ith Mary: update on where she is with the data
+		formatting script
+	*mge clustering
+		-checking on my separate panels creation
+		-accidentally had div set to 2... fixed and re-
+			run
+		-worked, but I actually want the smaller frames
+			to be littler
+			#trying with 500 x 500
+			#simultaneously running for a 300 heig-
+				ht version
+			#and one for 500 height ith 4 vertex v-
+				ertex size for the aux plot
+	*loci v loci
+		-find the reference MGE annotations
+		-found! I need to put some brain power into wh-
+			at exactly I am graphing
+
+				
+
+9/7/2023
+	*working on
+		-continuing to fix up the graph in illustrator
+		-figuring out why with cut=10 there are some c-
+			lusters with only a few reads in them
+
+9/11/2023
+	*mge clustering
+		-finished the cleaner-looking graph, waiting on
+			feedback from Dr. Biller
+	*loci v loci plotting
+		-I want to try plotting against each other rea-
+			ds that belong to the same majority cl-
+			uster
+		-also:
+			#color code genes mapping to an MGE
+			#include MGE functional categories
+
+9/13/2023
+	*today's goals
+		-loci v loci 
+			#extract a good combo of reads from the
+				cluster (find good cut)
+			#graph those extractions in clusters
+			#another idea: try to find the reads w-
+				ithin each cluster that are mo-
+				st similar to each other (share
+				many of the same mges)
+		-mge cluster graphing
+			#add cluster number to the graph
+		-make some calls for doctor stuff
+		-print modern paperwork
+
+9/15/2023
+	*todays' goals
+		-mge_ct_cut=3
+			#save .read files
+			#extract from cluster
+			#graph as loci v loci plot
+		-new method: finding reads within a majority c-
+			luster sharing the most mges in common
+			#save .read files
+			#extract from cluster
+			#graph as loci v loci plot
+		-mge cluster graph
+			#add cluster number to graph	
+	*instead I found an error with the way I'd assinged ma-
+		jorities and spent all day fixing it
+
+
+9/18/2023
+	*goals today:
+		-mge loci v loci
+			#get reads lists: DONE
+			#extract alignment from the cluster: W-
+				ORKING
+			#plot the loci v loci plots:
+		-mge clusters
+			#get cluster numbers on plot
+		-coverage:
+			#run it to see where I left off: WORKI-
+				NG
+			#get it to accept wildcards as inputs
+				*weirdly seems to work when set
+					within the rule, it ju-
+					st becomes more irrita-
+					ting for me
+
+9/19/2023
+	*goals today: 
+		-loci v loci:
+			#extract alignment from cluster: DONE
+			#plot the stuff: WORKING
+		-mge clustering:
+			#get cluster numbers on plot
+		-coverage:
+			#get it to accept wildcards
+
+9/21/2023
+	*goals:
+		-loci v loci
+			#output read files for a cut of ten, w-
+				ith ties broken in favor of the
+				last
+			#extract those annotations
+			#plot loci v loci for those 
+		-mge clustering:
+			#put of adding cluster number to the p-
+				lot for now
+		-coverage:
+			#get this working
+	*things I have tried to get coverage working
+		-change the data files to have general access
+			#now it is having an issue with readin-
+				g in the coverage inputs
+		-put into GP_RUN somethingthat runs an instance
+			of snakemake through documentation cre-
+			ation before doring the full thing
+			#didn't work, doesn't recognize the li-
+				ne of code as something I would
+				like to run
+		-put the python command in quotes
+		-try python3 -c
+			#partial success?
+			#still an issue
+		-put python commands into a script that returns
+			SAMPS
+			#still having trouble
+		-try overriding config with a different final_-
+			output for the first snakemake run
+			-I'll come back to this stupidness

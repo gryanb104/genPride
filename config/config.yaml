@@ -1,5 +1,5 @@
 run_name: "cvrg_sbst_gp"
-final_output: "results/assembled_seqs/{cellular,vesicle}_subset_contigs.fasta"
+#final_output: "expand('results/08-coverage/{sample}_coverage', sample=SAMPS)"
 
 ### THRESHOLDS ###
 
@@ -32,6 +32,4 @@ rm2_files: "config/rm2_files.txt"
 
 ### COVERAGE INPUTS
 
-vesicle_subset_nanopore_covr_inp: "results/03-assembled_seqs/cellular_subset_assembly/contigs.fasta"
 cellular_subset_covr_inp: "results/01-documentation/cellular_subset_documentation.txt"
-vesicle_subset_illumina_covr_inp: "results/03-assembled_seqs/cellular_subset_assembly/contigs.fasta"
