@@ -1,0 +1,24 @@
+__________________________________________________
+
+COVERAGE REPORT FOR SAMPLE vesicle_subset_illumina
+
+INPUTS:
+  paired: YES
+  sample: vesicle_subset_illumina
+  output directory: results/08-coverage/vesicle_subset_illumina_coverage
+  coverage method: coverM:make::minimap2-sr
+  forward reads: /nobackup1/biller/gray/data_GP/vesicle_subset_fwd_trimmed_paired.fastq.gz
+  reverse reads: /nobackup1/biller/gray/data_GP/vesicle_subset_rev_trimmed_paired.fastq.gz
+
+METHODS: 
+  METHOD ONE: coverM
+  METHOD TWO: make
+  METHOD THREE: 
+  METHOD FOUR: minimap2-sr
+
+COVERAGE LOG:
+  USING coverM TO CALCULATE COVERAGE FOR SAMPLE vesicle_subset_illumina
+  USING coverM make TO CALCULATE COVERAGE
+  USING COVERAGE MAPPER minimap2-sr
+
+__________________________________________________

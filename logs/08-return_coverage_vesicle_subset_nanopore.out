@@ -1,0 +1,24 @@
+__________________________________________________
+
+COVERAGE REPORT FOR SAMPLE vesicle_subset_nanopore
+
+INPUTS:
+  paired: NO
+  sample: vesicle_subset_nanopore
+  output directory: results/08-coverage/vesicle_subset_nanopore_coverage
+  coverage method: coverM:make::minimap2-ont
+  forward reads: /nfs/chisholmlab001/sbiller/vesicle_nanopore/HOT-319-25m-corrected/ves-1k-01-fix.fna.gz
+  reverse reads: /nfs/chisholmlab001/sbiller/vesicle_nanopore/HOT-319-25m-corrected/ves-1k-01-fix.fna.gz
+
+METHODS: 
+  METHOD ONE: coverM
+  METHOD TWO: make
+  METHOD THREE: 
+  METHOD FOUR: minimap2-ont
+
+COVERAGE LOG:
+  USING coverM TO CALCULATE COVERAGE FOR SAMPLE vesicle_subset_nanopore
+  USING coverM make TO CALCULATE COVERAGE
+  USING COVERAGE MAPPER minimap2-ont
+
+__________________________________________________

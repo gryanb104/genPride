@@ -454,3 +454,32 @@
 		-try overriding config with a different final_-
 			output for the first snakemake run
 			-I'll come back to this stupidness
+		-don't know what's happening, going home anyway
+
+9/22/2023
+	*today
+		-loci v loci run with cutoff at 40, tie breaks in
+			favor of last: running
+	*genPride
+		-we are back to it not liking the vesicle_subset-
+			_illumina wildcard
+		-actually maybe not, trying with mkdoc_check
+			#no luck
+		-trying by calling the rule by name
+			#nope, giving up for now
+		-an error in the coverage for cellular_subset, s-
+			hould not matter since there is no cover-
+			age calculated
+		-there's some weirdness where the coverage inp in
+			the config file is not updating them all
+		-wow this is really dumb I don't know what's hap-
+			pening
+
+9/26/2023
+	*continuing with fixing genPride
+		-commenting out all the middle thing
+			#this got rid of the error
+		-uncomment setting of fwd and rev reads as varia-
+			bles
+		-this is incredibly frustrating
+

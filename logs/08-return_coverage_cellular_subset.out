@@ -1,0 +1,22 @@
+__________________________________________________
+
+COVERAGE REPORT FOR SAMPLE cellular_subset
+
+INPUTS:
+  paired: YES
+  sample: cellular_subset
+  output directory: results/08-coverage/cellular_subset_coverage
+  coverage method: none:::
+  forward reads: /nobackup1/biller/gray/data_GP/cellular_subset_fwd_trimmed_paired.fastq.gz
+  reverse reads: /nobackup1/biller/gray/data_GP/cellular_subset_rev_trimmed_paired.fastq.gz
+
+METHODS: 
+  METHOD ONE: none
+  METHOD TWO: 
+  METHOD THREE: 
+  METHOD FOUR: 
+
+COVERAGE LOG:
+  NO COVERAGE CALCULATED FOR SAMPLE cellular_subset
+
+__________________________________________________
