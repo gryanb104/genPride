@@ -41,14 +41,47 @@ echo "  METHOD FOUR: ${coverage_method_fourth}"
 echo ""
 echo "COVERAGE LOG:"
 
-if [[ $coverage_method_first == "none"  ]] || [[ $coverage_method_first == "None" ]] || [[ $coverage_method_first == "NONE" ]]; then 
+if [[ $coverage_method_first == "multi-bam" ]]; then
+	echo "  SORTING ${reads_fwd} AND ${reads_rev} WITH samtools sort"
+	samtools sort $reads_rev -o ${reads_rev}_sorted.bam
+	samtools sort $reads_fwd -o ${reads_fwd}_sorted.bam
+	echo "  MERGING ${reads_fwd}_sorted.bam AND ${reads_rev}_sorted.bam INTO A SINGLE BAM FILE"
+	samtools merge -o ${output_directory}/multi-bam-merge-for-${sample}-coverage.bam ${reads_fwd}_sorted.bam ${reads_rev}_sorted.bam
+	echo "  SORTING MERGED BAM FILES USING samtools sort"
+	samtools sort ${output_directory}/multi-bam-merge-for-${sample}-coverage.bam -o ${output_directory}/multi-bam-merge-for-${sample}-coverage_sorted.bam
+	if [[ $coverage_method_second == "samtools" ]]; then 
+		echo "  USING samtools coverage TO CALCULATE COVERAGE FROM COMBINED BAM FILE"
+		samtools coverage ${output_directory}/multi-bam-merge-for-${sample}-coverage_sorted.bam -o $output_file
+		echo "  USING samtools coverage TO PRODUCE HISTOGRAM OUTPUT"
+		if [[ $coverage_method_third != "" ]]; then
+			echo "  USING ${coverage_method_third} BINS"
+			samtools coverage ${output_directory}/multi-bam-merge-for-${sample}-coverage_sorted.bam --histogram --n-bins ${coverage_method_third} -o ${output_file}_histogram
+		else
+			echo "  USING DEFAULT BIN NUMBER"
+			samtools coverage ${output_directory}/multi-bam-merge-for-${sample}-coverage_sorted.bam --histogram -o ${output_file}_histogram
+		fi
+	fi
+elif [[ $coverage_method_first == "bowtie2" ]]; then
+	source ~/.bashrc
+	conda deactivate
+	export LC_ALL=en_US.utf-8
+	export LANG=en_US.utf-8
+	conda activate snakeGenPride_py3.10
+		
+	bowtie2-build $covr_inp ${output_directory}/ref_index_for_${sample}
+	bowtie2 -p 8 -x ${output_directory}/ref_index_for_${sample} -1 $reads_fwd -2 $reads_rev | samtools view -bS > ${output_file}.bam
+	cp ${output_file}.bam ${output_file}
+
+	conda deactivate
+	conda activate snakeGenPride
+elif [[ $coverage_method_first == "none"  ]] || [[ $coverage_method_first == "None" ]] || [[ $coverage_method_first == "NONE" ]]; then 
 	echo "  NO COVERAGE CALCULATED FOR SAMPLE ${sample}"
-	mkdir $output_directory
+	#mkdir $output_directory
         echo "NULL" > $output_file
 elif [[ $coverage_method_first == "coverM-from-bam" ]]; then
 	#sort the bam files
-	samtools sort $reads_rev -o ${reads_rev}_sorted
-	samtools sort $reads_fwd -o ${reads_fwd}_sorted
+	samtools sort -n $reads_rev -o ${reads_rev}_sorted
+	samtools sort -n $reads_fwd -o ${reads_fwd}_sorted
 
 	#set coverM vars
 	coverM_algorithm=$coverage_method_second
@@ -93,10 +126,9 @@ elif [[ $coverage_method_first == "coverM-from-bam" ]]; then
 
 	##for coverM genome
 	if [[ $coverM_algorithm == "genome" ]]; then
-		if [[ $paired == "NA" ]]; then
-			coverm genome --bam-files ${reads_fwd}_sorted ${reads_rev}_sorted --methods $cM_methods -t 8 -r $covr_inp -o $output_directory
-			#HERE CHANGE NAME
-		fi
+		coverm genome --bam-files ${reads_fwd}_sorted ${reads_rev}_sorted --sharded --methods $cM_methods -t 8 -o $output_directory
+		#CHANGE NAME
+		
 	##for nonsense coverM algorithm provided
 	else
 		echo "  coverM ${coverM_algorithm} IS UNSUPPORTED. SEE DOCUMENTATION FOR SUPPORTED coverM METHODS"
@@ -175,7 +207,7 @@ elif [[ $coverage_method_first == "coverM" ]]; then
 			coverm make --single $reads_fwd -t 8 -r $covr_inp --mapper $cM_coverage_mapper -o $output_directory
 			cp ${output_directory}/*.bam ${output_file}
 		fi
-
+  
 	##for nonsense coverM algorithm provided
 	else
 		echo "  coverM ${coverM_algorithm} IS UNSUPPORTED. SEE DOCUMENTATION FOR SUPPORTED coverM METHODS"

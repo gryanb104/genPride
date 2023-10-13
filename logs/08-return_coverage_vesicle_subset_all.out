@@ -1,0 +1,27 @@
+__________________________________________________
+
+COVERAGE REPORT FOR SAMPLE vesicle_subset_all
+
+INPUTS:
+  paired: nan
+  sample: vesicle_subset_all
+  output directory: results/08-coverage/vesicle_subset_all_coverage
+  coverage method: multi-bam:samtools::
+  forward reads: /nobackup1/biller/gray/genPride/results/08-coverage/vesicle_subset_illumina_coverage/vesicle_subset_illumina_coverage
+  reverse reads: /nobackup1/biller/gray/genPride/results/08-coverage/vesicle_subset_nanopore_coverage/vesicle_subset_nanopore_coverage
+
+METHODS: 
+  METHOD ONE: multi-bam
+  METHOD TWO: samtools
+  METHOD THREE: 
+  METHOD FOUR: 
+
+COVERAGE LOG:
+  SORTING /nobackup1/biller/gray/genPride/results/08-coverage/vesicle_subset_illumina_coverage/vesicle_subset_illumina_coverage AND /nobackup1/biller/gray/genPride/results/08-coverage/vesicle_subset_nanopore_coverage/vesicle_subset_nanopore_coverage WITH samtools sort
+  MERGING /nobackup1/biller/gray/genPride/results/08-coverage/vesicle_subset_illumina_coverage/vesicle_subset_illumina_coverage_sorted.bam AND /nobackup1/biller/gray/genPride/results/08-coverage/vesicle_subset_nanopore_coverage/vesicle_subset_nanopore_coverage_sorted.bam INTO A SINGLE BAM FILE
+  SORTING MERGED BAM FILES USING samtools sort
+  USING samtools coverage TO CALCULATE COVERAGE FROM COMBINED BAM FILE
+  USING samtools coverage TO PRODUCE HISTOGRAM OUTPUT
+  USING DEFAULT BIN NUMBER
+
+__________________________________________________

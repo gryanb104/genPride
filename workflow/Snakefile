@@ -4,7 +4,8 @@ report: "report/workflow.rst"
 from rules import documentation as doc
 import pandas as pd
 
-SAMPS = (pd.read_csv("config/manifest.csv")).loc[:,'sample_id'].values 
+#SAMPS = (pd.read_csv("config/manifest.csv")).loc[:,'sample_id'].values 
+SAMPS = ("cellular_subset","vesicle_subset_nanopore","vesicle_subset_illumina")
 FWD_PATHS = (pd.read_csv("config/manifest.csv")).loc[:,'absolute_path_fwd'].values
 MANIFEST = pd.read_csv("config/manifest.csv", index_col=0)
 
@@ -25,8 +26,9 @@ confg = "/nobackup1/biller/gray/genPride/config/config.yaml"
 
 rule all:
 	input:
-		samp_doc = expand("results/01-documentation/{sample}_documentation.txt", sample=SAMPS),
-		#coverage_outall = expand("results/08-coverage/{sample}_coverage/{sample}_coverage", sample=SAMPS)
+		#samp_doc = expand("results/01-documentation/{sample}_documentation.txt", sample="vesicle_subset_all"),
+		#ass_contigs = expand("results/03-assembled_seqs/{sample}_assembly/contigs.fasta", sample=SAMPS)
+		coverage_outall = expand("results/08-coverage/{sample}_coverage/{sample}_coverage", sample="vesicle_subset_all")
 
 rule make_documentation:
 	input:
@@ -276,6 +278,8 @@ rule coverage:
 		coverage_method = lambda w: MANIFEST.at[f"{w.sample}", "coverage_method"],
 		return_coverage = return_coverage,
 		coverage_outdir = coverage_outdir
+	threads:
+		1
 	shell:					
 		'''
 		bash workflow/scripts/coverage.sh \
