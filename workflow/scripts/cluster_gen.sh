@@ -11,7 +11,7 @@ start=$SECONDS
 
 #mkdir results/05-clustered_seqs
 
-if [[ "$meth" == "easy_cluster" ]]
+if [[ "$meth" == "mmseqs2:easy_cluster" ]]
 then
 	mmseqs easy-cluster \
 		${prot_seqs} \
